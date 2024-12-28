@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ !empty($header_title) ? $header_title : '' }} - NGGC</title>
+    <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <!--SIDEBAR START HERE-->
+        @include('layouts.sidebar')
+        <!--SIDEBAR END HERE-->
+
+        <!--TOP BAR START HERE-->
+        <div class="main">
+            @include('layouts.navbar')
+            <!--TOP BAR END HERE-->
+
+            <!--MAIN CONTENT HERE-->
+            <main class="content px-3 py-4">
+                @yield('content')
+                <!--MAIN CONTENT END HERE-->
+            </main>
+
+            <!--Footer HERE-->
+            @include('layouts.footer')
+            <!--Footer end HERE-->
+        </div>
+    </div>
+
+    <script src="{{ url('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+
+</html>
