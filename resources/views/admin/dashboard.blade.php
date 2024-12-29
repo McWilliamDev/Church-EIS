@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="dashboardgreetings">
+        @include('layouts.greetings')
+    </div>
     <main class="content px-3 py-4">
         <div class="container-fluid">
             <div class="mb-3">

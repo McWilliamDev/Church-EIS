@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'phonenumber',
+        'position',
     ];
 
     /**
@@ -44,6 +47,18 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public static function getSingle($id)
+    {
+        return self::find($id);
+    }
+    public static function getAdmin()
+    {
+        return self::select('users.*')
+            ->where('user_type', '=', 'admin')
+            ->where('is_delete', '=', 0)
+            ->orderBy('id', 'asc')
+            ->paginate(10);
     }
     public static function getEmailSingle($email)
     {

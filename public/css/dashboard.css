@@ -189,3 +189,43 @@ footer{
         box-shadow: 0 .1rem .2rem rgba(0, 0, 0, 05);
     }
 }
+
+.button-list a{
+    background-color: #727cf5;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10000;
+}
+.button-list a:hover {
+    background-color: #293b5f; 
+    cursor: pointer; 
+    color: #ffffff;
+}
+.button-list a{
+    background-color: #727cf5;
+    color: #ffffff;
+    cursor: pointer;
+    z-index: 10000;
+}
+.button-list a:hover {
+    background-color: #293b5f; 
+    cursor: pointer; 
+    color: #ffffff;
+}
+
+.dashboardgreetings {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dashboardgreetings greetings {
+    font-size: 18px;
+    color: #6c6a6a;
+}
+
+.dashboardgreetings date-today {
+    font-size: 18px;
+    color: #6c6a6a;
+}
