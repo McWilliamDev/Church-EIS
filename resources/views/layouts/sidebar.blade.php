@@ -16,11 +16,11 @@
                 <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
                     data-bs-target="#auth" aria-expanded="false" aria-controls="#auth">
                     <i class="lni lni-user-4"></i>
-                    <span>Church Administrator</span>
+                    <span>Management</span>
                 </a>
                 <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/admin/list') }}" class="sidebar-link">Super Admin</a>
+                        <a href="{{ url('admin/admin/list') }}" class="sidebar-link">Church Administrators</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Admin</a>
