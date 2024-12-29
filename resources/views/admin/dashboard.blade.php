@@ -10,7 +10,7 @@
                 <h3 class="fw-bold fs-4 mb-3">Dashboard</h3>
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <div class="card border-0">
+                        <div class="card border-0 dashboard-card">
                             <div class="card-body py-4">
                                 <h5 class="mb-2 fw-bold">
                                     Total Members
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="col-12 col-md-4">
-                        <div class="card border-0">
+                        <div class="card border-0 dashboard-card">
                             <div class="card-body py-4">
                                 <h5 class="mb-2 fw-bold">
                                     Upcoming Events
@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="col-12 col-md-4">
-                        <div class="card border-0">
+                        <div class="card border-0 dashboard-card">
                             <div class="card-body py-4">
                                 <h5 class="mb-2 fw-bold">
                                     Total Donations

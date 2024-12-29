@@ -10,6 +10,7 @@
 a {
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: none;
 }
@@ -25,7 +26,6 @@ body {
 .wrapper {
     display: flex;
 }
-
 
 .main {
     display: flex;
@@ -47,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 .sidebar-logo {
     margin: auto 0;
 }
@@ -122,7 +123,7 @@ a.sidebar-link:hover {
     width: 40px;
 }
 
-.card{
+.dashboard-card{
     background-color: #f5f5f5;
     transition: .4s;
     cursor: pointer;
@@ -130,7 +131,7 @@ a.sidebar-link:hover {
     margin-bottom: 1rem;
 }
 
-.card:hover{
+.dashboard-card:hover{
     background-color: #293b5f;
     color: #fff;
     transform: translateY(-10.5px);
@@ -142,16 +143,6 @@ a.sidebar-link:hover {
     font-size: 0.715rem;
     color: #fff !important;
     border-radius: 5px;
-}
-
-.table>thead tr{
-    color: #fff;
-    text-align: left;
-}
-
-tr.highlight th{
-    background-color: #293b5f;
-    color: #fff;
 }
 
 .content{
@@ -196,17 +187,20 @@ footer{
     cursor: pointer;
     z-index: 10000;
 }
+
 .button-list a:hover {
     background-color: #293b5f; 
     cursor: pointer; 
     color: #ffffff;
 }
+
 .button-list a{
     background-color: #727cf5;
     color: #ffffff;
     cursor: pointer;
     z-index: 10000;
 }
+
 .button-list a:hover {
     background-color: #293b5f; 
     cursor: pointer; 
@@ -228,4 +222,24 @@ footer{
 .dashboardgreetings date-today {
     font-size: 18px;
     color: #6c6a6a;
+}
+
+.table thead tr{
+    color: #fff;
+    text-align: left;
+}
+
+tr.highlight th{
+    background-color: #293b5f;
+    color: #fff;
+}
+
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+thead {
+    position: sticky;
+    top: 0;
 }
