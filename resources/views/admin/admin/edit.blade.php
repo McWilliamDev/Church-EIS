@@ -30,8 +30,8 @@
             </div>
             <div class="col-6">
                 <label class="form-label">Phone Number</label>
-                <input type="number" class="form-control" name="phonenumber"
-                    value="{{ old('phonenumber', $getRecord->phonenumber) }}" required placeholder="Phone Number">
+                <input type="tel" class="form-control" name="phonenumber"
+                    value="{{ old('phonenumber', $getRecord->phonenumber) }}" required placeholder="09XX-XXXX-XXX">
             </div>
             <div class="col-12">
                 <label class="form-label">Address</label>
