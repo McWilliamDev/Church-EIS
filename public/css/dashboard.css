@@ -243,3 +243,6 @@ thead {
     position: sticky;
     top: 0;
 }
+label{
+    font-weight: bold;
+}

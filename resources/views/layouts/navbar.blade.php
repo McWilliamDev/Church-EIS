@@ -12,26 +12,46 @@
                     <img src="{{ asset('images/account.png') }}" class="avatar img-fluid" alt="">
                     <span>{{ Auth::user()->name }}</span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end rounded">
-                    <a href="#" class="dropdown-item">
-                        <i class="lni lni-user-4"></i>
-                        <span>Profile</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="lni lni-gear-1"></i>
-                        <span>Change Password</span>
-                    </a>
-                    <a href="{{ url('logout') }}" class="dropdown-item">
-                        <i class="lni lni-exit"></i>
-                        <span>Logout</span>
-                    </a>
-                    <div class="dropdown-divider">
+
+                @if (Auth::user()->user_type == 'admin')
+                    <div class="dropdown-menu dropdown-menu-end rounded">
                         <a href="#" class="dropdown-item">
-                            <i class="lni lni-gear-1"></i>
-                            <span>Analytics</span>
+                            <i class="lni lni-user-4"></i>
+                            <span>Profile</span>
                         </a>
+
+                        <a href="{{ url('admin/change_password') }}" class="dropdown-item">
+                            <i class="lni lni-gear-1"></i>
+                            <span>Change Password</span>
+                        </a>
+
+                        <a href="{{ url('logout') }}" class="dropdown-item">
+                            <i class="lni lni-exit"></i>
+                            <span>Logout</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
                     </div>
-                </div>
+                @elseif (Auth::user()->user_type == 'user')
+                    <div class="dropdown-menu dropdown-menu-end rounded">
+                        <a href="#" class="dropdown-item">
+                            <i class="lni lni-user-4"></i>
+                            <span>Profile</span>
+                        </a>
+
+                        <a href="{{ url('user/change_password') }}" class="dropdown-item">
+                            <i class="lni lni-gear-1"></i>
+                            <span>Change Password</span>
+                        </a>
+
+                        <a href="{{ url('logout') }}" class="dropdown-item">
+                            <i class="lni lni-exit"></i>
+                            <span>Logout</span>
+                        </a>
+
+                        <div class="dropdown-divider"></div>
+                    </div>
+                @endif
             </li>
         </ul>
     </div>

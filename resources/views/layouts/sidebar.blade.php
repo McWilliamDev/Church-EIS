@@ -50,7 +50,7 @@
                 </a>
                 <ul id="ministry" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Ministry Group</a>
+                        <a href="{{ url('admin/ministry/list') }}" class="sidebar-link">Ministry Group</a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Assign Ministry</a>
