@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\MembersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -41,6 +42,12 @@ Route::group(['middleware' => 'admin'], function () {
     //Change Password
     Route::get('admin/change_password', [PasswordController::class, 'change_password']);
     Route::post('admin/change_password', [PasswordController::class, 'update_change_password']);
+
+
+    //Members List
+    Route::get('admin/member/list', [MembersController::class, 'list']);
+    Route::get('admin/member/add', [MembersController::class, 'add']);
+    Route::post('admin/member/add', [MembersController::class, 'insert']);
 });
 
 //Middleware Function for User

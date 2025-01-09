@@ -29,7 +29,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ url('admin/member/list') }}" class="sidebar-link">
                     <i class="lni lni-user-multiple-4"></i>
                     <span>Manage Member</span>
                 </a>
@@ -105,7 +105,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="admin/members/list" class="sidebar-link">
                     <i class="lni lni-user-multiple-4"></i>
                     <span>Manage Member</span>
                 </a>
