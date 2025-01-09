@@ -235,7 +235,7 @@ tr.highlight th{
 }
 
 .table-responsive {
-    max-height: 400px;
+    max-height: 750px;
     overflow-y: auto;
 }
 
