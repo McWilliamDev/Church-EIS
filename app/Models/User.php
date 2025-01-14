@@ -61,15 +61,6 @@ class User extends Authenticatable
             ->paginate(10);
     }
 
-    public static function getMember()
-    {
-        return self::select('users.*')
-            ->where('user_type', '=', 'member')
-            ->where('is_delete', '=', 0)
-            ->orderBy('id', 'asc')
-            ->paginate(10);
-    }
-
     public static function getEmailSingle($email)
     {
         return User::where('email', '=', $email)->first();
