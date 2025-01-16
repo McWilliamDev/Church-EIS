@@ -18,22 +18,33 @@
                 <form method="get" action="">
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
                                     placeholder="Name">
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" value="{{ Request::get('email') }}"
                                     name="email" placeholder="Email">
                             </div>
 
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <label for="date">Phone No.</label>
                                 <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
                                     name="phonenumber" placeholder="Phone Number">
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <label for="date">Member Status</label>
+                                <select class="form-select" name="member_status">
+                                    <option value="">Select Status</option>
+                                    <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
+                                        Active</option>
+                                    <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
+                                        Inactive</option>
+                                </select>
                             </div>
 
                             <div class="form-group col-md-3 d-flex align-items-end">
@@ -48,7 +59,7 @@
                 @include('alerts')
                 <div class="table-responsive" style="overflow: auto;">
                     <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Church Administrator</caption>
+                        <caption class="fs-5 fw-semibold">List of Church Members</caption>
                         <thead>
                             <tr class="highlight">
                                 <th scope="col">#</th>

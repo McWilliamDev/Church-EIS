@@ -20,7 +20,7 @@ class MembersController extends Controller
     public function add()
     {
         $data['getMinistry'] = MinistryModel::getRecord();
-        $data['header_title'] = "Add New Student";
+        $data['header_title'] = "Add New Member";
         return view('admin.member.add', $data);
     }
     public function insert(Request $request)
