@@ -16,16 +16,6 @@ class MembersModel extends Model
         return self::find($id);
     }
 
-    //public static function getMember()
-    //{
-    //    $return = self::select('members.*', 'ministry.ministry_name as ministry_name')
-    //        ->join('ministry', 'ministry.id', '=', 'members.ministry_id', 'left')
-    //        ->where('is_delete', '=', 0);
-    //    $return = $return->orderBy('members.id', 'desc')
-    //        ->paginate(10);
-
-    //    return $return;
-    //}
     public static function getMember()
     {
         $return = self::select('members.*', 'ministry.ministry_name as ministry_name')
@@ -44,7 +34,6 @@ class MembersModel extends Model
             $member_status = (Request::get('member_status') == 100) ? 0 : 1;
             $return = $return->where('members.member_status', '=', $member_status);
         }
-
 
         $return = $return->orderBy('members.id', 'desc')
             ->paginate(10);

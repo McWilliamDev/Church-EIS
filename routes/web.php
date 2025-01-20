@@ -6,12 +6,15 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+//Function for Login
 Route::get('/admin', [AuthController::class, 'login']);
 Route::post('login', [AuthController::class, 'Authlogin']);
 Route::get('logout', [AuthController::class, 'logout']);
@@ -43,6 +46,13 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/change_password', [PasswordController::class, 'change_password']);
     Route::post('admin/change_password', [PasswordController::class, 'update_change_password']);
 
+    //Users List
+    Route::get('admin/user/list', [UserController::class, 'list']);
+    Route::get('admin/user/add', [UserController::class, 'add']);
+    Route::post('admin/user/add', [UserController::class, 'insert']);
+    Route::get('admin/user/edit/{id}', [UserController::class, 'edit']);
+    Route::post('admin/user/edit/{id}', [UserController::class, 'update']);
+    Route::get('admin/user/delete/{id}', [UserController::class, 'delete']);
 
     //Members List
     Route::get('admin/member/list', [MembersController::class, 'list']);

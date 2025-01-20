@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         <div class="col-sm-6">
-            <h3 class="fw-bold fs-4 my-3">Church Administrators (Total: {{ $getRecord->total() }})</h3>
+            <h3 class="fw-bold fs-4 my-3">Administrators (Total: {{ $getRecord->total() }})</h3>
         </div>
         <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('admin/admin/add') }}" class="btn my-2">Add Church Administrators</a>
+            <a href="{{ url('admin/user/add') }}" class="btn my-2">Add Administrators</a>
         </div>
 
         <div class="container-fluid shadow-lg ">
@@ -14,7 +14,7 @@
                 @include('alerts')
                 <div class="table-responsive">
                     <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Church Administrator</caption>
+                        <caption class="fs-5 fw-semibold">List of Administrator</caption>
                         <thead>
                             <tr class="highlight">
                                 <th scope="col">#</th>
@@ -45,9 +45,9 @@
                                     <td>{{ $value->phonenumber }}</td>
                                     <td>{{ $value->created_at }}</td>
                                     <td>
-                                        <a href="{{ url('admin/admin/edit', $value->id) }}"
+                                        <a href="{{ url('admin/user/edit', $value->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{{ url('admin/admin/delete', $value->id) }}" class="btn btn-danger btn-sm"
+                                        <a href="{{ url('admin/user/delete', $value->id) }}" class="btn btn-danger btn-sm"
                                             onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
                                     </td>
                                 </tr>
@@ -65,10 +65,10 @@
         function confirmDelete(event, id, name) {
             event.preventDefault();
 
-            var confirmation = confirm('Are you sure you want to delete this Church Administrator: ' + name + '?');
+            var confirmation = confirm('Are you sure you want to delete this Administrator: ' + name + '?');
 
             if (confirmation) {
-                window.location.href = '{{ url('admin/admin/delete') }}' + '/' + id;
+                window.location.href = '{{ url('admin/user/delete') }}' + '/' + id;
             }
         }
     </script>
