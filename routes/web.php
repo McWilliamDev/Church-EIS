@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MinistryController;
-use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\UserController;
 
@@ -43,8 +43,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/ministry/delete/{id}', [MinistryController::class, 'delete']);
 
     //Change Password
-    Route::get('admin/change_password', [PasswordController::class, 'change_password']);
-    Route::post('admin/change_password', [PasswordController::class, 'update_change_password']);
+    Route::get('admin/change_password', [ProfileController::class, 'change_password']);
+    Route::post('admin/change_password', [ProfileController::class, 'update_change_password']);
+
+    Route::get('admin/profile', [ProfileController::class, 'MyProfile']);
+    Route::post('admin/profile', [ProfileController::class, 'UpdateMyProfileAdmin']);
 
     //Users List
     Route::get('admin/user/list', [UserController::class, 'list']);
@@ -68,6 +71,9 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('user/dashboard', [DashboardController::class, 'dashboard']);
 
     //Change Password
-    Route::get('user/change_password', [PasswordController::class, 'change_password']);
-    Route::post('user/change_password', [PasswordController::class, 'update_change_password']);
+    Route::get('user/change_password', [ProfileController::class, 'change_password']);
+    Route::post('user/change_password', [ProfileController::class, 'update_change_password']);
+
+    Route::get('user/profile', [ProfileController::class, 'MyProfile']);
+    Route::post('user/profile', [ProfileController::class, 'UpdateMyProfile']);
 });

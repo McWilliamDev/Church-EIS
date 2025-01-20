@@ -27,9 +27,9 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users',
             'phonenumber' => 'max:20|min:11',
         ]);
-        $user = new User;
-        $user->name = trim($request->name);
-        $user->email = trim($request->email);
+        $admin = new User;
+        $admin->name = trim($request->name);
+        $admin->email = trim($request->email);
 
         if (!empty($request->file('profile_pic'))) {
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
@@ -38,15 +38,15 @@ class AdminController extends Controller
             $filename =  strtolower($randomStr) . '.' . $ext;
             $file->move('upload/profile/', $filename);
 
-            $user->profile_pic = $filename;
+            $admin->profile_pic = $filename;
         }
 
-        $user->password = Hash::make(($request->password));
-        $user->address = trim($request->address);
-        $user->phonenumber = trim($request->phonenumber);
-        $user->position = trim($request->position);
-        $user->user_type = 'admin';
-        $user->save();
+        $admin->password = Hash::make(($request->password));
+        $admin->address = trim($request->address);
+        $admin->phonenumber = trim($request->phonenumber);
+        $admin->position = trim($request->position);
+        $admin->user_type = 'admin';
+        $admin->save();
 
         return redirect('admin/admin/list')->with('success', "Church Administrator successfully added");
     }
@@ -67,9 +67,9 @@ class AdminController extends Controller
             'phonenumber' => 'max:20|min:11',
         ]);
 
-        $user = User::getSingle($id);
-        $user->name = trim($request->name);
-        $user->email = trim($request->email);
+        $admin = User::getSingle($id);
+        $admin->name = trim($request->name);
+        $admin->email = trim($request->email);
 
         if (!empty($request->file('profile_pic'))) {
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
@@ -78,21 +78,21 @@ class AdminController extends Controller
             $filename =  strtolower($randomStr) . '.' . $ext;
             $file->move('upload/profile/', $filename);
 
-            $user->profile_pic = $filename;
+            $admin->profile_pic = $filename;
         }
-        $user->address = trim($request->address);
-        $user->phonenumber = trim($request->phonenumber);
-        $user->position = trim($request->position);
-        $user->user_type = 'admin';
-        $user->save();
+        $admin->address = trim($request->address);
+        $admin->phonenumber = trim($request->phonenumber);
+        $admin->position = trim($request->position);
+        $admin->user_type = 'admin';
+        $admin->save();
 
         return redirect('admin/admin/list')->with('success', "Church Administrator successfully updated");
     }
     public function delete($id)
     {
-        $user = User::getSingle($id);
-        $user->is_delete = 1;
-        $user->save();
+        $admin = User::getSingle($id);
+        $admin->is_delete = 1;
+        $admin->save();
         return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
     }
 }

@@ -15,7 +15,7 @@
 
                 @if (Auth::user()->user_type == 'admin')
                     <div class="dropdown-menu dropdown-menu-end rounded">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ url('admin/profile') }}" class="dropdown-item">
                             <i class="lni lni-user-4"></i>
                             <span>Profile</span>
                         </a>
@@ -32,9 +32,10 @@
 
                         <div class="dropdown-divider"></div>
                     </div>
+
                 @elseif (Auth::user()->user_type == 'user')
                     <div class="dropdown-menu dropdown-menu-end rounded">
-                        <a href="#" class="dropdown-item">
+                        <a href="{{ url('user/profile') }}" class="dropdown-item">
                             <i class="lni lni-user-4"></i>
                             <span>Profile</span>
                         </a>
