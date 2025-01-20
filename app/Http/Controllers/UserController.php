@@ -7,26 +7,29 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class AdminController extends Controller
+
+class UserController extends Controller
 {
     public function list()
     {
-        $data['getRecord'] = User::getAdmin();
-        $data['header_title'] = "Church Administrator List";
-        return view('admin.admin.list', $data);
+        $data['getRecord'] = User::getUser();
+        $data['header_title'] = "Administrator List";
+        return view('admin.user.list', $data);
     }
 
     public function add()
     {
-        $data['header_title'] = "Add Church Administrator ";
-        return view('admin.admin.add', $data);
+        $data['header_title'] = "Add Administrator";
+        return view('admin.user.add', $data);
     }
+
     public function insert(Request $request)
     {
-        request()->validate([
+        $request->validate([
             'email' => 'required|email|unique:users',
             'phonenumber' => 'max:20|min:11',
         ]);
+
         $user = new User;
         $user->name = trim($request->name);
         $user->email = trim($request->email);
@@ -40,29 +43,29 @@ class AdminController extends Controller
 
             $user->profile_pic = $filename;
         }
-
         $user->password = Hash::make(($request->password));
         $user->address = trim($request->address);
         $user->phonenumber = trim($request->phonenumber);
         $user->position = trim($request->position);
-        $user->user_type = 'admin';
+        $user->user_type = 'user';
         $user->save();
 
-        return redirect('admin/admin/list')->with('success', "Church Administrator successfully added");
+        return redirect('admin/user/list')->with('success', "Admin successfully added");
     }
+
     public function edit($id)
     {
         $data['getRecord'] = User::getSingle($id);
         if (!empty($data['getRecord'])) {
-            $data['header_title'] = "Edit Church Administrator";
-            return view('admin.admin.edit', $data);
+            $data['header_title'] = "Edit Administrator";
+            return view('admin.user.edit', $data);
         } else {
-            return redirect('admin/admin/list')->with('error', 'No Record Found');
+            return redirect('admin/user/list')->with('error', 'No Record Found');
         }
     }
     public function update(Request $request, $id)
     {
-        request()->validate([
+        $request->validate([
             'email' => 'required|email|unique:users,email,' . $id,
             'phonenumber' => 'max:20|min:11',
         ]);
@@ -83,16 +86,21 @@ class AdminController extends Controller
         $user->address = trim($request->address);
         $user->phonenumber = trim($request->phonenumber);
         $user->position = trim($request->position);
-        $user->user_type = 'admin';
+        $user->user_type = 'user';
         $user->save();
 
-        return redirect('admin/admin/list')->with('success', "Church Administrator successfully updated");
+        return redirect('admin/user/list')->with('success', "Admin successfully updated");
     }
     public function delete($id)
     {
-        $user = User::getSingle($id);
-        $user->is_delete = 1;
-        $user->save();
-        return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
+        $getRecord = User::getSingle($id);
+        if (!empty($getRecord)) {
+            $getRecord->is_delete = 1;
+            $getRecord->save();
+
+            return redirect('admin/user/list')->with('success', "Admin successfully updated");
+        } else {
+            return redirect()->back()->with('error', "No Record Found");
+        }
     }
 }

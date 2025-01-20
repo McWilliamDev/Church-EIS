@@ -105,8 +105,7 @@
             </div>
 
             <div class="d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Submit</button>
-                <button type="reset" class="btn btn-danger btn-sm w-25 h-75 mb-3">Clear</button>
+                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Update</button>
             </div>
         </form>
     </div>

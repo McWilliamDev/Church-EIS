@@ -23,7 +23,7 @@
                         <a href="{{ url('admin/admin/list') }}" class="sidebar-link">Church Administrators</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Admin</a>
+                        <a href="{{ url('admin/user/list') }}" class="sidebar-link">Admin</a>
                     </li>
                 </ul>
             </li>
