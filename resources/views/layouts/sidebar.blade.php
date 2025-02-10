@@ -18,10 +18,12 @@
                     <i class="lni lni-user-4"></i>
                     <span>Management</span>
                 </a>
+
                 <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="{{ url('admin/admin/list') }}" class="sidebar-link">Church Administrators</a>
                     </li>
+
                     <li class="sidebar-item">
                         <a href="{{ url('admin/user/list') }}" class="sidebar-link">Admin</a>
                     </li>
@@ -36,7 +38,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ url('admin/events/calendar') }}" class="sidebar-link">
                     <i class="lni lni-calendar-days"></i>
                     <span>Events</span>
                 </a>
@@ -48,12 +50,14 @@
                     <i class="lni lni-hierarchy-1"></i>
                     <span>Ministries</span>
                 </a>
+
                 <ul id="ministry" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="{{ url('admin/ministry/list') }}" class="sidebar-link">Ministry Group</a>
                     </li>
+
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Assign Ministry</a>
+                        <a href="{{ url('admin/assign_ministry/list') }}" class="sidebar-link">Assign Ministry</a>
                     </li>
                 </ul>
             </li>
@@ -64,10 +68,12 @@
                     <i class="lni lni-dollar-circle"></i>
                     <span>Finance Tracking</span>
                 </a>
+
                 <ul id="finance" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Create Finances</a>
                     </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Generate Finance Reports</a>
                     </li>
@@ -80,10 +86,12 @@
                     <i class="lni lni-megaphone-1"></i>
                     <span>Announcements</span>
                 </a>
+
                 <ul id="announcements" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Create Announcements</a>
+                        <a href="{{ url('admin/announcements') }}" class="sidebar-link">Create Announcements</a>
                     </li>
+                    
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Send Announcements</a>
                     </li>
@@ -96,6 +104,7 @@
                     <span>Church Resources</span>
                 </a>
             </li>
+<!--------------------------------------------------------------------------------------------------------------------->
         @elseif(Auth::user()->user_type == 'user')
             <li class="sidebar-item">
                 <a href="{{ url('user/dashboard') }}" class="sidebar-link">
@@ -156,10 +165,12 @@
                     <i class="lni lni-megaphone-1"></i>
                     <span>Announcements</span>
                 </a>
+
                 <ul id="announcements" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Create Announcements</a>
                     </li>
+
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">Send Announcements</a>
                     </li>
