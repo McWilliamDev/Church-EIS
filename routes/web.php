@@ -7,6 +7,8 @@ use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\AnnouncementController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +24,6 @@ Route::get('forgot-password', [AuthController::class, 'forgotpassword']);
 Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'PostReset']);
-
 
 //Middleware Function for Admin
 Route::group(['middleware' => 'admin'], function () {
@@ -64,6 +65,22 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/member/edit/{id}', [MembersController::class, 'edit']);
     Route::post('admin/member/edit/{id}', [MembersController::class, 'update']);
     Route::get('admin/member/delete/{id}', [MembersController::class, 'delete']);
+
+    //Announcement
+    Route::get('admin/announcements', [AnnouncementController::class, 'Announcement']);
+    Route::get('admin/announcements/create_announcement/add', [AnnouncementController::class, 'AddAnnouncement']);
+    Route::post('admin/announcements/create_announcement/add', [AnnouncementController::class, 'InsertAnnouncement']);
+    Route::get('admin/announcements/create_announcement/edit/{id}', [AnnouncementController::class, 'EditAnnouncement']);
+    Route::post('admin/announcements/create_announcement/edit/{id}', [AnnouncementController::class, 'UpdateAnnouncement']);
+    Route::get('admin/announcements/create_announcement/delete/{id}', [AnnouncementController::class, 'DeleteAnnouncement']);
+
+
+
+    //Events
+    Route::get('admin/events/calendar', [EventController::class, 'index']);
+    Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');
+    Route::patch('admin/events/calendar/update/{id}', [EventController::class, 'update'])->name('calendar.update');
+    Route::delete('admin/events/calendar/destroy/{id}', [EventController::class, 'destroy'])->name('calendar.destroy');
 });
 
 //Middleware Function for User

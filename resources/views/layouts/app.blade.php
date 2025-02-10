@@ -8,6 +8,8 @@
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <link rel="stylesheet" href="{{ url('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url('summernote-0.9.0-dist/summernote-bs5.min.css') }}">
+
 </head>
 
 <body>
@@ -34,6 +36,9 @@
     </div>
 
     <script src="{{ url('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url('jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ url('summernote-0.9.0-dist/summernote-bs5.min.js') }}"></script>
+    @yield('script')
 
 </body>
 
