@@ -9,7 +9,7 @@ use App\Http\Controllers\MembersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('website.homepage');
 });
 
 Route::get('/admin', [AuthController::class, 'login']);
