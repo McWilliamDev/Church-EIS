@@ -93,7 +93,7 @@
                     </li>
                     
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Send Announcements</a>
+                        <a href="{{ url('admin/send_announcements') }}" class="sidebar-link">Send Announcements</a>
                     </li>
                 </ul>
             </li>

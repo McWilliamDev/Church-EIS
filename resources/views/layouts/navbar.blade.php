@@ -9,7 +9,7 @@
         <ul class="navbar-nav ms-auto">
             <li class="nav-item dropdown">
                 <a href="#" class="nav-icon pe-md-0" data-bs-toggle="dropdown">
-                    <img src="{{ asset('images/account.png') }}" class="avatar img-fluid" alt="">
+                    <img src="{{ Auth::user()->profile_pic ? asset('upload/profile/' . Auth::user()->profile_pic) : asset('images/account.png') }}" class="avatar img-fluid rounded-circle" alt="">
                     <span>{{ Auth::user()->name }}</span>
                 </a>
 
