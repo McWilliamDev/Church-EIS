@@ -4,10 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AnnouncementModel;
+use App\Models\User;
+use App\Models\MembersModel;
 use Illuminate\Support\Facades\Auth;
 
 class AnnouncementController extends Controller
 {
+
+    public function SendAnnouncement()
+    {
+        $data['header_title'] = 'Send Announcement';
+        return view('admin.announcements.send_announcement', $data);
+    }
+    public function SearchUser(Request $request)
+    {
+        $json = array();
+        if (!empty($request->search)) {
+            $getUser = User::SearchUser($request->search);
+            foreach ($getUser as $value) {
+                $type = '';
+                if ($value->user_type == 'admin') {
+                    $type = 'Church Administrator';
+                } elseif ($value->user_type == 'user') {
+                    $type = 'Administrator';
+                } elseif ($value->user_type == 'members') {
+                    $type = 'Members';
+                }
+                $name = $value->name . ' ' . $value->email . ' - ' . $type;
+                $json[] = ['id' => $value->id, 'text' => $name];
+            }
+        }
+
+        echo json_encode($json);
+    }
+
+    public function SendAnnouncementUser(Request $request)
+    {
+        dd($request->all());
+    }
 
     public function Announcement()
     {

@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\MembersModel;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,20 @@ class User extends Authenticatable
     {
         return self::find($id);
     }
+
+    public static function SearchUser($search)
+    {
+        $return = self::select('users.*')
+            ->where(function ($query) use ($search) {
+                $query->where('users.name', 'like', '%' . $search . '%')
+                    ->orWhere('users.email', 'like', '%' . $search . '%');
+            })
+            ->limit(10)
+            ->get();
+
+        return $return;
+    }
+
     public static function getAdmin()
     {
         return self::select('users.*')

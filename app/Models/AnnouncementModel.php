@@ -42,10 +42,6 @@ class AnnouncementModel extends Model
             $return = $return->where('announcements.publish_date', '<=', Request::get('publish_date_to'));
         }
 
-
-
-
-
         $return = $return->orderBy('announcements.id', 'desc')
             ->paginate(10);
 

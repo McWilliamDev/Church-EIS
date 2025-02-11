@@ -18,11 +18,13 @@
                         <input type="text" class="form-control" id="title" placeholder="Enter Event title">
                         <span id="titleError" class="text-danger"></span>
                     </div>
+
                     <div class="mb-3">
                         <label for="eventDescription" class="form-label">Description</label>
                         <textarea class="form-control" id="eventDescription" rows="3" placeholder="Enter Event description"></textarea>
                         <span id="descriptionError" class="text-danger"></span>
                     </div>
+                    
                     <div class="mb-3">
                         <label for="eventLocation" class="form-label">Location</label>
                         <input type="text" class="form-control" id="eventLocation" placeholder="Enter Event location">
@@ -30,6 +32,7 @@
                     </div>
                 </form>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" id="saveBtn" class="btn btn-primary">Save changes</button>

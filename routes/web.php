@@ -75,6 +75,12 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/announcements/create_announcement/delete/{id}', [AnnouncementController::class, 'DeleteAnnouncement']);
 
 
+    //Send Announcements
+    Route::get('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncement']);
+    Route::post('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncementUser']);
+
+    Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
+
 
     //Events
     Route::get('admin/events/calendar', [EventController::class, 'index']);
