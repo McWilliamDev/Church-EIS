@@ -10,6 +10,7 @@
 @endsection
 @section('content')
     <div class="container-fluid">
+        @include('alerts')
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Send Announcement</h3>
         </div>
@@ -22,7 +23,7 @@
             </div>
 
             <div class="form-group">
-                <label>Send Email to (Admins / Members) </label>
+                <label>Send Email to Admins </label>
                 <select name="user_id" class="form-select select2" style="width: 100%;">
                     <option value="">Select</option>
                 </select>
@@ -30,9 +31,8 @@
 
             <div class="form-group">
                 <label style="display: block;">Email To</label>
-                <label style="margin-right:25px;"><input type="checkbox" value="admin" name="email_to[]" style="margin-right: 10px;">Church Administrator</label>
+                <label style="margin-right:25px;"><input type="checkbox" value="admin" name="email_to[]" style="margin-right: 10px;">Church Administrators</label>
                 <label style="margin-right:25px;"><input type="checkbox" value="user" name="email_to[]" style="margin-right: 10px;">Admins</label>
-                <label style="margin-right:25px;"><input type="checkbox" value="member" name="email_to[]" style="margin-right: 10px;">Members</label>
             </div>
 
             <div class="col-12"> 
