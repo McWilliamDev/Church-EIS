@@ -84,6 +84,13 @@ class User extends Authenticatable
             ->orderBy('users.id', 'desc')
             ->paginate(10);
     }
+    public static function getEmailUser($user_type)
+    {
+        return self::select('users.*')
+            ->where('user_type', '=', $user_type) // Remove single quotes around $user_type
+            ->where('is_delete', '=', 0)
+            ->get();
+    }
 
     public function getProfile()
     {

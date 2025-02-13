@@ -7,6 +7,8 @@ use App\Models\AnnouncementModel;
 use App\Models\User;
 use App\Models\MembersModel;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\SendAnnouncementMail;
+use Illuminate\Support\Facades\Mail;
 
 class AnnouncementController extends Controller
 {
@@ -27,8 +29,6 @@ class AnnouncementController extends Controller
                     $type = 'Church Administrator';
                 } elseif ($value->user_type == 'user') {
                     $type = 'Administrator';
-                } elseif ($value->user_type == 'members') {
-                    $type = 'Members';
                 }
                 $name = $value->name . ' ' . $value->email . ' - ' . $type;
                 $json[] = ['id' => $value->id, 'text' => $name];
@@ -40,7 +40,27 @@ class AnnouncementController extends Controller
 
     public function SendAnnouncementUser(Request $request)
     {
-        dd($request->all());
+
+        if (!empty($request->user_id)) {
+            $user = User::getSingle($request->user_id);
+            $user->description = $request->description;
+            $user->send_subject = $request->subject;
+
+            Mail::to($user->email)->send(new SendAnnouncementMail($user));
+        }
+        if (!empty($request->email_to)) {
+            foreach ($request->email_to as $user_type) {
+                $getUser = User::getEmailUser($user_type);
+                foreach ($getUser as $user) {
+                    $user->description = $request->description;
+                    $user->send_subject = $request->subject;
+
+                    Mail::to($user->email)->send(new SendAnnouncementMail($user));
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', "Announcement Email successfully sent");
     }
 
     public function Announcement()
