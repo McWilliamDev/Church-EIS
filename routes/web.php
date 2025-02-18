@@ -74,13 +74,11 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('admin/announcements/create_announcement/edit/{id}', [AnnouncementController::class, 'UpdateAnnouncement']);
     Route::get('admin/announcements/create_announcement/delete/{id}', [AnnouncementController::class, 'DeleteAnnouncement']);
 
-
     //Send Announcements
     Route::get('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncement']);
     Route::post('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncementUser']);
 
     Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
-
 
     //Events
     Route::get('admin/events/calendar', [EventController::class, 'index']);
@@ -99,4 +97,12 @@ Route::group(['middleware' => 'user'], function () {
 
     Route::get('user/profile', [ProfileController::class, 'MyProfile']);
     Route::post('user/profile', [ProfileController::class, 'UpdateMyProfile']);
+
+    //User Ministry 
+    Route::get('user/ministry/list', [MinistryController::class, 'list']);
+    Route::get('user/ministry/add', [MinistryController::class, 'add']);
+    Route::post('user/ministry/add', [MinistryController::class, 'insert']);
+    Route::get('user/ministry/edit/{id}', [MinistryController::class, 'edit']);
+    Route::post('user/ministry/edit/{id}', [MinistryController::class, 'update']);
+    Route::get('user/ministry/delete/{id}', [MinistryController::class, 'delete']);
 });

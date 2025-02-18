@@ -114,14 +114,14 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="admin/members/list" class="sidebar-link">
+                <a href="{{ url('user/member/list') }}" class="sidebar-link">
                     <i class="lni lni-user-multiple-4"></i>
                     <span>Manage Member</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ url('user/events/calendar') }}" class="sidebar-link">
                     <i class="lni lni-calendar-days"></i>
                     <span>Events</span>
                 </a>
@@ -135,10 +135,10 @@
                 </a>
                 <ul id="ministry" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Ministry Group</a>
+                        <a href="{{ url('user/ministry/list') }}" class="sidebar-link">Ministry Group</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Assign Ministry</a>
+                        <a href="{{ url('admin/assign_ministry/list') }}" class="sidebar-link">Assign Ministry</a>
                     </li>
                 </ul>
             </li>
@@ -168,11 +168,11 @@
 
                 <ul id="announcements" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Create Announcements</a>
+                        <a href="{{ url('user/announcements') }}" class="sidebar-link">Create Announcements</a>
                     </li>
-
+                    
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Send Announcements</a>
+                        <a href="{{ url('user/send_announcements') }}" class="sidebar-link">Send Announcements</a>
                     </li>
                 </ul>
             </li>
