@@ -16,9 +16,15 @@ class MembersModel extends Model
         return self::find($id);
     }
 
+    public static function getTotalMembers()
+    {
+        return self::where('is_delete', '=', 0)->count();
+    }
+
     public static function getMember()
     {
-        $return = self::select('members.*', 'ministry.ministry_name as ministry_name')
+        $return = self::select('members.*', 'users.name as created_by', 'ministry.ministry_name as ministry_name')
+            ->join('users', 'users.id', 'members.created_by')
             ->leftJoin('ministry', 'ministry.id', '=', 'members.ministry_id')
             ->where('members.is_delete', '=', 0);
         if (!empty(Request::get('name'))) {

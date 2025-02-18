@@ -6,7 +6,7 @@
             <h3 class="fw-bold fs-4 my-3">Church Members (Total: {{ $getRecord->total() }})</h3>
         </div>
         <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Members</a>
+            <a href="{{ url('user/member/add') }}" class="btn my-2">Add Church Members</a>
         </div>
 
         <div class="container-fluid shadow-lg ">
@@ -49,7 +49,7 @@
 
                             <div class="form-group col-md-3 d-flex align-items-end">
                                 <button class="btn btn-primary me-2" type="submit">Search</button>
-                                <a href="{{ url('admin/member/list') }}" class="btn btn-danger">Reset</a>
+                                <a href="{{ url('user/member/list') }}" class="btn btn-danger">Reset</a>
                             </div>
                         </div>
                     </div>
@@ -103,9 +103,9 @@
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
 
                                     <td style="min-width: 200px;">
-                                        <a href="{{ url('admin/member/edit', $value->id) }}"
+                                        <a href="{{ url('user/member/edit', $value->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{{ url('admin/member/delete', $value->id) }}"
+                                        <a href="{{ url('user/member/delete', $value->id) }}"
                                             class="btn btn-danger btn-sm"
                                             onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
                                     </td>
@@ -127,7 +127,7 @@
             var confirmation = confirm('Are you sure you want to delete this Church Member: ' + name + '?');
 
             if (confirmation) {
-                window.location.href = '{{ url('admin/member/delete') }}' + '/' + id;
+                window.location.href = '{{ url('user/member/delete') }}' + '/' + id;
             }
         }
     </script>

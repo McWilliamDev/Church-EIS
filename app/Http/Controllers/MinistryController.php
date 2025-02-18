@@ -13,13 +13,26 @@ class MinistryController extends Controller
     {
         $data['getRecord'] = MinistryModel::getRecord();
         $data['header_title'] = "Ministry List";
-        return view('admin.ministry.list', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.ministry.list', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.ministry.list', $data);
+            }
+        }
     }
 
     public function add()
     {
         $data['header_title'] = "Add Ministry";
-        return view('admin.ministry.add', $data);
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.ministry.add', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.ministry.add', $data);
+            }
+        }
     }
     public function insert(Request $request)
     {
@@ -29,7 +42,13 @@ class MinistryController extends Controller
         $ministry->created_by = Auth::user()->id;
         $ministry->save();
 
-        return redirect('admin/ministry/list')->with('success', 'Ministry Added Successfully');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/ministry/list')->with('success', 'Ministry Added Successfully');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/ministry/list')->with('success', 'Ministry Added Successfully');
+            }
+        }
     }
 
     public function edit($id)
@@ -37,11 +56,23 @@ class MinistryController extends Controller
         $data['getRecord'] = MinistryModel::getSingle($id);
         if (!empty($data['getRecord'])) {
             $data['header_title'] = "Edit Ministry";
-            return view('admin.ministry.edit', $data);
+
+            if (Auth::check()) {
+                if (Auth::user()->user_type == 'admin') {
+                    return view('admin.ministry.edit', $data);
+                } elseif (Auth::user()->user_type == 'user') {
+                    return view('user.ministry.edit', $data);
+                } else {
+                    return redirect('admin/ministry/list')->with('error', 'Ministry Not Found');
+                }
+            } else {
+                return redirect('login')->with('error', 'Please log in to edit the ministry');
+            }
         } else {
             return redirect('admin/ministry/list')->with('error', 'Ministry Not Found');
         }
     }
+
     public function update(Request $request, $id)
     {
         $ministry = MinistryModel::getSingle($id);
@@ -49,7 +80,13 @@ class MinistryController extends Controller
         $ministry->ministry_status = $request->status;
         $ministry->save();
 
-        return redirect('admin/ministry/list')->with('success', 'Ministry Successfully Updated');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/ministry/list')->with('success', 'Ministry Successfully Updated');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/ministry/list')->with('success', 'Ministry Successfully Updated');
+            }
+        }
     }
     public function delete($id)
     {
@@ -57,6 +94,12 @@ class MinistryController extends Controller
         $ministry->is_delete = 1;
         $ministry->save();
 
-        return redirect()->back()->with('success', 'Ministry Successfully Deleted');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect()->back()->with('success', 'Ministry Successfully Deleted');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect()->back()->with('success', 'Ministry Successfully Deleted');
+            }
+        }
     }
 }

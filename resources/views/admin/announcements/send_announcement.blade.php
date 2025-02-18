@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-    <link rel="stylesheet" href="{{ url('select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url('plugins/select2.min.css') }}">
     <style type="text/css">
         .select2-container .select2-selection--single{
             height: 40px;
