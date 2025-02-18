@@ -98,6 +98,14 @@ Route::group(['middleware' => 'user'], function () {
     Route::get('user/profile', [ProfileController::class, 'MyProfile']);
     Route::post('user/profile', [ProfileController::class, 'UpdateMyProfile']);
 
+    //User Member List
+    Route::get('user/member/list', [MembersController::class, 'list']);
+    Route::get('user/member/add', [MembersController::class, 'add']);
+    Route::post('user/member/add', [MembersController::class, 'insert']);
+    Route::get('user/member/edit/{id}', [MembersController::class, 'edit']);
+    Route::post('user/member/edit/{id}', [MembersController::class, 'update']);
+    Route::get('user/member/delete/{id}', [MembersController::class, 'delete']);
+
     //User Ministry 
     Route::get('user/ministry/list', [MinistryController::class, 'list']);
     Route::get('user/ministry/add', [MinistryController::class, 'add']);

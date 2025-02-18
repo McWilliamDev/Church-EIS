@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\MembersModel;
 use App\Models\MinistryModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -14,14 +15,28 @@ class MembersController extends Controller
     {
         $data['getRecord'] = MembersModel::getMember();
         $data['header_title'] = "Members List";
-        return view('admin.member.list', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.member.list', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.member.list', $data);
+            }
+        }
     }
 
     public function add()
     {
         $data['getMinistry'] = MinistryModel::getRecord();
         $data['header_title'] = "Add New Member";
-        return view('admin.member.add', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.member.add', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.member.add', $data);
+            }
+        }
     }
     public function insert(Request $request)
     {
@@ -36,6 +51,7 @@ class MembersController extends Controller
         $member->email = $request->email;
         $member->phonenumber = $request->phonenumber;
         $member->gender = $request->gender;
+        $member->created_by = Auth::user()->id;
         $member->ministry_id = $request->ministry_id;
 
         if (!empty($request->date_of_birth)) {
@@ -56,18 +72,35 @@ class MembersController extends Controller
         $member->member_status = $request->member_status;
         $member->save();
 
-
-        return redirect('admin/member/list')->with('success', 'Member Added Successfully');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/member/list')->with('success', 'Member Added Successfully');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/member/list')->with('success', 'Member Added Successfully');
+            }
+        }
     }
+
     public function edit($id)
     {
         $data['getRecord'] = MembersModel::getSingle($id);
         if (!empty($data['getRecord'])) {
             $data['getMinistry'] = MinistryModel::getRecord();
             $data['header_title'] = "Edit Member";
-            return view('admin.member.edit', $data);
+
+            if (Auth::check()) {
+                if (Auth::user()->user_type == 'admin') {
+                    return view('admin.member.edit', $data);
+                } elseif (Auth::user()->user_type == 'user') {
+                    return view('user.member.edit', $data);
+                } else {
+                    return redirect('admin/member/list')->with('error', 'No Record Found');
+                }
+            } else {
+                return redirect('login')->with('error', 'Please log in to edit the members');
+            }
         } else {
-            return redirect('admin/member/list')->with('error', 'No Record Found');
+            return redirect('admin/member/list')->with('error', 'Member Not Found');
         }
     }
     public function update(Request $request, $id)
@@ -108,7 +141,13 @@ class MembersController extends Controller
         $member->save();
 
 
-        return redirect('admin/member/list')->with('success', 'Member Successfully Updated');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/member/list')->with('success', 'Member Successfully Updated');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/member/list')->with('success', 'Member Successfully Updated');
+            }
+        }
     }
     public function delete($id)
     {
@@ -116,9 +155,14 @@ class MembersController extends Controller
         if (!empty($getRecord)) {
             $getRecord->is_delete = 1;
             $getRecord->save();
-            return redirect()->back()->with('success', "Member Successfully Deleted");
-        } else {
-            return redirect()->back()->with('error', "Member Not Found");
+
+            if (!empty(Auth::check())) {
+                if (Auth::user()->user_type == 'admin') {
+                    return redirect()->back()->with('success', 'Member Successfully Deleted');
+                } else if (Auth::user()->user_type == 'user') {
+                    return redirect()->back()->with('success', 'Member Successfully Deleted');
+                }
+            }
         }
     }
 }

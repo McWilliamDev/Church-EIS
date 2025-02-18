@@ -58,8 +58,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src='{{ url('fullcalendar/index.global.js') }}'></script>
-<script src='{{ url('fullcalendar/index.global.min.js') }}'></script>
+<script src='{{ url('plugins/fullcalendar/index.global.js') }}'></script>
+<script src='{{ url('plugins/fullcalendar/index.global.min.js') }}'></script>
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function() {
 

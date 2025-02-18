@@ -54,6 +54,14 @@ class User extends Authenticatable
         return self::find($id);
     }
 
+    public static function getTotalUser($user_type)
+    {
+        return self::where('user_type', $user_type)
+            ->where('user_type', '=', $user_type)
+            ->where('is_delete', '=', 0)
+            ->count();
+    }
+
     public static function SearchUser($search)
     {
         $return = self::select('users.*')

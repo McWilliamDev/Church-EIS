@@ -37,9 +37,9 @@
     </div>
 
     <script src="{{ url('bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url('jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ url('plugins/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url('summernote-0.9.0-dist/summernote-bs5.min.js') }}"></script>
-    <script src="{{ url('select2.full.min.js') }}"></script>
+    <script src="{{ url('plugins/select2.full.min.js') }}"></script>
 
     @yield('script')
 

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\MembersModel;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -12,8 +13,13 @@ class DashboardController extends Controller
         $data['header_title'] = 'Dashboard';
         if (!empty(Auth::check())) {
             if (Auth::user()->user_type == 'admin') {
+
+                $data['TotalAdmin'] = User::getTotalUser('admin');
+                $data['TotalUser'] = User::getTotalUser('user');
+                $data['TotalMembers'] = MembersModel::getTotalMembers();
                 return view('admin.dashboard', $data);
             } else if (Auth::user()->user_type == 'user') {
+
                 return view('user.dashboard', $data);
             }
         }
