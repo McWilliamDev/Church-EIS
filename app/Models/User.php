@@ -25,6 +25,7 @@ class User extends Authenticatable
         'address',
         'phonenumber',
         'position',
+        'two_factor_code',
     ];
 
     /**

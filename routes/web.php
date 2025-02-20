@@ -10,12 +10,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('website.homepage');
 });
-
 
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login']);
@@ -26,8 +26,14 @@ Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 
-//Middleware Function for Admin
+// Middleware for Two-Factor Authentication
 Route::group(['middleware' => 'admin'], function () {
+    Route::get('/two-factor', [TwoFactorController::class, 'index'])->name('two-factor.index');
+    Route::post('/two-factor', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
+});
+
+// Dashboard Routes
+Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('admin/admin/list', [AdminController::class, 'list']);
     Route::get('admin/admin/add', [AdminController::class, 'add']);
@@ -35,6 +41,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+
 
     //Ministry Route
     Route::get('admin/ministry/list', [MinistryController::class, 'list']);
@@ -98,6 +105,12 @@ Route::group(['middleware' => 'admin'], function () {
 
 //Middleware Function for User
 Route::group(['middleware' => 'user'], function () {
+    Route::get('/two-factor', [TwoFactorController::class, 'index'])->name('two-factor.index');
+    Route::post('/two-factor', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
+});
+
+// Dashboard Routes
+Route::group(['middleware' => ['user', 'twofactor']], function () {
     Route::get('user/dashboard', [DashboardController::class, 'dashboard']);
 
     //Change Password

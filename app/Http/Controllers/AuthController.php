@@ -14,27 +14,35 @@ class AuthController extends Controller
 {
     public function login()
     {
-        if (!empty(Auth::check())) {
-            if (Auth::user()->user_type == 'admin') {
-                return redirect('admin/dashboard');
-            } else if (Auth::user()->user_type == 'user') {
-                return redirect('user/dashboard');
-            }
+        // Redirect to the appropriate dashboard if already authenticated
+        if (Auth::check()) {
+            return $this->redirectToDashboard(Auth::user());
         }
         return view('auth.login');
     }
 
     public function Authlogin(Request $request)
     {
-        $remember = !empty($request->remember) ? true : false;
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], remember: $remember)) {
-            if (Auth::user()->user_type == 'admin') {
-                return redirect('admin/dashboard');
-            } else if (Auth::user()->user_type == 'user') {
-                return redirect('user/dashboard');
-            }
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $remember = !empty($request->remember);
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+            // Redirect to two-factor authentication
+            return redirect()->route('two-factor.index');
         } else {
             return redirect()->back()->with('error', 'Invalid email or password');
+        }
+    }
+
+    private function redirectToDashboard($user)
+    {
+        if ($user->user_type == 'admin') {
+            return redirect('admin/dashboard');
+        } else if ($user->user_type == 'user') {
+            return redirect('user/dashboard');
         }
     }
 
