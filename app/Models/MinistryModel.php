@@ -25,4 +25,13 @@ class MinistryModel extends Model
 
         return $return;
     }
+
+    public function getMinistryProfile()
+    {
+        if (!empty($this->ministry_profile) && file_exists('upload/ministry/' . $this->ministry_profile)) {
+            return url('upload/ministry/' . $this->ministry_profile);
+        } else {
+            return "";
+        }
+    }
 }

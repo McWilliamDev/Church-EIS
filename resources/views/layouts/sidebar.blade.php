@@ -38,10 +38,22 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="{{ url('admin/events/calendar') }}" class="sidebar-link">
+                <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#events" aria-expanded="false" aria-controls="#events">
                     <i class="lni lni-calendar-days"></i>
                     <span>Events</span>
                 </a>
+
+                <ul id="events" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="{{ url('admin/events/list') }}" class="sidebar-link">View Events</a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ url('admin/events/calendar') }}" class="sidebar-link">View Calendar Events</a>
+                    </li>
+
+                </ul>
             </li>
 
             <li class="sidebar-item">

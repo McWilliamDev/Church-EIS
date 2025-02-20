@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Models\MinistryModel;
-
 
 class MinistryController extends Controller
 {
@@ -14,40 +14,58 @@ class MinistryController extends Controller
         $data['getRecord'] = MinistryModel::getRecord();
         $data['header_title'] = "Ministry List";
 
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return view('admin.ministry.list', $data);
             } else if (Auth::user()->user_type == 'user') {
                 return view('user.ministry.list', $data);
             }
+        } else {
+            return redirect('login')->with('error', 'Please log in to view the ministry list');
         }
     }
 
     public function add()
     {
         $data['header_title'] = "Add Ministry";
-        if (!empty(Auth::check())) {
+
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return view('admin.ministry.add', $data);
             } else if (Auth::user()->user_type == 'user') {
                 return view('user.ministry.add', $data);
             }
+        } else {
+            return redirect('login')->with('error', 'Please log in to add a ministry');
         }
     }
+
     public function insert(Request $request)
     {
         $ministry = new MinistryModel;
         $ministry->ministry_name = $request->name;
+        $ministry->ministry_description = $request->ministry_description;
         $ministry->ministry_status = $request->status;
         $ministry->created_by = Auth::user()->id;
+
+        if ($request->hasFile('ministry_profile')) {
+            $file = $request->file('ministry_profile');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/ministry/', $filename);
+            $ministry->ministry_profile = $filename;
+        }
         $ministry->save();
 
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return redirect('admin/ministry/list')->with('success', 'Ministry Added Successfully');
             } else if (Auth::user()->user_type == 'user') {
                 return redirect('user/ministry/list')->with('success', 'Ministry Added Successfully');
             }
+        } else {
+            return redirect('login')->with('error', 'Please log in to add a ministry');
         }
     }
 
@@ -77,29 +95,45 @@ class MinistryController extends Controller
     {
         $ministry = MinistryModel::getSingle($id);
         $ministry->ministry_name = $request->name;
+        $ministry->ministry_description = $request->ministry_description;
         $ministry->ministry_status = $request->status;
+        $ministry->created_by = Auth::user()->id;
+
+        if ($request->hasFile('ministry_profile')) {
+            $file = $request->file('ministry_profile');
+            $ext = $file->getClientOriginalExtension();
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/ministry/', $filename);
+            $ministry->ministry_profile = $filename;
+        }
         $ministry->save();
 
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return redirect('admin/ministry/list')->with('success', 'Ministry Successfully Updated');
             } else if (Auth::user()->user_type == 'user') {
                 return redirect('user/ministry/list')->with('success', 'Ministry Successfully Updated');
             }
+        } else {
+            return redirect('login')->with('error', 'Please log in to update the ministry');
         }
     }
+
     public function delete($id)
     {
         $ministry = MinistryModel::getSingle($id);
         $ministry->is_delete = 1;
         $ministry->save();
 
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return redirect()->back()->with('success', 'Ministry Successfully Deleted');
             } else if (Auth::user()->user_type == 'user') {
                 return redirect()->back()->with('success', 'Ministry Successfully Deleted');
             }
+        } else {
+            return redirect('login')->with('error', 'Please log in to delete the ministry');
         }
     }
 }

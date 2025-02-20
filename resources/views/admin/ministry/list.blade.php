@@ -19,7 +19,9 @@
                             <tr class="highlight">
                                 <th scope="col">#</th>
                                 <th scope="col">Ministry Name</th>
+                                <th scope="col">Ministry Description</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Ministry Profile</th>
                                 <th scope="col">Created By</th>
                                 <th scope="col">Date Created</th>
                                 <th scope="col">Action</th>
@@ -30,6 +32,7 @@
                                 <tr>
                                     <td>{{ $value->id }}</td>
                                     <td>{{ $value->ministry_name }}</td>
+                                    <td>{{ $value->ministry_description }}</td>
                                     <td>
                                         @if ($value->ministry_status == 0)
                                             Active
@@ -37,6 +40,10 @@
                                             Inactive
                                         @endif
                                     </td>
+                                    <td>@if (!empty($value->getMinistryProfile()))
+                                        <img src="{{ $value->getMinistryProfile() }}"
+                                            style="height: 50px; width:50px;">
+                                        @endif</td>
                                     <td>{{ $value->created_by }}</td>
                                     <td>{{ \Carbon\Carbon::parse($value->created_at)->timezone('Asia/Manila')->format('d-m-Y H:i A') }}
                                     </td>
