@@ -9,12 +9,13 @@ use App\Http\Controllers\MembersController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
-
+use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('website.homepage');
 });
+
 
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login']);
@@ -80,11 +81,19 @@ Route::group(['middleware' => 'admin'], function () {
 
     Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
 
-    //Events
+    //Events Calendar
     Route::get('admin/events/calendar', [EventController::class, 'index']);
     Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');
     Route::patch('admin/events/calendar/update/{id}', [EventController::class, 'update'])->name('calendar.update');
     Route::delete('admin/events/calendar/destroy/{id}', [EventController::class, 'destroy'])->name('calendar.destroy');
+
+    //Events List
+    Route::get('admin/events/list', [EventsController::class, 'list']);
+    Route::get('admin/events/add', [EventsController::class, 'add']);
+    Route::post('admin/events/add', [EventsController::class, 'insert']);
+    Route::get('admin/events/edit/{id}', [EventsController::class, 'edit']);
+    Route::post('admin/events/edit/{id}', [EventsController::class, 'update']);
+    Route::get('admin/events/delete/{id}', [EventsController::class, 'delete']);
 });
 
 //Middleware Function for User
