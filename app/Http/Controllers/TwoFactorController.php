@@ -38,10 +38,11 @@ class TwoFactorController extends Controller
             $user->two_factor_code = null;
             $user->save();
 
+            // Redirect based on user type
             if ($user->user_type == 'admin') {
-                return redirect('admin/dashboard');
-            } elseif ($user->user_type == 'user') {
-                return redirect('user/dashboard');
+                return redirect()->route('admin.dashboard');
+            } else if ($user->user_type == 'user') {
+                return redirect()->route('user.dashboard');
             }
         }
 
