@@ -30,13 +30,20 @@ class AuthController extends Controller
 
         $remember = !empty($request->remember);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
-            // Redirect to two-factor authentication
-            return redirect()->route('two-factor.index');
+            $user = Auth::user();
+
+            // Check if the user needs to go through two-factor authentication
+            if ($user->user_type == 'admin' || $user->user_type == 'user') {
+                // Redirect to two-factor authentication
+                return redirect()->route('two-factor.index');
+            }
+
+            // If no 2FA is required, redirect to the dashboard directly
+            return $this->redirectToDashboard($user);
         } else {
             return redirect()->back()->with('error', 'Invalid email or password');
         }
     }
-
     private function redirectToDashboard($user)
     {
         if ($user->user_type == 'admin') {

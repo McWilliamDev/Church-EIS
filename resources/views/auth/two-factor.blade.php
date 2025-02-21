@@ -41,7 +41,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">
-                            <i class='bx bx-user'></i>
+                            <i class='bx bx-key'></i>
                         </span>
                         <input type="text" class="form-control form-control-lg fs-6" required name="code" id="code" placeholder="Please enter authentication code ">
                     </div>
