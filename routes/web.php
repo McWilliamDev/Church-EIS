@@ -8,8 +8,13 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\MembersController;
 use Illuminate\Support\Facades\Route;
 
+
+// Ministry Page Backend
 Route::get('/', function () {
-    return view('website.homepage');
+    $posts = DB::table('ministry')->get();
+    return view('website.homepage', [
+        'ministry'=> $posts
+    ]);
 });
 
 Route::get('/admin', [AuthController::class, 'login']);
