@@ -13,8 +13,13 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 
+
+// Ministry Page Backend
 Route::get('/', function () {
-    return view('website.homepage');
+    $posts = DB::table('ministry')->get();
+    return view('website.homepage', [
+        'ministry'=> $posts
+    ]);
 });
 
 //Function for Login
