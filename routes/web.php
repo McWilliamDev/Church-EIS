@@ -7,7 +7,7 @@ use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\EventsCalendarController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
@@ -94,10 +94,14 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
 
     //Events Calendar
-    Route::get('admin/events/calendar', [EventController::class, 'index']);
-    Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');
-    Route::patch('admin/events/calendar/update/{id}', [EventController::class, 'update'])->name('calendar.update');
-    Route::delete('admin/events/calendar/destroy/{id}', [EventController::class, 'destroy'])->name('calendar.destroy');
+    //Route::get('admin/events/calendar', [EventController::class, 'index']);
+    //Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');
+    //Route::patch('admin/events/calendar/update/{id}', [EventController::class, 'update'])->name('calendar.update');
+    //Route::delete('admin/events/calendar/destroy/{id}', [EventController::class, 'destroy'])->name('calendar.destroy');
+
+    //Events Calendar V2
+    Route::get('admin/events_calendar', [EventsCalendarController::class, 'EventsCalendar']);
+    Route::get('/events', [EventsController::class, 'getEvents']);
 
     //Events List
     Route::get('admin/events/list', [EventsController::class, 'list']);
@@ -107,7 +111,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::post('admin/events/edit/{id}', [EventsController::class, 'update']);
     Route::get('admin/events/delete/{id}', [EventsController::class, 'delete']);
 });
-
 
 // Dashboard Routes for Users
 Route::group(['middleware' => ['user', 'twofactor']], function () {
