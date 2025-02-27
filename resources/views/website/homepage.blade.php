@@ -61,6 +61,34 @@
       <script src="js/website/custom.js"></script>
       <!-- javascript --> 
       <script src="js/website/owl.carousel.js"></script>
-      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>    
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>  
+      
+      <script>
+        // Function to scroll to a section
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    
+        // Handle page load
+        const section = window.location.pathname.replace('/', ''); // Get the section from the URL
+        if (section) {
+            scrollToSection(section); // Scroll to the section if it exists
+        }
+    
+        // Handle link clicks for multiple classes
+        document.querySelectorAll('.menu_main a, .footer-links a, .navbar-nav a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default link behavior
+                const targetId = this.getAttribute('href').replace('/', ''); // Extract section ID from href
+                scrollToSection(targetId); // Scroll to the section
+                history.pushState(null, '', `/${targetId}`); // Update the URL without reloading the page
+            });
+        });
+    </script>
+    
+
    </body>
 </html>
