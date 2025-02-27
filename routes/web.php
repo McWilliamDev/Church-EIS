@@ -12,15 +12,27 @@ use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 
-// Ministry Page Backend
 Route::get('/', function () {
-    $posts = DB::table('ministry')->get();
+    // Fetch data from the "ministry" table
+    $ministries = DB::table('ministry')->get();
+
+    // Fetch data from the "events" table
+    $events = DB::table('events')->get();
+
+    // Pass both datasets to the view
     return view('website.homepage', [
-        'ministry'=> $posts
+        'ministry' => $ministries,
+        'events' => $events
     ]);
 });
+
+Route::get('/section/{section}', function ($section) {
+    return view('website.homepage', ['scrollTo' => $section]);
+})->name('scroll.section');
+
 
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
