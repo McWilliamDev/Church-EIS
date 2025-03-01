@@ -54,4 +54,23 @@ class MembersModel extends Model
             return "";
         }
     }
+
+    //Joined to Assigned Ministry
+    public static function getMembers()
+    {
+        $return = MembersModel::select('members.*')
+            ->leftJoin('assign_ministry', 'members.id', '=', 'assign_ministry.member_id')
+            ->where('members.is_delete', '=', 0)
+            ->whereNull('assign_ministry.member_id')
+            ->get();
+        return $return;
+    }
+    public static function getMembersEdit()
+    {
+        $return = MembersModel::select('members.*')
+            ->leftJoin('assign_ministry', 'members.id', '=', 'assign_ministry.member_id')
+            ->where('members.is_delete', '=', 0)
+            ->get();
+        return $return;
+    }
 }

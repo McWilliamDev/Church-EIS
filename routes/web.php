@@ -11,6 +11,7 @@ use App\Http\Controllers\EventsCalendarController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\AssignMinistryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
@@ -67,6 +68,15 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/ministry/edit/{id}', [MinistryController::class, 'edit']);
     Route::post('admin/ministry/edit/{id}', [MinistryController::class, 'update']);
     Route::get('admin/ministry/delete/{id}', [MinistryController::class, 'delete']);
+
+    //Assign Ministry Route
+    Route::get('admin/assign_ministry/list', [AssignMinistryController::class, 'list']);
+    Route::get('admin/assign_ministry', [AssignMinistryController::class, 'assign']);
+    Route::post('admin/assign_ministry', [AssignMinistryController::class, 'assigned']);
+    Route::get('admin/assign_ministry/edit/{id}', [AssignMinistryController::class, 'edit']);
+    Route::post('admin/assign_ministry/edit/{id}', [AssignMinistryController::class, 'update']);
+    Route::get('admin/assign_ministry/delete/{id}', [AssignMinistryController::class, 'delete']);
+
 
     //Change Password
     Route::get('admin/change_password', [ProfileController::class, 'change_password']);

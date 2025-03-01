@@ -9,72 +9,73 @@
             <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Members</a>
         </div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="card p-2 g-col-6">
-                <div class="card-header">
-                    <h5 class="fw-bold fs-5">Search Member</h5>
-                </div>
-
-                <form method="get" action="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-2">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
-                                    placeholder="Name">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" value="{{ Request::get('email') }}"
-                                    name="email" placeholder="Email">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="date">Phone No.</label>
-                                <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
-                                    name="phonenumber" placeholder="Phone Number">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="date">Member Status</label>
-                                <select class="form-select" name="member_status">
-                                    <option value="">Select Status</option>
-                                    <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
-                                        Active</option>
-                                    <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
-                                        Inactive</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3 d-flex align-items-end">
-                                <button class="btn btn-primary me-2" type="submit">Search</button>
-                                <a href="{{ url('admin/member/list') }}" class="btn btn-danger">Reset</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        
             <div class="col-md-12">
                 @include('alerts')
                 <div class="table-responsive" style="overflow: auto;">
-                    <table class="table table-striped caption-top">
+                    <div class="container-fluid shadow-lg ">
+                        <!--<div class="card p-2 g-col-6">
+                            <div class="card-header">
+                                <h5 class="fw-bold fs-5">Search Member</h5>
+                            </div>
+            
+                            <form method="get" action="">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="form-group col-md-2">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
+                                                placeholder="Name">
+                                        </div>
+            
+                                        <div class="form-group col-md-2">
+                                            <label for="email">Email</label>
+                                            <input type="text" class="form-control" value="{{ Request::get('email') }}"
+                                                name="email" placeholder="Email">
+                                        </div>
+            
+                                        <div class="form-group col-md-2">
+                                            <label for="date">Phone No.</label>
+                                            <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
+                                                name="phonenumber" placeholder="Phone Number">
+                                        </div>
+            
+                                        <div class="form-group col-md-2">
+                                            <label for="date">Member Status</label>
+                                            <select class="form-select" name="member_status">
+                                                <option value="">Select Status</option>
+                                                <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
+                                                    Active</option>
+                                                <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
+                                                    Inactive</option>
+                                            </select>
+                                        </div>
+            
+                                        <div class="form-group col-md-3 d-flex align-items-end">
+                                            <button class="btn btn-primary me-2" type="submit">Search</button>
+                                            <a href="{{ url('admin/member/list') }}" class="btn btn-danger">Reset</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>-->
+                    <table id="myTable" class="table table-striped caption-top display">
                         <caption class="fs-5 fw-semibold">List of Church Members</caption>
                         <thead>
                             <tr class="highlight">
-                                <th scope="col">#</th>
-                                <th scope="col">Profile Picture</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone No. </th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Ministry</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created By</th>
-                                <th scope="col">Date Added</th>
-                                <th scope="col">Action</th>
+                                <th>#</th>
+                                <th >Profile Picture</th>
+                                <th >Name</th>
+                                <th >Email</th>
+                                <th >Phone No. </th>
+                                <th >Gender</th>
+                                <th >Ministry</th>
+                                <th >Date of Birth</th>
+                                <th >Address</th>
+                                <th >Status</th>
+                                <th >Created By</th>
+                                <th >Date Added</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,9 +114,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
             </div>
         </div>

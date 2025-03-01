@@ -29,7 +29,7 @@
 
             <div class="col-6">
                 <label class="form-label">Ministry Profile</label>
-                <input type="file" class="form-control" name="ministry_profile" required>
+                <input type="file" class="form-control" name="ministry_profile">
                 <div style="color: red">{{ $errors->first('ministry_profile') }}</div>
             </div>
 
