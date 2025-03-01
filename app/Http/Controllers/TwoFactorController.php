@@ -33,7 +33,7 @@ class TwoFactorController extends Controller
         if ($request->code == $user->two_factor_code) {
             session(['two_factor_authenticated' => true]);
 
-            // Clear the code after successful verification
+
             /** @var User $user */
             $user->two_factor_code = null;
             $user->save();

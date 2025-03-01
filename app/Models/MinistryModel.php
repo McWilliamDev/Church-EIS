@@ -34,4 +34,16 @@ class MinistryModel extends Model
             return "";
         }
     }
+
+    //Joined to Assigned Ministry
+    public static function getMinistries()
+    {
+        $return = MinistryModel::select('ministry.*')
+            ->where('ministry.is_delete', '=', 0)
+            ->where('ministry.ministry_status', '=', 0)
+            ->orderBy('ministry.ministry_name', 'asc')
+            ->get();
+
+        return $return;
+    }
 }

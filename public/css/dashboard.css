@@ -235,10 +235,7 @@ tr.highlight th{
     color: #fff;
 }
 
-.table-responsive {
-    max-height: 750px;
-    overflow-y: auto;
-}
+
 
 thead {
     position: sticky;
