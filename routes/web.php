@@ -11,11 +11,29 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
+use App\Http\Controllers\AssignMinistryController;
+use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
-    return view('website.homepage');
+    // Fetch data from the "ministry" table
+    $ministries = DB::table('ministry')->get();
+
+    // Fetch data from the "events" table
+    $events = DB::table('events')->get();
+
+    // Pass both datasets to the view
+    return view('website.homepage', [
+        'ministry' => $ministries,
+        'events' => $events
+    ]);
 });
+
+Route::get('/section/{section}', function ($section) {
+    return view('website.homepage', ['scrollTo' => $section]);
+})->name('scroll.section');
+
 
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
@@ -31,6 +49,8 @@ Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::get('/two-factor', [TwoFactorController::class, 'index'])->name('two-factor.index');
     Route::post('/two-factor', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
 });
+
+Route::post('/admin/finance/add', [FinanceController::class, 'addFinance'])->name('finance.addFinance');
 
 // Dashboard Routes for Admin 
 Route::group(['middleware' => ['admin', 'twofactor']], function () {
@@ -50,6 +70,15 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/ministry/edit/{id}', [MinistryController::class, 'edit']);
     Route::post('admin/ministry/edit/{id}', [MinistryController::class, 'update']);
     Route::get('admin/ministry/delete/{id}', [MinistryController::class, 'delete']);
+
+    //Assign Ministry Route
+    Route::get('admin/assign_ministry/list', [AssignMinistryController::class, 'list']);
+    Route::get('admin/assign_ministry', [AssignMinistryController::class, 'assign']);
+    Route::post('admin/assign_ministry', [AssignMinistryController::class, 'assigned']);
+    Route::get('admin/assign_ministry/edit/{id}', [AssignMinistryController::class, 'edit']);
+    Route::post('admin/assign_ministry/edit/{id}', [AssignMinistryController::class, 'update']);
+    Route::get('admin/assign_ministry/delete/{id}', [AssignMinistryController::class, 'delete']);
+
 
     //Change Password
     Route::get('admin/change_password', [ProfileController::class, 'change_password']);
@@ -101,6 +130,17 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/events/edit/{id}', [EventsController::class, 'edit']);
     Route::post('admin/events/edit/{id}', [EventsController::class, 'update']);
     Route::get('admin/events/delete/{id}', [EventsController::class, 'delete']);
+
+    // Finance Tracker
+    Route::get('admin/finance/list', [FinanceController::class, 'list'])->name('finance.list');
+
+    Route::get('admin/finance/add', [FinanceController::class, 'add'])->name('finance.add');
+    Route::get('/admin/finance/edit/{id}', [FinanceController::class, 'edit'])->name('finance.edit');
+    Route::put('/admin/finance/update/{id}', [FinanceController::class, 'update'])->name('finance.update');
+    Route::delete('admin/finance/delete/{id}', [FinanceController::class, 'delete'])->name('finance.delete');
+
+
+
 });
 
 

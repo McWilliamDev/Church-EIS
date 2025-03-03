@@ -54,4 +54,9 @@ class MembersModel extends Model
             return "";
         }
     }
+
+    public function reports()
+    {
+        return $this->hasMany(FinanceModel::class, 'member_id', 'id');
+    }
 }
