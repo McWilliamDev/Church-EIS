@@ -87,7 +87,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Generate Finance Reports</a>
+                        <a href="{{ url('admin/finance/list') }}" class="sidebar-link">Generate Finance Reports</a>
                     </li>
                 </ul>
             </li>

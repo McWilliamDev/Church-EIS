@@ -55,6 +55,9 @@ class MembersModel extends Model
         }
     }
 
+    public function reports()
+    {
+        return $this->hasMany(FinanceModel::class, 'member_id', 'id');
     //Joined to Assigned Ministry
     public static function getMembers()
     {
