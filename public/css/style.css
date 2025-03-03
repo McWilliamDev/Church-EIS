@@ -229,7 +229,7 @@ button {
     width: 100%;
     float: left;
     background-color: #000d10;
-    height: 630px;
+    height: 670px;
     background-size: 100%;
     padding: 0px 0px 20px 0px;
 }
@@ -466,8 +466,7 @@ button {
     width: 100%;
     float: left;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
 }
 
 .btn_main {
@@ -1081,6 +1080,10 @@ h3 {
 }
 
 /* resources section ends here */
+
+.card {
+    margin-bottom: 30px;
+}
 
 
 

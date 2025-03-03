@@ -8,16 +8,16 @@
           <div class="collapse navbar-collapse" id="navbarNav">
              <ul class="navbar-nav">
                 <li class="nav-item">
-                   <a class="nav-link" href="#section1">About Us</a>
+                   <a class="nav-link" href="/aboutus">About Us</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link" href="#section2">Ministries</a>
+                   <a class="nav-link" href="/ministry">Ministries</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link " href="#section3">Events</a>
+                   <a class="nav-link " href="/events">Events</a>
                 </li>
                 <li class="nav-item">
-                   <a class="nav-link " href="#section4">Resources</a>
+                   <a class="nav-link " href="/resources">Resources</a>
                 </li>
              </ul>
           </div>
@@ -25,12 +25,12 @@
     </div>
     <div class="container-fluid">
        <div class="logo"><img src="images/website/logo.png"></div>
-       <div class="menu_main" id="section0">
+       <div class="menu_main" id="home">
           <ul>
-             <li><a href="#section1">About Us</a></li>
-             <li><a href="#section2">Ministries</a></li>
-             <li><a href="#section3">Events</a></li>
-             <li><a href="#section4">Resources</a></li>
+             <li><a href="/aboutus">About Us</a></li>
+             <li><a href="/ministry">Ministries</a></li>
+             <li><a href="/events">Events</a></li>
+             <li><a href="/resources">Resources</a></li>
           </ul>
        </div>
     </div>

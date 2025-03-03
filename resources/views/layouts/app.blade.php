@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="{{ url('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url('summernote-0.9.0-dist/summernote-bs5.min.css') }}">
-    
-    @yield('style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@yield('style')
 
 </head>
 
@@ -48,6 +48,13 @@
 
     <!-- Other plugins -->
     <script src="{{ url('summernote-0.9.0-dist/summernote-bs5.min.js') }}"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+@yield('script')
 
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>

@@ -50,7 +50,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/events/calendar') }}" class="sidebar-link">View Calendar Events</a>
+                        <a href="{{ url('admin/events_calendar') }}" class="sidebar-link">View Calendar Events</a>
                     </li>
 
                 </ul>

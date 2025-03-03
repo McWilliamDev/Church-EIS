@@ -1,4 +1,4 @@
-<div class="ministry_section layout_padding" id="section4">
+<div class="ministry_section layout_padding" id="resources">
     <div class="container">
        <h1 class="ministry_taital">Resources</h1>
        <p class="resources_text">Church Resources provide members and visitors with access to spiritual materials, sermon archives, event guides, and ministry tools to support faith and community growth.</p>
