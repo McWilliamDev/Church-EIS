@@ -23,7 +23,7 @@
         <!-- choose section end -->
 
         <!-- SERVICE section start -->
-        @include('website.service')
+        @include('website.service1')
         <!-- SERVICE section end -->
 
         <!-- pastors section start -->

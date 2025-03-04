@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- bootstrap css -->
-<link rel="stylesheet" href="{{ url('bootstrap-5.3.3-dist/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!-- Responsive-->
