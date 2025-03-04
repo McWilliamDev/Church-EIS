@@ -3,8 +3,9 @@
        <div class="carousel-inner">
           <div class="carousel-item active">
              <div class="container">
-                <h1 class="banner_taital">New Ground Generation Church</h1>
-                <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
+                <h1 class="banner_taital">Planted to Plant. Rooted to Grow.</h1>
+                <h1 class="banner_taital2">Grow to Bear Fruit.</h1>
+                <p class="banner_text">"That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither— whatever they do prospers.</p>
              </div>
           </div>
           <div class="carousel-item">
