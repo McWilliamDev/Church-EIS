@@ -31,6 +31,13 @@
 
     <div id="analytics-content" class="tab-content {{ $activeTab == 'analytics' ? '' : 'd-none' }}">
         <h3 class="fw-bold fs-4 my-3">Finance Analytics</h3>
+        
+        @if($reports->isEmpty())
+        <div class="h4 text-center p-4 bg-light rounded mt-3">
+            No reports found
+        </div>
+        
+        @else
         <div class="mb-3">
             <label for="totalBy">Total Amount by:</label>
             <select class="form-select mt-1" name='totalBy' aria-label="Default select example" style="max-width: 280px" onchange="sortBy(event)">
@@ -49,12 +56,13 @@
             </div>
             <div class="col-12 col-xxl-6">
                 <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center" style="height: 560px; width: 100%;">  
-                        <canvas id="pieChart" style="height: 100%; width: 100%"></canvas>
+                    <div class="d-flex justify-content-center" style="max-height: 500px; width: 100%;">  
+                        <canvas id="pieChart" class="mt-4" style="height: 100%; width: 100%"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
 
@@ -104,11 +112,13 @@
         
     </div>
 </div>
+@if (isset($report) && $report->id)
+    <form id="delete-form-{{ $report->id }}" action="{{ route('finance.delete', $report->id) }}" method="POST" style="display: none;">
+        @csrf
+        @method('DELETE')
+    </form>
+@endif
 
-<form id="delete-form-{{ $report->id }}" action="{{ route('finance.delete', $report->id) }}" method="POST" style="display: none;">
-    @csrf
-    @method('DELETE')
-</form>
 @endsection
 
 @push('scripts')

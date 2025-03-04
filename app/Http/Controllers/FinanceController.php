@@ -11,10 +11,11 @@ class FinanceController extends Controller
 {
     public function list()
     {
+        $data['header_title'] = "Finance List";
         $reports = FinanceModel::with('member')->get(); // Fetch all finance records
         return view('admin.finance.list', compact('reports'));
     }
-    
+
     public function add()
     {
         $members = MembersModel::all(); // Fetch all members
@@ -28,7 +29,7 @@ class FinanceController extends Controller
         $members = MembersModel::all(); // Fetch all members
         return view('admin.finance.edit', compact('report', 'members'));
     }
-    
+
 
 
     public function addFinance(Request $request)
@@ -52,7 +53,7 @@ class FinanceController extends Controller
         // Redirect with success message
         return redirect()->route('finance.list');
     }
-    
+
     public function update(Request $request, $id)
     {
         // Validate input
@@ -83,7 +84,4 @@ class FinanceController extends Controller
         Alert::success('Success!', 'Data has been deleted successfully.');
         return redirect()->route('finance.list');
     }
-
-
-    
 }

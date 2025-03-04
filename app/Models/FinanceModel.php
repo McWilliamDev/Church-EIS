@@ -10,7 +10,7 @@ class FinanceModel extends Model
     use HasFactory;
 
     protected $table = 'finance';
-// `member_id`, `type`, `amount`, `purpose`, `updated_at`, `created_at`
+    // `member_id`, `type`, `amount`, `purpose`, `updated_at`, `created_at`
     protected $fillable = ['member_id', 'type', 'amount', 'purpose']; // Allow mass assignment
     public $timestamps = false;
 

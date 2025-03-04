@@ -142,9 +142,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('/admin/finance/edit/{id}', [FinanceController::class, 'edit'])->name('finance.edit');
     Route::put('/admin/finance/update/{id}', [FinanceController::class, 'update'])->name('finance.update');
     Route::delete('admin/finance/delete/{id}', [FinanceController::class, 'delete'])->name('finance.delete');
-
-
-
 });
 
 // Dashboard Routes for Users
