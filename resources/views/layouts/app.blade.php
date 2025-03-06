@@ -28,7 +28,7 @@
             <!--TOP BAR END HERE-->
 
             <!--MAIN CONTENT HERE-->
-            <main class="content px-3 py-4">
+            <main class="content px-3 py-3">
                 @yield('content')
                 <!--MAIN CONTENT END HERE-->
             </main>
@@ -52,7 +52,7 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#myTable').DataTable();
+        $('.table').DataTable();
     });
 </script>
 @yield('script')

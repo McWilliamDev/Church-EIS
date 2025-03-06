@@ -1,66 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-sm-6">
-            <h3 class="fw-bold fs-4 my-3">Announcements</h3>
-        </div>
-        <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('admin/announcements/create_announcement/add') }}" class="btn my-2">Add Announcement</a>
-        </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Announcements</h1>
+    <a href="{{ url('admin/announcements/create_announcement/add') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">Add Announcement</a>
+</div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="card p-2 g-col-6">
-                <div class="card-header">
-                    <h5 class="fw-bold fs-5">Search Announcement</h5>
-                </div>
-
-                <form method="get" action="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-2">
-                                <label>Title</label>
-                                <input type="text" class="form-control" value="{{ Request::get('title') }}" name="title"
-                                    placeholder="Title">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label>Notice Date From</label>
-                                <input type="date" class="form-control" value="{{ Request::get('notice_date_from') }}"
-                                    name="notice_date_from">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label>Notice Date To</label>
-                                <input type="date" class="form-control" value="{{ Request::get('notice_date_to') }}"
-                                    name="notice_date_to">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label>Publish Date From</label>
-                                <input type="date" class="form-control" value="{{ Request::get('publish_date_from') }}"
-                                    name="publish_date_from">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label>Publish Date To</label>
-                                <input type="date" class="form-control" value="{{ Request::get('publish_date_to') }}"
-                                    name="publish_date_to">
-                            </div>
-
-                            <div class="form-group col-md-3 d-flex align-items-end">
-                                <button class="btn btn-primary me-2" type="submit" style="margin-top: 10px;">Search</button>
-                                <a href="{{ url('admin/announcements') }}" class="btn btn-danger">Reset</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+<div class="card-body">
+        <form method="get" action="">
+        <div class="row">
+            <div class="form-group col-md-2">
+                <label>Title</label>
+                <input type="text" class="form-control" value="{{ Request::get('title') }}" name="title"
+                    placeholder="Title">
             </div>
-            <div class="col-md-12">
-                @include('alerts')
+
+            <div class="form-group col-md-2">
+                <label>Notice Date From</label>
+                <input type="date" class="form-control" value="{{ Request::get('notice_date_from') }}"
+                    name="notice_date_from">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label>Notice Date To</label>
+                <input type="date" class="form-control" value="{{ Request::get('notice_date_to') }}"
+                    name="notice_date_to">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label>Publish Date From</label>
+                <input type="date" class="form-control" value="{{ Request::get('publish_date_from') }}"
+                    name="publish_date_from">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label>Publish Date To</label>
+                <input type="date" class="form-control" value="{{ Request::get('publish_date_to') }}"
+                    name="publish_date_to">
+            </div>
+
+            <div class="form-group col-md-3 d-flex align-items-end">
+                <button class="btn btn-primary me-2" type="submit" style="margin-top: 10px;">Search</button>
+                <a href="{{ url('admin/announcements') }}" class="btn btn-danger">Reset</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+    <div class="row">
+        @include('alerts')
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">List of Announcements</h6>
+            </div>
+            <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">Announcement List</caption>
+                    <table class="table table-bordered display" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr class="highlight">
                                 <th scope="col">#</th>
@@ -97,16 +92,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                </div>
             </div>
         </div>
     </div>
     
 @endsection
-@section('script')
 
+@section('script')
 <script>
     function confirmDelete(event, id, title) {
         event.preventDefault();
