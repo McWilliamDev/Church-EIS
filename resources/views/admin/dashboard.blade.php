@@ -118,6 +118,119 @@
                         </div>
 
                 </div>
+
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex justify-content-center" style="height: 560px; width: 100%;">  
+                        <canvas id="lineChart" style="height: 50vh; width: 100%"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
 @endsection
+
+@push('scripts')
+
+<script>
+
+var lineChart;
+var viewData = "";
+var reportsData = @json($reports ?? []);
+
+// Declare global variables
+var monthlyLabels = [];
+var monthlyData = [];
+var yearlyLabels = [];
+var yearlyData = [];
+
+document.addEventListener("DOMContentLoaded", function() {
+    var monthlyTotals = {};
+    var yearlyTotals = {};
+
+    // Generate last 5 months list (including year to differentiate)
+    let monthsList = [];
+    let currentDate = new Date();
+    for (let i = 4; i >= 0; i--) {
+        let pastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
+        let monthYear = pastDate.toLocaleString('default', { month: 'long' }) + " " + pastDate.getFullYear();
+        monthsList.push(monthYear);
+        monthlyTotals[monthYear] = 0; // Initialize with zero
+    }
+
+    // Generate last 5 years list
+    let yearsList = [];
+    let currentYear = currentDate.getFullYear();
+    for (let i = 4; i >= 0; i--) {
+        let year = currentYear - i;
+        yearsList.push(year);
+        yearlyTotals[year] = 0; // Initialize with zero
+    }
+
+    // Process reports
+    reportsData.forEach(report => {
+        let date = new Date(report.created_at);
+        let monthYear = date.toLocaleString('default', { month: 'long' }) + " " + date.getFullYear();
+        let year = date.getFullYear();
+
+        if (monthsList.includes(monthYear)) {
+            monthlyTotals[monthYear] += parseFloat(report.amount);
+        }
+
+        if (yearsList.includes(year)) {
+            yearlyTotals[year] += parseFloat(report.amount);
+        }
+    });
+
+    // Assign global variables
+    monthlyLabels = monthsList;
+    monthlyData = monthsList.map(monthYear => monthlyTotals[monthYear]);
+    yearlyLabels = yearsList;
+    yearlyData = yearsList.map(year => yearlyTotals[year]);
+
+
+    var chartCanvas = document.getElementById('lineChart').getContext('2d');
+
+    // Initialize Bar Chart
+    lineChart = new Chart(chartCanvas, {
+        type: 'line',
+        data: {
+            labels: monthlyLabels,
+            datasets: [{
+                label: 'Total Amount (Monthly)',
+                data: monthlyData,
+                borderColor: 'rgb(75, 192, 192)',
+                borderWidth: 4,
+                tension: 0.4
+            }]
+        },
+        options: { 
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        generateLabels: function(chart) {
+                            return chart.data.datasets.map((dataset) => ({
+                                text: dataset.label, // Show only text
+                                hidden: false,
+                                datasetIndex: dataset.index, // Required for legend functionality
+                                fillStyle: 'transparent', // Remove color fill
+                                strokeStyle: 'transparent', // Remove border color
+                                // lineWidth: 0, // Remove any border width
+                                pointStyle: false // Remove the box
+                            }));
+                        }
+                    }
+                }
+            },
+            scales: { 
+                y: { 
+                    beginAtZero: true 
+                } 
+            } 
+        }
+    });
+
+});
+
+</script>
+@include('sweetalert::alert')
+@endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MembersModel;
 use App\Models\User;
+use App\Models\FinanceModel;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -17,6 +18,7 @@ class DashboardController extends Controller
                 $data['TotalAdmin'] = User::getTotalUser('admin');
                 $data['TotalUser'] = User::getTotalUser('user');
                 $data['TotalMembers'] = MembersModel::getTotalMembers();
+                $data['reports'] = FinanceModel::with('member')->get();
                 return view('admin.dashboard', $data);
             } else if (Auth::user()->user_type == 'user') {
 

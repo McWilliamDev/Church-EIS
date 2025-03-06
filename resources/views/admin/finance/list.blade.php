@@ -13,9 +13,7 @@
         $activeTab = 'reports';
     }
 @endphp
-<script>
-    var reportsData = @json($reports);
-</script>
+
 @section('content')
 <div class="m-2">
     <div>
@@ -122,7 +120,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 <script>
 
 var barChart, pieChart;
@@ -293,8 +291,6 @@ function sortBy(event) {
     barChart.update();
     pieChart.update();
 }
-
-
 
     function openTab(tabName) {
         document.querySelectorAll('.nav-link').forEach(tab => tab.classList.remove('active'));
