@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Manage Events</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/events/add') }}" class="btn my-2">Add Events</a>
         </div>
+        
+        @include('alerts')
+        
+        <div class="card shadow-lg mb-4">
+            <div class="py-2">
+                <h6 class="my-0 fs-5 fw-bold">List of Events</h6>
+            </div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive" style="overflow: auto;">
-                    <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Events</caption>
-                        <thead>
+            <div class="card-body my-0">
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="eventTable" width="100%" cellspacing="0">
+                        <thead class="mt-5">
                             <tr class="highlight">
                                 <th scope="col">#</th>
                                 <th scope="col">Event Name</th>
@@ -59,13 +68,17 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
     <script>
+        $(document).ready(function() {
+            $('#eventTable').DataTable();
+        });
+
         function confirmDelete(event, id, title) {
             event.preventDefault();
 
@@ -75,5 +88,6 @@
                 window.location.href = '{{ url('admin/events/delete') }}' + '/' + id;
             }
         }
+
     </script>
 @endsection

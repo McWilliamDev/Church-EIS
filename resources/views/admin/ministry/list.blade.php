@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Ministry Groups</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/ministry/add') }}" class="btn my-2">Add Ministry</a>
         </div>
+        
+        @include('alerts')
+        
+        <div class="card shadow-lg mb-4">
+            <div class="py-2">
+                <h6 class="my-0 fs-5 fw-bold">List of Ministry</h6>
+            </div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive">
-                    <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Ministries</caption>
-                        <thead>
+            <div class="card-body my-0">
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="ministryTable" width="100%" cellspacing="0">
+                        <thead class="mt-5">
                             <tr class="highlight">
                                 <th scope="col">#</th>
                                 <th scope="col">Ministry Name</th>
@@ -59,23 +68,25 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                </div>
-                <div class="d-flex justify-content-center">
-                </div>
             </div>
         </div>
     </div>
-    <script>
-        function confirmDelete(event, id, ministry_name) {
-            event.preventDefault();
+@endsection
 
-            var confirmation = confirm('Are you sure you want to delete this Ministry: ' + ministry_name + '?');
+@section('script')
+<script>
+    $(document).ready(function() {
+        $('#ministryTable').DataTable();
+    });
+    function confirmDelete(event, id, ministry_name) {
+        event.preventDefault();
 
-            if (confirmation) {
-                window.location.href = '{{ url('admin/ministry/delete') }}' + '/' + id;
-            }
+        var confirmation = confirm('Are you sure you want to delete this Ministry: ' + ministry_name + '?');
+
+        if (confirmation) {
+            window.location.href = '{{ url('admin/ministry/delete') }}' + '/' + id;
         }
-    </script>
+    }
+</script>
+
 @endsection

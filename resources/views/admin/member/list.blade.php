@@ -63,7 +63,7 @@
                                 </div>
                             </form>
                         </div>-->
-                    <table id="memberTable" class="table table-striped caption-top display">
+                    <table id="memberTable" class="table table-striped caption-top display shadow-lg">
                         <caption class="fs-5 fw-semibold">List of Church Members</caption>
                         <thead>
                             <tr class="highlight">
