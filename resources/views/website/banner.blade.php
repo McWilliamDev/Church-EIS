@@ -6,6 +6,7 @@
                 <h1 class="banner_taital">Planted to Plant. Rooted to Grow.</h1>
                 <h1 class="banner_taital2">Grow to Bear Fruit.</h1>
                 <p class="banner_text">"That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither— whatever they do prospers.</p>
+                <p class="banner_text1"><i>Psalms 1:3</i></p>
              </div>
           </div>
           <div class="carousel-item">

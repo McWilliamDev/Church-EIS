@@ -3,7 +3,7 @@
        <div class="row">
           <div class="col-md-6">
              <div class="service_taital_main">
-                <h1 class="service_taital">Sunday</h1>
+                <h1 class="service_taital">Saturday</h1>
 
                 <p class="service_text">Our service is held every <b>Sunday from 2:00 PM to 5:00 PM</b> at 3rd floor Unity Hall, 90 General Espino, Brgy. South Signal, Taguig City.</p>
 
@@ -12,7 +12,7 @@
              </div>
           </div>
           <div class="col-md-6 padding_right_0">
-             <div><img src="images/sundayservice.jpg" class="service_img" style="height: 450px"></div>
+             <div><img src="images/prayerfellowship.jpg" class="service_img" style="height: 450px"></div>
           </div>
        </div>
     </div>

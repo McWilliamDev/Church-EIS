@@ -2,7 +2,7 @@
     <div class="container">
        <h1 class="event_taital">Upcoming Events</h1>
        <p class="generalp">Dedicated spiritual leaders guiding the church community with faith, wisdom, and service, fostering growth in faith and fellowship</p> 
-       <hr style="height:1px;width:15%;color:gray;background-color: lightgray;margin-bottom:0px">
+       
        <br>
 
        @foreach($events as $post)

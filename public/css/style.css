@@ -228,7 +228,7 @@ button {
 .header_section {
     width: 100%;
     float: left;
-    background-color: #000d10;
+    background-image: url('/images/bannerbg.jpg');
     height: 670px;
     background-size: 100%;
     padding: 0px 0px 20px 0px;
@@ -316,13 +316,12 @@ button {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #fff;
-    border-radius: 40px;
+    font-weight: 400;
 }
 
 .menu_main li a {
     color: #ffffff;
     padding: 10px 20px;
-    border-radius: 10px;
 }
 
 .menu_main li a:hover {
@@ -360,21 +359,21 @@ button {
 .banner_taital {
     width: 100%;
     float: left;
-    font-size: 55px;
+    font-size: 60px;
     color: #ffffff;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     font-family: 'Righteous', Regular;
     margin-top: 10px;
-    padding-top: 40px;
+    padding-top: 30px;
 
 }
 
 .banner_taital2 {
     width: 100%;
     float: left;
-    font-size: 55px;
+    font-size: 60px;
     color: #ffffff;
     font-weight: bold;
     text-align: center;
@@ -397,6 +396,7 @@ button {
 .generalh2 {
     text-align: center;
     margin-top: 15px;
+    color: #a2d923ff;
 }
 
 .generalp {
@@ -412,6 +412,19 @@ button {
     font-size: 16px;
     text-align: center;
     padding-top: 40px;
+    color: whitesmoke;
+    opacity: 0.6;
+}
+
+.banner_text1 {
+    width: 63%;
+    margin: 0 auto;
+    font-size: 18px;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: 400;
+    color: whitesmoke;
+    opacity: 0.6;
 }
 
 .read_bt {
@@ -451,7 +464,7 @@ button {
 .ministry_section {
     width: 100%;
     float: left;
-    background-color: #f9f9f9;
+    background-color: white;
     padding-top: 60px;
     padding-bottom: 50px;
 }
@@ -460,7 +473,7 @@ button {
     width: 100%;
     float: left;
     font-size: 50px;
-    color: #1f1f1f;
+    color: #046625ff;
     font-weight: bold;
 }
 
@@ -479,8 +492,7 @@ button {
 .ministry_img {
     width: 100%;
     float: left;
-    text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);   
+    text-align: center; 
 }
 
 .btn_main {
@@ -508,7 +520,7 @@ button {
     width: 100%;
     float: left;
     font-size: 16px;
-    color: black;
+    color: #056324ff;
     text-align: center;
     padding: 10px 0px;
     border-radius: 30px;
@@ -530,6 +542,7 @@ button {
     float: left;
     padding-bottom: 0px;
     background-color: #f9f9f9;
+    margin-bottom: 30px;
 }
 
 .service_taital_main {
@@ -546,9 +559,10 @@ button {
 .service_taital {
     width: 100%;
     float: left;
-    font-size: 50px;
-    color: #1f1f1f; 
+    font-size: 60px;
+    color: #046625ff; 
     font-weight: bold;
+    margin-left: 20px;
 }
 
 .service_text {
@@ -559,6 +573,7 @@ button {
     margin: 0px;
     padding-top: 20px;
     margin-top: 10px;
+    margin-left: 20px;
 }
 
 .service_verse {
@@ -569,12 +584,14 @@ button {
     margin: 0px;
     padding-top: 10px;
     padding-bottom: 30px;
+    margin-left: 20px;
 }
 
 .readmore_bt {
     width: 170px;
     float: left;
     margin-top: 50px;
+    margin-left: 20px;
 }
 
 .readmore_bt a {
@@ -614,14 +631,14 @@ button {
     background-size: 100%;
     padding-bottom: 30px;
     padding-top: 30px;
-    background-color: #ffffff;
+    background-color: #f9f9f9ff;
 }
 
 .event_taital {
     width: 100%;
     text-align: center;
     font-size: 50px;
-    color: black;
+    color:#046625ff;
     font-weight: bold;
     padding-top: 30px;
     text-align: center;
@@ -695,7 +712,7 @@ button {
 .pastor_taital {
     width: 100%;
     font-size: 40px;
-    color: #131313;
+    color: #046625ff;
     font-weight: bold;
     padding-top: 30px;
     text-align: center;
@@ -706,7 +723,7 @@ button {
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     box-shadow: 0px 1px 16px -6px;
     border-radius: 30px;
     padding: 50px 70px;
@@ -814,7 +831,7 @@ button {
 .general_taital {
     width: 100%;
     font-size: 45px;
-    color: #1f1f1f;
+    color: #056627ff;
     font-weight: bold;
     text-align: center;
 }
@@ -822,7 +839,6 @@ button {
 .general_text {
     width: 70%;
     margin: 0 auto;
-    color: #1f1f1f;
     padding-top: 30px;
     text-align: center;
 }
@@ -964,9 +980,9 @@ button {
 .footer_section {
     width: 100%;
     float: left;
-    background-color: #000d10;
-    height: auto;
-    padding-top: 30px;
+    background-image: url('/images/footerbg.jpg');
+    height: 350px;
+    padding-top: 65px;
     background-size: 100% 100%;
     padding-bottom: 40px;
     background-repeat: no-repeat;
@@ -974,16 +990,16 @@ button {
 }
 
 .social {
-    text-align: center;
-    padding-bottom: 25px;
-    color: white;
+    text-align: right;
+    padding-bottom: 10px;
+    color: black;
 }
 
 .social i {
     font-size: 20px;
     width: 40px;
     height: 40px;
-    color: white;
+    color: black;
     line-height: 38px;
     display: inline-block;
     text-align: center;
@@ -1003,13 +1019,13 @@ ul {
     list-style: none;
     font-size: 18px;
     margin-bottom: 0px;
-    text-align: center;
+    text-align: right;
 }
 
 ul a {
     text-decoration: none;
     opacity: 0.7;  
-    color: white;
+    color: grey;
 }
 
 ul li {
@@ -1023,7 +1039,7 @@ ul li {
 /* Change text color to white on hover */
 ul li:hover a {
     opacity: 1; /* Make the link fully opaque */
-    color: white; /* Change text color to white */
+    color: black; /* Change text color to white */
 }
 
 ul li:hover {
@@ -1031,9 +1047,10 @@ ul li:hover {
 }
 
 .copyright {
-    padding-top: 10px;
-    text-align: center;
+    padding-top: 20px;
+    text-align: right;
     font-size: 13px;
+    padding-right: 15px;
 }
 
 /* footer section end */
@@ -1075,7 +1092,7 @@ h3 {
     text-align: center;
     font-size: 12px;
     color: gray;
-    background-color: #ffffff;
+    background-color: white;
     text-align: center;
     padding: 10px 20px;
     border-radius: 30px;

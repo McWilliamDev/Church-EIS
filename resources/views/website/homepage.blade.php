@@ -23,8 +23,14 @@
         <!-- choose section end -->
 
         <!-- SERVICE section start -->
-        @include('website.service1')
+        <div class="service-section">
+            @include('website.service1')
+        </div>
+        <div class="service-section">
+            @include('website.service2')
+        </div>
         <!-- SERVICE section end -->
+
 
         <!-- pastors section start -->
         @include('website.pastors')
