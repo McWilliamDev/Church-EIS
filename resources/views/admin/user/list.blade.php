@@ -1,21 +1,30 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Administrators (Total: {{ $getRecord->total() }})</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/user/add') }}" class="btn my-2">Add Administrators</a>
         </div>
+        
+        @include('alerts')
+        
+        <div class="card shadow-lg mb-4">
+            <div class="py-2">
+                <h6 class="my-0 fs-5 fw-bold">List of Administrators</h6>
+            </div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive">
-                    <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Administrator</caption>
-                        <thead>
+            <div class="card-body my-0">
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="adminTable" width="100%" cellspacing="0">
+                        <thead class="mt-5">
                             <tr class="highlight">
                                 <th scope="col">#</th>
                                 <th scope="col">Profile Picture</th>
@@ -34,8 +43,7 @@
                                     <td>{{ $value->id }}</td>
                                     <td>
                                         @if (!empty($value->getProfile()))
-                                            <img src="{{ $value->getProfile() }}"
-                                                style="height: 50px; width:50px; border-radius:50px;">
+                                            <img src="{{ $value->getProfile() }}" style="height: 50px; width:50px; border-radius:50px;">
                                         @endif
                                     </td>
                                     <td>{{ $value->name }}</td>
@@ -45,23 +53,25 @@
                                     <td>{{ $value->phonenumber }}</td>
                                     <td>{{ $value->created_at }}</td>
                                     <td>
-                                        <a href="{{ url('admin/user/edit', $value->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{{ url('admin/user/delete', $value->id) }}" class="btn btn-danger btn-sm"
-                                            onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
+                                        <a href="{{ url('admin/user/edit', $value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('admin/user/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
     <script>
+        $(document).ready(function() {
+            $('#adminTable').DataTable();
+        });
+
         function confirmDelete(event, id, name) {
             event.preventDefault();
 

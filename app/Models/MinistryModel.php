@@ -21,7 +21,7 @@ class MinistryModel extends Model
             ->join('users', 'users.id', 'ministry.created_by')
             ->where('ministry.is_delete', '=', 0)
             ->orderBy('ministry.id', 'asc')
-            ->paginate(10);
+            ->paginate();
 
         return $return;
     }

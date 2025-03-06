@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url('summernote-0.9.0-dist/summernote-bs5.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 @yield('style')
 
 </head>
