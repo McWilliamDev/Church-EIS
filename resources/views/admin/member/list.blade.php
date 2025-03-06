@@ -8,6 +8,7 @@
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Church Members (Total: {{ $getRecord->total() }})</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Members</a>
         </div>

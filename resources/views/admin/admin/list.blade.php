@@ -5,16 +5,19 @@
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Church Administrators (Total: {{ $getRecord->total() }})</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/admin/add') }}" class="btn my-2">Add Church Administrators</a>
         </div>
 
-        <div class="container-fluid shadow-lg ">
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive">
-                    <table class="table table-striped caption-top" id="mytable">
-                        <caption class="fs-5 fw-semibold">List of Church Administrator</caption>
+        <div class="card shadow-lg mb-4">
+            <div class="py-2 ">
+                <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
+            </div>
+
+            <div class="card-body my-0">
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr class="highlight">
                                 <th scope="col">#</th>
@@ -54,9 +57,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                 </div>
             </div>
         </div>
