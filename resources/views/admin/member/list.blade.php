@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('style')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
 
 @section('content')
     <div class="row">
@@ -59,7 +62,7 @@
                                 </div>
                             </form>
                         </div>-->
-                    <table id="myTable" class="table table-striped caption-top display">
+                    <table id="memberTable" class="table table-striped caption-top display">
                         <caption class="fs-5 fw-semibold">List of Church Members</caption>
                         <thead>
                             <tr class="highlight">
@@ -118,15 +121,24 @@
             </div>
         </div>
     </div>
-    <script>
-        function confirmDelete(event, id, name) {
-            event.preventDefault();
+@endsection
 
-            var confirmation = confirm('Are you sure you want to delete this Church Member: ' + name + '?');
+@section('script')
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script>
 
-            if (confirmation) {
-                window.location.href = '{{ url('admin/member/delete') }}' + '/' + id;
-            }
+$(document).ready(function() {
+    $('#memberTable').DataTable();
+    });
+
+    function confirmDelete(event, id, name) {
+        event.preventDefault();
+
+        var confirmation = confirm('Are you sure you want to delete this Church Member: ' + name + '?');
+
+        if (confirmation) {
+            window.location.href = '{{ url('admin/member/delete') }}' + '/' + id;
         }
-    </script>
+    }
+</script>
 @endsection

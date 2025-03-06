@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 @include('alerts')
                 <div class="table-responsive">
-                    <table class="table table-striped caption-top">
+                    <table class="table table-striped caption-top" id="mytable">
                         <caption class="fs-5 fw-semibold">List of Church Administrator</caption>
                         <thead>
                             <tr class="highlight">

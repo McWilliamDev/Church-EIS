@@ -52,7 +52,7 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('.table').DataTable();
+        $('#mytable').DataTable();
     });
 </script>
 @yield('script')
