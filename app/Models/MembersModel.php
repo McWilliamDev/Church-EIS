@@ -42,7 +42,7 @@ class MembersModel extends Model
         }
 
         $return = $return->orderBy('members.id', 'desc')
-            ->paginate(10);
+            ->paginate();
 
         return $return;
     }
