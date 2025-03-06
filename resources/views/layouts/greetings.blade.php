@@ -13,5 +13,5 @@ $day = date('l');
 $date = date('F d, Y');
 
 ?>
-<div class="greetings">{{ $greeting }}, {{ Auth::user()->name }}</div>
-<div class="date-today">It's {{ $day }}, {{ $date }}</div>
+<div class="greetings">{{ $greeting }}, <b>{{ Auth::user()->name }}</b></div>
+<!--<div class="date-today">It's {{ $day }}, {{ $date }}</div>-->
