@@ -13,7 +13,7 @@
             <div class="col-md-12">
                 @include('alerts')
                 <div class="table-responsive" style="overflow: auto;">
-                    <div class="container-fluid shadow-lg ">
+                    <div class="container-fluid">
                         <!--<div class="card p-2 g-col-6">
                             <div class="card-header">
                                 <h5 class="fw-bold fs-5">Search Member</h5>

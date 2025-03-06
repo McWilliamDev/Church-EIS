@@ -46,6 +46,8 @@ body {
     flex-direction: column;
     height: 100vh;
     margin-left: 260px;
+    width: calc(100% - 260px);
+    overflow: auto;
 }
 
 .sidebar-logo {
