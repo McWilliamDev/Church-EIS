@@ -151,18 +151,17 @@ class MembersController extends Controller
     }
     public function delete($id)
     {
-        $getRecord = MembersModel::getSingle($id);
-        if (!empty($getRecord)) {
+        // Find the member by ID
+        $getRecord = MembersModel::find($id);
+
+        if ($getRecord) {
             $getRecord->is_delete = 1;
             $getRecord->save();
 
-            if (!empty(Auth::check())) {
-                if (Auth::user()->user_type == 'admin') {
-                    return redirect()->back()->with('success', 'Member Successfully Deleted');
-                } else if (Auth::user()->user_type == 'user') {
-                    return redirect()->back()->with('success', 'Member Successfully Deleted');
-                }
+            if (Auth::check()) {
+                return redirect()->back();
             }
         }
+        return redirect()->back()->with('error', 'Member not found.');
     }
 }

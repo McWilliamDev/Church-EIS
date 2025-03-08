@@ -115,9 +115,7 @@ class AnnouncementController extends Controller
         if (!$announcement) {
             return redirect('admin/announcements')->with('error', "Announcement not found");
         }
-
         $announcement->delete();
-
-        return redirect('admin/announcements')->with('success', "Announcement successfully deleted");
+        return redirect()->back();
     }
 }

@@ -7,6 +7,7 @@
     <title>{{ !empty($header_title) ? $header_title : '' }} - NGGC</title>
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/dashboard.css') }}">
     <link rel="stylesheet" href="{{ url('summernote-0.9.0-dist/summernote-bs5.min.css') }}">
@@ -51,17 +52,16 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#mytable').DataTable();
-    });
+        $('#financeTable').DataTable();
+});
 </script>
 @yield('script')
-
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@stack('scripts')
 
-    @stack('scripts')
-    @yield('script')
-    @include('sweetalert::alert')
+@include('sweetalert::alert')
 </body>
 
 </html>

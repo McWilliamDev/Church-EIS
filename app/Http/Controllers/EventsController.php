@@ -111,17 +111,17 @@ class EventsController extends Controller
     }
     public function delete($id)
     {
-        $events = EventsModel::getSingle($id);
-        $events->is_delete = 1;
-        $events->save();
+        // Fetch the event record
+        $event = EventsModel::find($id);
 
-        if (!empty(Auth::check())) {
-            if (Auth::user()->user_type == 'admin') {
-                return redirect()->back()->with('success', 'Event Successfully Deleted');
-            } else if (Auth::user()->user_type == 'user') {
-                return redirect()->back()->with('success', 'Event Successfully Deleted');
+        if ($event) {
+            $event->delete();
+
+            if (Auth::check()) {
+                return redirect()->back();
             }
         }
+        return redirect()->back()->with('error', 'Event not found.');
     }
 
     public function getEvents()

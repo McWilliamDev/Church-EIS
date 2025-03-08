@@ -67,19 +67,37 @@
 @endsection
 
 @section('script')
-    <script>
-        $(document).ready(function() {
-            $('#adminTable').DataTable();
-        });
+<script>
+    $(document).ready(function() {
+        $('#adminTable').DataTable();
+    });
 
-        function confirmDelete(event, id, name) {
-            event.preventDefault();
+    function confirmDelete(event, id, name) {
+        event.preventDefault();
 
-            var confirmation = confirm('Are you sure you want to delete this Administrator: ' + name + '?');
-
-            if (confirmation) {
-                window.location.href = '{{ url('admin/user/delete') }}' + '/' + id;
+        // SweetAlert confirmation dialog
+        Swal.fire({
+            title: 'Are you sure?',
+            text: `You are about to delete Administrator ${name}. This action cannot be undone!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Proceed with deletion
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Admin successfully deleted.",
+                    icon: "success"
+                }).then(() => {
+                    // Redirect after confirmation
+                    window.location.href = '{{ url("admin/user/delete") }}/' + id;
+                });
             }
-        }
-    </script>
+        });
+    }
+</script>
+
 @endsection

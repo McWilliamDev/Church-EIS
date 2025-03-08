@@ -98,7 +98,7 @@ class UserController extends Controller
             $getRecord->is_delete = 1;
             $getRecord->save();
 
-            return redirect('admin/user/list')->with('success', "Admin successfully updated");
+            return redirect('admin/user/list');
         } else {
             return redirect()->back()->with('error', "No Record Found");
         }

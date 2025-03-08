@@ -13,21 +13,23 @@ class FinanceController extends Controller
     {
         $data['header_title'] = "Finance List";
         $reports = FinanceModel::with('member')->get(); // Fetch all finance records
-        return view('admin.finance.list', compact('reports'));
+        return view('admin.finance.list', $data, compact('reports'));
     }
 
     public function add()
     {
+        $data['header_title'] = "Add Finance";
         $members = MembersModel::all(); // Fetch all members
         $reports = FinanceModel::with('member')->get();
-        return view('admin.finance.add', compact('members'));
+        return view('admin.finance.add', $data, compact('members'));
     }
 
     public function edit($id)
     {
+        $data['header_title'] = "Edit Finance";
         $report = FinanceModel::with('member')->findOrFail($id); // Fetch finance record with related member
         $members = MembersModel::all(); // Fetch all members
-        return view('admin.finance.edit', compact('report', 'members'));
+        return view('admin.finance.edit', $data, compact('report', 'members'));
     }
 
 
