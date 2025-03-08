@@ -1,6 +1,7 @@
 @extends('layouts.app')
+
 @section('style')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 @endsection
 
 @section('content')
@@ -10,62 +11,20 @@
         </div>
         
         <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Members</a>
+            <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Member</a>
         </div>
-
         
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive" style="overflow: auto;">
-                    <div class="container-fluid">
-                        <!--<div class="card p-2 g-col-6">
-                            <div class="card-header">
-                                <h5 class="fw-bold fs-5">Search Member</h5>
-                            </div>
-            
-                            <form method="get" action="">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="form-group col-md-2">
-                                            <label for="name">Name</label>
-                                            <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
-                                                placeholder="Name">
-                                        </div>
-            
-                                        <div class="form-group col-md-2">
-                                            <label for="email">Email</label>
-                                            <input type="text" class="form-control" value="{{ Request::get('email') }}"
-                                                name="email" placeholder="Email">
-                                        </div>
-            
-                                        <div class="form-group col-md-2">
-                                            <label for="date">Phone No.</label>
-                                            <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
-                                                name="phonenumber" placeholder="Phone Number">
-                                        </div>
-            
-                                        <div class="form-group col-md-2">
-                                            <label for="date">Member Status</label>
-                                            <select class="form-select" name="member_status">
-                                                <option value="">Select Status</option>
-                                                <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
-                                                    Active</option>
-                                                <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
-                                                    Inactive</option>
-                                            </select>
-                                        </div>
-            
-                                        <div class="form-group col-md-3 d-flex align-items-end">
-                                            <button class="btn btn-primary me-2" type="submit">Search</button>
-                                            <a href="{{ url('admin/member/list') }}" class="btn btn-danger">Reset</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>-->
-                    <table id="memberTable" class="table table-striped caption-top display shadow-lg">
-                        <caption class="fs-5 fw-semibold">List of Church Members</caption>
-                        <thead>
+        @include('alerts')
+        
+        <div class="card shadow-lg mb-4">
+            <div class="py-2">
+                <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
+            </div>
+
+            <div class="card-body my-0">
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="memberTable" width="100%" cellspacing="0">
+                        <thead class="mt-5">
                             <tr class="highlight">
                                 <th>#</th>
                                 <th >Profile Picture</th>
@@ -125,21 +84,36 @@
 @endsection
 
 @section('script')
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script>
+    <script>
+        $(document).ready(function() {
+            $('#memberTable').DataTable();
+        });
 
-$(document).ready(function() {
-    $('#memberTable').DataTable();
-    });
+        function confirmDelete(event, id, name) {
+    event.preventDefault(); // Stop default action
 
-    function confirmDelete(event, id, name) {
-        event.preventDefault();
-
-        var confirmation = confirm('Are you sure you want to delete this Church Member: ' + name + '?');
-
-        if (confirmation) {
-            window.location.href = '{{ url('admin/member/delete') }}' + '/' + id;
+    // SweetAlert confirmation dialog
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `You are about to delete this Church Member: ${name}. This action cannot be undone!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to perform deletion
+            Swal.fire({
+                title: "Deleted!",
+                text: "Church Member successfully deleted.",
+                icon: "success"
+            }).then(() => {
+                // Redirect to execute the backend deletion logic
+                window.location.href = `/admin/member/delete/${id}`;
+            });
         }
-    }
-</script>
+    });
+}
+    </script>
 @endsection

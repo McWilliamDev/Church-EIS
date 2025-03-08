@@ -127,13 +127,7 @@ class MinistryController extends Controller
         $ministry->save();
 
         if (Auth::check()) {
-            if (Auth::user()->user_type == 'admin') {
-                return redirect()->back()->with('success', 'Ministry Successfully Deleted');
-            } else if (Auth::user()->user_type == 'user') {
-                return redirect()->back()->with('success', 'Ministry Successfully Deleted');
-            }
-        } else {
-            return redirect('login')->with('error', 'Please log in to delete the ministry');
+            return redirect()->back();
         }
     }
 }

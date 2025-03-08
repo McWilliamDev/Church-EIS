@@ -9,13 +9,13 @@
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Ministry Groups</h3>
         </div>
-        
+
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/ministry/add') }}" class="btn my-2">Add Ministry</a>
         </div>
-        
+
         @include('alerts')
-        
+
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Ministry</h6>
@@ -49,19 +49,16 @@
                                             Inactive
                                         @endif
                                     </td>
-                                    <td>@if (!empty($value->getMinistryProfile()))
-                                        <img src="{{ $value->getMinistryProfile() }}"
-                                            style="height: 50px; width:50px;">
-                                        @endif</td>
-                                    <td>{{ $value->created_by }}</td>
-                                    <td>{{ \Carbon\Carbon::parse($value->created_at)->timezone('Asia/Manila')->format('d-m-Y H:i A') }}
-                                    </td>
                                     <td>
-                                        <a href="{{ url('admin/ministry/edit', $value->id) }}"
-                                            class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{{ url('admin/ministry/delete', $value->id) }}"
-                                            class="btn btn-danger btn-sm"
-                                            onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->ministry_name }}')">Delete</a>
+                                        @if (!empty($value->getMinistryProfile()))
+                                            <img src="{{ $value->getMinistryProfile() }}" style="height: 50px; width:50px;">
+                                        @endif
+                                    </td>
+                                    <td>{{ $value->created_by }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($value->created_at)->timezone('Asia/Manila')->format('d-m-Y H:i A') }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/ministry/edit', $value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('admin/ministry/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->ministry_name }}')">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,19 +71,35 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        $('#ministryTable').DataTable();
-    });
-    function confirmDelete(event, id, ministry_name) {
-        event.preventDefault();
+    <script>
+        $(document).ready(function() {
+            $('#ministryTable').DataTable();
+        });
 
-        var confirmation = confirm('Are you sure you want to delete this Ministry: ' + ministry_name + '?');
+        function confirmDelete(event, id, ministry_name) {
+            event.preventDefault(); // Stop default link or form behavior
 
-        if (confirmation) {
-            window.location.href = '{{ url('admin/ministry/delete') }}' + '/' + id;
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete this Ministry: ${ministry_name}. This action cannot be undone!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show success alert before redirecting
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Ministry successfully deleted.",
+                        icon: "success"
+                    }).then(() => {
+                        // Redirect to execute the backend deletion logic
+                        window.location.href = `/admin/ministry/delete/${id}`;
+                    });
+                }
+            });
         }
-    }
-</script>
-
+    </script>
 @endsection

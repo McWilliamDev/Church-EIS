@@ -93,6 +93,6 @@ class AdminController extends Controller
         $admin = User::getSingle($id);
         $admin->is_delete = 1;
         $admin->save();
-        return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
+        return redirect('admin/admin/list');
     }
 }

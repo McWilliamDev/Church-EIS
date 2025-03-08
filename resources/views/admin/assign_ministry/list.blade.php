@@ -38,10 +38,8 @@
                             <label>Member Ministry Status</label>
                             <select class="form-select" name="ministry_status">
                                 <option value="">Select Status</option>
-                                <option {{ Request::get('ministry_status') == 100 ? 'selected' : '' }} value="100">
-                                    Active</option>
-                                <option {{ Request::get('ministry_status') == 1 ? 'selected' : '' }} value="1">
-                                    Inactive</option>
+                                <option {{ Request::get('ministry_status') == 100 ? 'selected' : '' }} value="100">Active</option>
+                                <option {{ Request::get('ministry_status') == 1 ? 'selected' : '' }} value="1">Inactive</option>
                             </select>
                         </div>
 
@@ -54,9 +52,8 @@
             </form>
         </div>
 
-        
         @include('alerts')
-        
+
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Assigned Members to Ministry</h6>
@@ -75,24 +72,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                                @foreach ($getRecord as $value)
-                                    <tr>
-                                        <td>{{ $value->member_name }} {{ $value->member_lname }}</td>
-                                        <td>{{ $value->ministry_name }}</td>
-                                        <td>
-                                            @if ($value->ministry_status == 0)
-                                                Active
-                                            @else
-                                                Inactive
-                                            @endif
-                                        </td>
-                                        <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
-                                        <td>
-                                            <a href="{{ url('admin/assign_ministry/edit', $value->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="{{ url('admin/assign_ministry/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->member_name }}')">Delete</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                            @foreach ($getRecord as $value)
+                                <tr>
+                                    <td>{{ $value->member_name }} {{ $value->member_lname }}</td>
+                                    <td>{{ $value->ministry_name }}</td>
+                                    <td>
+                                        @if ($value->ministry_status == 0)
+                                            Active
+                                        @else
+                                            Inactive
+                                        @endif
+                                    </td>
+                                    <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/assign_ministry/edit', $value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('admin/assign_ministry/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->member_name }}')">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -102,19 +99,36 @@
 @endsection
 
 @section('script')
-<script>
-    $(document).ready(function() {
-        $('#assignministryTable').DataTable();
-    });
-    function confirmDelete(event, id, member_name) {
+    <script>
+        $(document).ready(function() {
+            $('#assignministryTable').DataTable();
+        });
+
+        function confirmDelete(event, id, member_name) {
             event.preventDefault();
 
-            var confirmation = confirm('Are you sure you want to delete this Member to the Ministry: ' + member_name + '?');
-
-            if (confirmation) {
-                window.location.href = '{{ url('admin/assign_ministry/delete') }}' + '/' + id;
-            }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete the Member: ${member_name} from the Ministry. This action cannot be undone!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Show success alert before redirecting
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Assigned Member successfully deleted from Ministry.",
+                        icon: "success"
+                        
+                    }).then(() => {
+                        // Redirect to execute the backend deletion logic
+                        window.location.href = `/admin/assign_ministry/delete/${id}`;
+                    });
+                }
+            });
         }
-</script>
-
+    </script>
 @endsection

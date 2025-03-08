@@ -9,13 +9,13 @@
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Manage Events</h3>
         </div>
-        
+
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/events/add') }}" class="btn my-2">Add Events</a>
         </div>
-        
+
         @include('alerts')
-        
+
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Events</h6>
@@ -38,33 +38,28 @@
                         </thead>
                         <tbody>
                             @foreach ($getRecord as $value)
-                            <tr>
-                                <td>{{ $value->id }}</td>
-                                <td>{{ $value->title }}</td>
-                                <td>{{ $value->description }}</td>
-                                <td>{{ $value->location }}</td>
-                                <td>
-                                    @if (!empty($value->date))
+                                <tr>
+                                    <td>{{ $value->id }}</td>
+                                    <td>{{ $value->title }}</td>
+                                    <td>{{ $value->description }}</td>
+                                    <td>{{ $value->location }}</td>
+                                    <td>
+                                        @if (!empty($value->date))
                                             {{ date('d-m-Y H:i A', strtotime($value->date)) }}
-                                    @endif
-
-                                </td>
-                                <td>
-                                    @if (!empty($value->getFeatured()))
-                                    <img src="{{ $value->getFeatured() }}"
-                                        style="height: 50px; width:50px;">
-                                    @endif
-                                </td>
-                                <td>{{ $value->created_by }}</td>
-                                <td>
-                                    <a href="{{ url('admin/events/edit', $value->id) }}"
-                                        class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="{{ url('admin/events/delete', $value->id) }}"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->title }}')">Delete</a>
-                                </td>
-                            </tr>
-                        @endforeach
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (!empty($value->getFeatured()))
+                                            <img src="{{ $value->getFeatured() }}" style="height: 50px; width:50px;">
+                                        @endif
+                                    </td>
+                                    <td>{{ $value->created_by }}</td>
+                                    <td>
+                                        <a href="{{ url('admin/events/edit', $value->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('admin/events/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->title }}')">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -80,14 +75,29 @@
         });
 
         function confirmDelete(event, id, title) {
-            event.preventDefault();
+            event.preventDefault(); // Stop default form or link behavior
 
-            var confirmation = confirm('Are you sure you want to delete this Event: ' + title + '?');
-
-            if (confirmation) {
-                window.location.href = '{{ url('admin/events/delete') }}' + '/' + id;
-            }
+            Swal.fire({
+                title: 'Are you sure?',
+                text: `You are about to delete this Event: ${title}. This action cannot be undone!`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Perform the deletion with a success alert
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Event successfully deleted.",
+                        icon: "success"
+                    }).then(() => {
+                        // Redirect to execute the backend deletion logic
+                        window.location.href = `/admin/events/delete/${id}`;
+                    });
+                }
+            });
         }
-
     </script>
 @endsection

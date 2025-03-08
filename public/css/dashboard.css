@@ -9,6 +9,7 @@
 
 a {
     text-decoration: none;
+    color: #000;
 }
 
 a:hover {
@@ -289,4 +290,11 @@ textarea {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     top: 4px;
     right: 4px;
+}
+.dataTables_filter{
+    margin-bottom: 10px;
+}
+.sidebar .nav-item .nav-link .img-profile, .topbar .nav-item .nav-link .img-profile {
+    height: 2rem;
+    width: 2rem;
 }
