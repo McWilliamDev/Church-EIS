@@ -82,7 +82,7 @@ class User extends Authenticatable
             ->where('user_type', '=', 'admin')
             ->where('is_delete', '=', 0)
             ->orderBy('id', 'asc')
-            ->paginate();
+            ->paginate(999999);
     }
 
     public static function getUser()
@@ -91,7 +91,7 @@ class User extends Authenticatable
             ->where('users.user_type', '=', 'user')
             ->where('users.is_delete', '=', 0)
             ->orderBy('users.id', 'desc')
-            ->paginate();
+            ->paginate(999999);
     }
     public static function getEmailUser($user_type)
     {

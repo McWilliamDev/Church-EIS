@@ -12,10 +12,8 @@
         
         <div class="col-sm-6 button-list" style="text-align: right">
             <a href="{{ url('admin/admin/add') }}" class="btn my-2">Add Church Administrators</a>
-        </div>
-        
-        @include('alerts')
-        
+        </div>        
+
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
@@ -67,6 +65,7 @@
 @endsection
 
 @section('script')
+@include('alerts')
 <script>
     $(document).ready(function() {
         $('#adminTable').DataTable();
@@ -99,5 +98,4 @@
         });
     }
 </script>
-
 @endsection

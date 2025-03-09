@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use  App\Models\User;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -32,22 +32,60 @@ class ProfileController extends Controller
         $admin = User::getSingle($id);
         $admin->name = trim($request->name);
         $admin->email = trim($request->email);
-
-        if (!empty($request->file('profile_pic'))) {
-            $ext = $request->file('profile_pic')->getClientOriginalExtension();
-            $file = $request->file('profile_pic');
-            $randomStr = date('Ymdhis') . Str::random(20);
-            $filename =  strtolower($randomStr) . '.' . $ext;
-            $file->move('upload/profile/', $filename);
-
-            $admin->profile_pic = $filename;
-        }
         $admin->address = trim($request->address);
         $admin->phonenumber = trim($request->phonenumber);
         $admin->user_type = 'admin';
         $admin->save();
 
         return redirect()->back()->with('success', 'Profile Updated Successfully');
+    }
+    public function uploadProfileImage(Request $request)
+    {
+        $request->validate([
+            'profile_pic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $id = Auth::user()->id;
+        $admin = User::getSingle($id);
+
+        if ($request->hasFile('profile_pic')) {
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis') . Str::random(20);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/profile/', $filename);
+
+            // Optionally delete the old image if it exists
+            if ($admin->profile_pic) {
+                $oldImagePath = public_path('upload/profile/' . $admin->profile_pic);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
+            $admin->profile_pic = $filename;
+            $admin->save();
+        }
+
+        return response()->json(['success' => true, 'message' => 'Image uploaded successfully.']);
+    }
+
+    public function deleteProfileImage()
+    {
+        $id = Auth::user()->id;
+        $admin = User::getSingle($id);
+
+        if ($admin->profile_pic) {
+            $oldImagePath = public_path('upload/profile/' . $admin->profile_pic);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+                $admin->profile_pic = null; // Clear the profile_pic field
+                $admin->save();
+                return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'No image found to delete.']);
     }
 
     public function UpdateMyProfile(Request $request)

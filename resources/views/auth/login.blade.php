@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/auth.css') }}">
 </head>
@@ -14,18 +15,22 @@
     <div class="container-fluid h-100">
         <div class="row h-100">
             <!--Left Side-->
-            <div class="col-md-6 left-side text-center d-flex justify-content-center align-items-center ">
-                <div>
-                    <p>That person is like a tree planted by streams of water, which yields its fruit in season and
-                        whose leaf does not wither—whatever they do prospers.</p>
-                    <hr />
-                    <p><strong>Psalms 1:3</strong></p>
+            <div class="row flex-grow-1">
+                <!-- Left Side -->
+                <div class="col-md-6 d-none d-md-block p-0">
+                    <div class="full-height bg-cover" style="background-image: url('https://storage.googleapis.com/a1aa/image/S39QHqrwNFcveg4cLi8RStsg6Pz7e43092-1_7-joy4.jpg');">
+                        <div class="d-flex flex-column justify-content-end h-100 p-5 text-white">
+                            <i class="fas fa-quote-left fa-2x"></i>
+                            <p class="mt-4">That person is like a tree planted by streams of water, which yields its fruit in season and
+                                whose leaf does not wither—whatever they do prospers.</p>
+                                <p><strong>-Psalms 1:3</strong></p>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <!--Left Side End-->
 
             <!--Right Side-->
-            <div class="col-md-6 right-side d-flex justify-content-center align-items-center">
+            <div class="col-md-6 right-side d-flex justify-content-center align-items-center bg-light">
                 <form class="login-form" action="{{ url('login') }}" method="post">
                     @csrf
                     <!--Logo-->
@@ -72,6 +77,7 @@
             <!--Right Side End-->
 
         </div>
+    </div>
     </div>
 </body>
 

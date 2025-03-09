@@ -52,9 +52,7 @@
             </form>
         </div>
 
-        @include('alerts')
-
-        <div class="card shadow-lg mb-4">
+        <div class="card shadow-lg mb-4" style="margin-top: 10px">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Assigned Members to Ministry</h6>
             </div>
@@ -99,6 +97,7 @@
 @endsection
 
 @section('script')
+@include('alerts')
     <script>
         $(document).ready(function() {
             $('#assignministryTable').DataTable();

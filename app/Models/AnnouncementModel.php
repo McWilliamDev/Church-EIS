@@ -43,7 +43,7 @@ class AnnouncementModel extends Model
         }
 
         $return = $return->orderBy('announcements.id', 'desc')
-            ->paginate();
+            ->paginate(999999);
 
         return $return;
     }

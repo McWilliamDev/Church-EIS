@@ -16,17 +16,18 @@
             </div>
 
             <div class="col-6">
-                <label class="form-label">Event Description<span style="color: red">*</span></label>
-                <input type="text" class="form-control" value="{{ old('description', $getRecord->description) }}" name="description" required
-                    placeholder="Event Description">
-                    <div style="color: red">{{ $errors->first('description') }}</div>
-            </div>
-
-            <div class="col-6">
                 <label class="form-label">Location<span style="color: red">*</span></label>
                 <input type="text" class="form-control" value="{{ old('location', $getRecord->location) }}" name="location" required placeholder="Location">
                 <div style="color: red">{{ $errors->first('location') }}</div>
             </div>
+
+            <div class="col-6">
+                <label class="form-label">Event Description<span style="color: red">*</span></label>
+                <textarea class="form-control" name="description" required
+                    placeholder="Event Description">{{ old('description', $getRecord->description) }}</textarea>
+                    <div style="color: red">{{ $errors->first('description') }}</div>
+            </div>
+
             <div class="col-6">
                 <label class="form-label">Date & Time<span style="color: red">*</span></label>
                 <input type="datetime-local" class="form-control" value="{{ old('date', $getRecord->date) }}" name="date" required >
