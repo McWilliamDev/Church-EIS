@@ -35,7 +35,7 @@ class AssignMinistryModel extends Model
             $return = $return->where('assign_ministry.ministry_status', '=', $ministry_status);
         }
 
-        $return = $return->orderBy('assign_ministry.id', 'desc')->paginate();
+        $return = $return->orderBy('assign_ministry.id', 'desc')->paginate(999999);
 
         return $return;
     }

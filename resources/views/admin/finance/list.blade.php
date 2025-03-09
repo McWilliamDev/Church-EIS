@@ -70,7 +70,7 @@
                 <h3 class="fw-bold fs-4 my-3">Finance Reports</h3>
             </div>
             <div class="col-6 d-flex align-items-center justify-content-end">
-                <a href="{{ route('finance.add') }}" class="btn btn-primary">Add Report</a>
+                <a href="{{ route('finance.add') }}" class="btn btn-primary">Add Finance</a>
             </div>
         </div>
 
@@ -79,13 +79,13 @@
                 No reports found
             </div>
         @else
-        <table class="table table-striped">
+        <table class="table table-striped" id="financeTable">
             <thead>
                 <tr class="highlight">
+                    <th scope="col">Member Name</th>
                     <th scope="col">Type</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Person Accountable</th>
                     <th scope="col">Purpose</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -93,10 +93,10 @@
             <tbody>
                 @foreach($reports as $report)
                 <tr>
+                    <td>{{ $report->member->name }} {{ $report->member->last_name }}</td>
                     <td>{{ $report->type }}</td>
                     <td>{{ $report->amount }}</td>
                     <td>{{ date('m/d/Y', strtotime($report->created_at)) }}</td>
-                    <td>{{ $report->member->name }} {{ $report->member->last_name }}</td>
                     <td class="break-word">{{ $report->purpose }}</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="{{ url('admin/finance/edit', $report->id) }}">Edit</a>
@@ -122,6 +122,9 @@
 @push('scripts')
 
 <script>
+            $(document).ready(function() {
+            $('#financeTable').DataTable();
+        });
 
 var barChart, pieChart;
 var viewData = "";

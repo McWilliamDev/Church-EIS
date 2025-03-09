@@ -17,7 +17,7 @@
     <form id="modalForm" method="POST" action="{{ route('finance.addFinance') }}">
         @csrf <!-- Laravel CSRF token -->
         <div class="mb-3">
-            <label for="member" class="form-label">Person Accountable</label>
+            <label for="member" class="form-label">Member Name</label>
             <select id="userSelect" name="member" style="width: 100%;">
                 @if($members->isEmpty())
                 <option>No members found</option>

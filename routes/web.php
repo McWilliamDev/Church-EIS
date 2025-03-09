@@ -86,6 +86,9 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
 
     Route::get('admin/profile', [ProfileController::class, 'MyProfile']);
     Route::post('admin/profile', [ProfileController::class, 'UpdateMyProfileAdmin']);
+    Route::post('admin/profile/upload-image', [ProfileController::class, 'uploadProfileImage'])->name('upload-image');
+    Route::delete('admin/profile/delete-image', [ProfileController::class, 'deleteProfileImage'])->name('delete-image');
+
 
     //Users List
     Route::get('admin/user/list', [UserController::class, 'list']);

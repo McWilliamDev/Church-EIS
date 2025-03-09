@@ -126,14 +126,14 @@ class EventsController extends Controller
 
     public function getEvents()
     {
-        $events = EventsModel::where('is_delete', 0)->get(); // Fetch only non-deleted events
+        $events = EventsModel::all();
         $formattedEvents = [];
 
         foreach ($events as $event) {
             $formattedEvents[] = [
                 'id' => $event->id,
                 'title' => $event->title,
-                'start' => $event->date, // Assuming 'date' is in 'Y-m-d H:i:s' format
+                'start' => $event->date,
                 'description' => $event->description,
                 'location' => $event->location,
                 'featured_image' => $event->featured_image,

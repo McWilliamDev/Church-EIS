@@ -11,7 +11,7 @@ class EventsCalendarController extends Controller
     {
         $data['header_title'] = "Events Calendar";
         // Fetch events from the database
-        $data['events'] = EventsModel::where('is_delete', 0)->get();
+        $data['events'] = EventsModel::all();
         return view('admin.events.events_calendar', $data);
     }
 }

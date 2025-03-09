@@ -14,8 +14,6 @@
             <a href="{{ url('admin/events/add') }}" class="btn my-2">Add Events</a>
         </div>
 
-        @include('alerts')
-
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Events</h6>
@@ -41,7 +39,7 @@
                                 <tr>
                                     <td>{{ $value->id }}</td>
                                     <td>{{ $value->title }}</td>
-                                    <td>{{ $value->description }}</td>
+                                    <td class="break-word">{{ $value->description }}</td>
                                     <td>{{ $value->location }}</td>
                                     <td>
                                         @if (!empty($value->date))
@@ -69,6 +67,7 @@
 @endsection
 
 @section('script')
+@include('alerts')
     <script>
         $(document).ready(function() {
             $('#eventTable').DataTable();

@@ -15,7 +15,6 @@ class EventsModel extends Model
     {
         $return = EventsModel::select('events.*', 'users.name as created_by')
             ->join('users', 'users.id', 'events.created_by')
-            ->where('events.is_delete', '=', 0)
             ->orderBy('events.id', 'asc')
             ->paginate(999999);
 
