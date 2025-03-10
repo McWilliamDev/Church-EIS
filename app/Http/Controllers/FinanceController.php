@@ -41,6 +41,7 @@ class FinanceController extends Controller
             'member' => 'required|integer',
             'type' => 'required|string|max:255',
             'amount' => 'required|numeric|min:1',
+            'date' => 'required|date',
             'purpose' => 'nullable|string|max:150',
         ]);
 
@@ -49,6 +50,7 @@ class FinanceController extends Controller
             'member_id' => $request->member,
             'type' => $request->type,
             'amount' => $request->amount,
+            'date' => $request->date,
             'purpose' => $request->purpose
         ]);
         Alert::success('Success!', 'Data has been added successfully.');
@@ -63,6 +65,7 @@ class FinanceController extends Controller
             'member' => 'required|integer',
             'type' => 'required|string|max:255',
             'amount' => 'required|numeric|min:1',
+            'date' => 'required|date',
             'purpose' => 'required|string|max:150',
         ]);
 
@@ -72,6 +75,7 @@ class FinanceController extends Controller
             'member_id' => $request->member,
             'type' => $request->type,
             'amount' => $request->amount,
+            'date' => $request->date,
             'purpose' => $request->purpose,
         ]);
         Alert::success('Success!', 'Data has been updated successfully.');

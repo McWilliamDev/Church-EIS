@@ -96,7 +96,7 @@
                     <td>{{ $report->member->name }} {{ $report->member->last_name }}</td>
                     <td>{{ $report->type }}</td>
                     <td>{{ $report->amount }}</td>
-                    <td>{{ date('m/d/Y', strtotime($report->created_at)) }}</td>
+                    <td>{{ date('d/m/Y', strtotime($report->date)) }}</td>
                     <td class="break-word">{{ $report->purpose }}</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="{{ url('admin/finance/edit', $report->id) }}">Edit</a>
@@ -143,7 +143,7 @@ var yearlyTotals = {};
 // Generate last 5 months list (including year to differentiate)
 let monthsList = [];
 let currentDate = new Date();
-for (let i = 4; i >= 0; i--) {
+for (let i = 11; i >= 0; i--) {
     let pastDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - i, 1);
     let monthYear = pastDate.toLocaleString('default', { month: 'long' }) + " " + pastDate.getFullYear();
     monthsList.push(monthYear);
@@ -161,7 +161,7 @@ for (let i = 4; i >= 0; i--) {
 
 // Process reports
 reportsData.forEach(report => {
-    let date = new Date(report.created_at);
+    let date = new Date(report.date);
     let monthYear = date.toLocaleString('default', { month: 'long' }) + " " + date.getFullYear();
     let year = date.getFullYear();
 
