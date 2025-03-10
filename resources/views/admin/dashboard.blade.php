@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Process reports
     reportsData.forEach(report => {
-        let date = new Date(report.created_at);
+        let date = new Date(report.date);
         let monthYear = date.toLocaleString('default', { month: 'long' }) + " " + date.getFullYear();
         let year = date.getFullYear();
 

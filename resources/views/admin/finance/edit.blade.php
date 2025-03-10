@@ -33,6 +33,12 @@
             <input type="number" class="form-control" id="amount" name="amount" 
                 min="1" value="{{ $report->amount }}" required>
         </div>
+
+        <div class="mb-3">
+            <label for="type" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" 
+                value="{{ $report->date }}" required>
+        </div>
     
         <div class="mb-3">
             <label for="purpose" class="form-label">Purpose or Description</label>

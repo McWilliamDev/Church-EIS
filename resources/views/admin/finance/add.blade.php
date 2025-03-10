@@ -28,14 +28,22 @@
                 @endif
             </select>
         </div>
+
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
             <input type="text" class="form-control" id="type" name="type" placeholder="Ex: Expenses, Donation etc."required>
         </div>
+
         <div class="mb-3">
             <label for="amount" class="form-label">Price</label>
             <input type="number" class="form-control" id="amount" name="amount" min="1" value="1" required>
         </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+
         <div class="mb-3">
             <label for="purpose" class="form-label">Purpose or Description</label>
             <textarea class="form-control" id="purpose" name="purpose" maxlength="150" rows="3" placeholder="Maximum 150 Characters"></textarea>
