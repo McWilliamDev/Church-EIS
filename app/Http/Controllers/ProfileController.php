@@ -55,7 +55,6 @@ class ProfileController extends Controller
             $filename = strtolower($randomStr) . '.' . $ext;
             $file->move('upload/profile/', $filename);
 
-            // Optionally delete the old image if it exists
             if ($admin->profile_pic) {
                 $oldImagePath = public_path('upload/profile/' . $admin->profile_pic);
                 if (file_exists($oldImagePath)) {

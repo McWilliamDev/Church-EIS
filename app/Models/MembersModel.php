@@ -16,9 +16,22 @@ class MembersModel extends Model
         return self::find($id);
     }
 
+    //For Dashboard Date Count
     public static function getTotalMembers()
     {
         return self::where('is_delete', '=', 0)->count();
+    }
+
+    //For Pie Chart Data
+    public static function getMemberStatusCounts()
+    {
+        $activeCount = self::where('member_status', 0)->where('is_delete', 0)->count();
+        $inactiveCount = self::where('member_status', 1)->where('is_delete', 0)->count();
+
+        return [
+            'active' => $activeCount,
+            'inactive' => $inactiveCount,
+        ];
     }
 
     public static function getMember()
