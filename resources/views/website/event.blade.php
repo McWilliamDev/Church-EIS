@@ -33,9 +33,9 @@
          <div class="logo"><img src="images/LogoTransparentWhite.png" style="width: 150px"></div>
          <div class="menu_main" id="home">
             <ul>
-               <li><a href="">Home</a></li>
+               <li><a href="/home">Home</a></li>
                <li><a href="/ministry">Ministries</a></li>
-               <li><a href="/events">Events</a></li>
+               <li><a href="/event">Events</a></li>
                <li><a href="/resources">Resources</a></li>
             </ul>
          </div>
@@ -44,7 +44,7 @@
 
 
 
-   {{--------------------------------------------------- BANNER ------------------------------------------------------------------}}
+{{--------------------------------------------------- BANNER ------------------------------------------------------------------}}
    <div class="banner_section layout_padding">
    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
@@ -65,14 +65,14 @@
 
 
 
-<div class="event_section layout_padding" id="events">
+<div class="event_section layout_padding">
     <div class="container">
 
        @foreach($events as $post)
        <div class="card mb-3" style="border-radius: 10px;">
         <div class="row g-0" style="padding-bottom: 0px">
           <div class="col-md-4">
-            <img src="images/website/banner-bg.png" class="img-fluid rounded-start" alt="..." style="height: auto; width: auto;">
+            <img src="{{ asset('upload/posts/' . $post->featured_image) }}" class="img-fluid rounded-start" alt="Image">
           </div>
           <div class="col-md-8">
             <div class="card-body">

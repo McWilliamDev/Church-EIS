@@ -27,10 +27,10 @@
        <div class="logo"><img src="images/LogoTransparentWhite.png" style="width: 150px"></div>
        <div class="menu_main">
           <ul> 
-             <li><a href="/home">Home</a></li>
-             <li><a href="/ministry">Ministries</a></li>
-             <li><a href="/event">Events</a></li>
-             <li><a href="/resources">Resources</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
+            <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
+            <li><a href="{{ route('event') }}">Events</a></li>
+            <li><a href="{{ route('resources') }}">Resources</a></li>
           </ul>
        </div>
     </div>
