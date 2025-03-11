@@ -23,16 +23,23 @@ Route::get('/', function () {
     // Fetch data from the "events" table
     $events = DB::table('events')->get();
 
-    // Pass both datasets to the view
+    // Pass both datasets to the homepage view
     return view('website.homepage', [
         'ministry' => $ministries,
         'events' => $events
     ]);
 });
 
-Route::get('/section/{section}', function ($section) {
-    return view('website.homepage', ['scrollTo' => $section]);
-})->name('scroll.section');
+// Define a separate route for the ministry page
+Route::get('/ministry', function () {
+    $ministries = DB::table('ministry')->get();
+
+    return view('website.ministry', [
+        'ministry' => $ministries
+    ]);
+});
+
+
 
 
 //Function for Login
