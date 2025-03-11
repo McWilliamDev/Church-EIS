@@ -16,29 +16,27 @@ use App\Http\Controllers\FinanceController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
-Route::get('/', function () {
-    // Fetch data from the "ministry" table
-    $ministries = DB::table('ministry')->get();
 
-    // Fetch data from the "events" table
-    $events = DB::table('events')->get();
+// Homepage Route
+Route::get('/home', function () {
+    return view('website.home');
+})->name('home');
 
-    // Pass both datasets to the homepage view
-    return view('website.homepage', [
-        'ministry' => $ministries,
-        'events' => $events
-    ]);
-});
-
-// Define a separate route for the ministry page
 Route::get('/ministry', function () {
-    $ministries = DB::table('ministry')->get();
+    $ministry = DB::table('ministry')->get(); // Correct variable name
+    return view('website.ministry', ['ministry' => $ministry]); 
+})->name('ministry');
 
-    return view('website.ministry', [
-        'ministry' => $ministries
-    ]);
-});
+// Events Route
+Route::get('/event', function () {
+    $events = DB::table('events')->get();
+    return view('website.event', ['events' => $events]); 
+})->name('event');
 
+// Resources Route
+Route::get('/resources', function () {
+    return view('website.resources');
+})->name('resources');
 
 
 
