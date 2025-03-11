@@ -29,4 +29,15 @@ class EventsModel extends Model
             return "";
         }
     }
+    public static function getUpcomingEvents()
+    {
+        $today = now();
+        $nextWeek = now()->addDays(7);
+
+        return self::whereBetween('date', [$today, $nextWeek])
+            ->select('events.*', 'users.name as created_by')
+            ->join('users', 'users.id', 'events.created_by')
+            ->orderBy('events.date', 'asc')
+            ->get();
+    }
 }

@@ -6,13 +6,14 @@
                 <h3 class="fw-bold fs-4 mb-3">Dashboard</h3>
                 
                 <div class="row">
+                    <a href="{{ url('admin/admin/list') }}">
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-start py-2 small-box bg-info-subtle">
                             <div class="card-body">
                                 <div class="row g-0 align-items-center">
                                     <div class="col">
                                         <div class="text-xs fw-bold text-uppercase mb-1">
-                                            Total Church Administrators
+                                            Total Administrators
                                         </div>
                                         <div class="h5 mb-0 fw-bold text-gray">{{ $TotalAdmin }}</div>
                                     </div>
@@ -22,15 +23,17 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-start py-2 small-box bg-primary-subtle">
+                        <a href="{{ url('admin/user/list') }}">
                             <div class="card-body">
                                 <div class="row g-0 align-items-center">
                                     <div class="col">
                                         <div class="text-xs fw-bold text-uppercase mb-1">
-                                            Total Administrators
+                                            Total Users
                                         </div>
                                         <div class="h5 mb-0 fw-bold text-gray">{{ $TotalUser }}</div>
                                     </div>
@@ -39,11 +42,13 @@
                                     </div>
                                 </div>
                             </div>
+                        </a>
                         </div>
                     </div>
 
                     <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start py-2 small-box bg-secondary-subtle">
+                        <div class="card border-start py-2 small-box bg-warning-subtle">
+                            <a href="{{ url('admin/member/list')}}">
                             <div class="card-body">
                                 <div class="row g-0 align-items-center">
                                     <div class="col">
@@ -57,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </a>
                         </div>
                     </div>
 
@@ -68,7 +74,7 @@
                                         <div class="text-xs fw-bold text-uppercase mb-1">
                                             Upcoming Events
                                         </div>
-                                        <div class="h5 mb-0 fw-bold text-gray">{{ $TotalMembers }}</div>
+                                        <div class="h5 mb-0 fw-bold text-gray">{{ $upcomingEventsCount }}</div>
                                     </div>
                                     <div class="col-auto">
                                         <i class="fa-solid fa-calendar-days fa-2x text-gray-300"></i>
@@ -77,229 +83,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start py-2 small-box bg-warning-subtle">
-                            <div class="card-body">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col">
-                                        <div class="text-xs fw-bold text-uppercase mb-1">
-                                            Upcoming Events
-                                        </div>
-                                        <div class="h5 mb-0 fw-bold text-gray">{{ $TotalMembers }}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                
-                    <!--<div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start border-danger shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col">
-                                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">
-                                            Total Church Members
-                                        </div>
-                                        <div class="h5 mb-0 fw-bold text-gray">{{ $TotalMembers }}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start border-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col">
-                                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">
-                                            Total Monthly Donations
-                                        </div>
-                                        <div class="h5 mb-0 fw-bold text-gray"></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start border-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col">
-                                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">
-                                            Upcoming Events
-                                        </div>
-                                        <div class="h5 mb-0 fw-bold text-gray">{{ $TotalUser }}</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-start border-primary shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col">
-                                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)
-                                        </div>
-                                        <div class="h5 mb-0 fw-bold text-gray">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <a href="{{ url('admin/admin/list') }}">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Total Church Administrators
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        {{ $TotalAdmin }}
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +69
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <a href="{{ url('admin/user/list') }}">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Total Administrators
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        {{ $TotalUser }}
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +9.0%
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="col-12 col-md-4">
-                        <a href="{{ url('admin/member/list') }}">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Total Church Members
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        {{ $TotalMembers }}
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +25000
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-    
-                        <div class="col-12 col-md-4">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Upcoming Events
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        1002
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +9.0%
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="col-12 col-md-4">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Total Donations
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        $72, 500
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +25000
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-4">
-                            <div class="card border-0 dashboard-card">
-                                <div class="card-body py-4">
-                                    <h5 class="mb-2 fw-bold">
-                                        Total Donations
-                                    </h5>
-                                    <p class="mb-2 fw-bold">
-                                        $72, 500
-                                    </p>
-                                    <div class="mb-0">
-                                        <span class="badge text-success me-2">
-                                            +25000
-                                        </span>
-                                        <span class="fw-bold">
-                                            Since Last Month
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
 
                         <div class="row">
 
@@ -357,13 +141,10 @@
                                         </div>
                                         <div class="mt-4 text-center small">
                                             <span class="me-2">
-                                                <i class="fas fa-circle text-success"></i> Active
+                                                <i class="fas fa-circle" style="color: rgb(75, 192, 192);"></i> Active
                                             </span>
                                             <span class="me-2">
-                                                <i class="fas fa-circle text-danger"></i> Inactive
-                                            </span>
-                                            <span class="me-2">
-                                                <i class="fas fa-circle text-info"></i> Referral
+                                                <i class="fas fa-circle" style="color: rgb(255, 99, 132)"></i> Inactive
                                             </span>
                                         </div>
                                     </div>
@@ -384,6 +165,24 @@
 @push('scripts')
 
 <script>
+    var memberstatus = document.getElementById("myPieChart");
+    var myPieChart = new Chart(memberstatus, {
+        type: 'pie',
+        data: {
+            labels: ["Active", "Inactive"],
+            datasets: [{
+                data: [{{ $activeMembersCount }}, {{ $inactiveMembersCount }}],
+                backgroundColor: [
+                    'rgb(75, 192, 192)',
+                    'rgb(255, 99, 132)',
+                ], // Green for active, red for inactive
+            }],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    });
 
 var lineChart;
 var viewData = "";

@@ -24,13 +24,11 @@
                     <table class="table table-striped" id="memberTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
                             <tr class="highlight">
-                                <th>#</th>
                                 <th >Profile Picture</th>
                                 <th >Name</th>
                                 <th >Email</th>
                                 <th >Phone No. </th>
                                 <th >Gender</th>
-                                <th >Ministry</th>
                                 <th >Date of Birth</th>
                                 <th >Address</th>
                                 <th >Status</th>
@@ -42,7 +40,6 @@
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
                                     <td>
                                         @if (!empty($value->getProfile()))
                                             <img src="{{ $value->getProfile() }}"
@@ -53,7 +50,6 @@
                                     <td>{{ $value->email }}</td>
                                     <td>{{ $value->phonenumber }}</td>
                                     <td>{{ $value->gender }}</td>
-                                    <td>{{ $value->ministry_name }}</td>
                                     <td>
                                         @if (!empty($value->date_of_birth))
                                             {{ date('d-m-Y', strtotime($value->date_of_birth)) }}

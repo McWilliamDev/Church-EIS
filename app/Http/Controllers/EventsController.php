@@ -115,10 +115,14 @@ class EventsController extends Controller
         $event = EventsModel::find($id);
 
         if ($event) {
+            if (!empty($event->featured_image) && file_exists('upload/featured/' . $event->featured_image)) {
+                unlink('upload/featured/' . $event->featured_image);
+            }
+
             $event->delete();
 
             if (Auth::check()) {
-                return redirect()->back();
+                return redirect()->back()->with('success', 'Event deleted successfully.');
             }
         }
         return redirect()->back()->with('error', 'Event not found.');
@@ -141,5 +145,16 @@ class EventsController extends Controller
         }
 
         return response()->json($formattedEvents);
+    }
+    public function upcomingEvents()
+    {
+        $data['upcomingEvents'] = EventsModel::getUpcomingEvents();
+        $data['header_title'] = "Upcoming Events";
+
+        if (Auth::check() && Auth::user()->user_type == 'admin') {
+            return view('admin.events.upcoming', $data);
+        } else {
+            return redirect('login')->with('error', 'Please log in to view upcoming events');
+        }
     }
 }
