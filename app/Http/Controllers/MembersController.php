@@ -63,7 +63,7 @@ class MembersController extends Controller
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(20);
             $filename =  strtolower($randomStr) . '.' . $ext;
-            $file->move('upload/profile/', $filename);
+            $file->move('upload/member_profiles/', $filename);
 
             $member->profile_pic = $filename;
         }
@@ -122,16 +122,19 @@ class MembersController extends Controller
             $member->date_of_birth = trim($request->date_of_birth);
         }
 
+        $oldProfilePic = $member->profile_pic;
+
         if (!empty($request->file('profile_pic'))) {
-            if (!empty($member->getProfile())) {
-                unlink('upload/profile/' . $member->profile_pic);
+            // If a new profile picture is uploaded, delete the old one
+            if (!empty($oldProfilePic) && file_exists('upload/member_profiles/' . $oldProfilePic)) {
+                unlink('upload/member_profiles/' . $oldProfilePic);
             }
 
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(20);
-            $filename =  strtolower($randomStr) . '.' . $ext;
-            $file->move('upload/profile/', $filename);
+            $filename = strtolower($randomStr) . '.' . $ext;
+            $file->move('upload/member_profiles/', $filename);
 
             $member->profile_pic = $filename;
         }
@@ -140,8 +143,7 @@ class MembersController extends Controller
         $member->member_status = $request->member_status;
         $member->save();
 
-
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return redirect('admin/member/list')->with('success', 'Member Successfully Updated');
             } else if (Auth::user()->user_type == 'user') {
@@ -155,13 +157,12 @@ class MembersController extends Controller
         $getRecord = MembersModel::find($id);
 
         if ($getRecord) {
-            $getRecord->is_delete = 1;
+            $getRecord->is_delete = 1; // Mark the member as deleted
             $getRecord->save();
 
-            if (Auth::check()) {
-                return redirect()->back();
-            }
+            return redirect()->back()->with('success', 'Member successfully deleted.');
         }
+
         return redirect()->back()->with('error', 'Member not found.');
     }
 }

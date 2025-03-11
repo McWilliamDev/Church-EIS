@@ -86,22 +86,34 @@ class EventsController extends Controller
     public function update(Request $request, $id)
     {
         $events = EventsModel::getSingle($id);
+
+        // Store the old image filename for deletion
+        $oldImage = $events->featured_image;
+
         $events->title = $request->title;
         $events->description = $request->description;
         $events->location = $request->location;
         $events->date = $request->date;
+
         if (!empty($request->file('featured_image'))) {
+            // If a new image is uploaded, delete the old image
+            if (!empty($oldImage) && file_exists('upload/featured/' . $oldImage)) {
+                unlink('upload/featured/' . $oldImage);
+            }
+
+            // Process the new image
             $ext = $request->file('featured_image')->getClientOriginalExtension();
             $file = $request->file('featured_image');
             $randomStr = date('Ymdhis') . Str::random(20);
-            $filename =  strtolower($randomStr) . '.' . $ext;
+            $filename = strtolower($randomStr) . '.' . $ext;
             $file->move('upload/featured/', $filename);
 
             $events->featured_image = $filename;
         }
+
         $events->save();
 
-        if (!empty(Auth::check())) {
+        if (Auth::check()) {
             if (Auth::user()->user_type == 'admin') {
                 return redirect('admin/events/list')->with('success', 'Event Successfully Updated');
             } else if (Auth::user()->user_type == 'user') {
@@ -118,11 +130,9 @@ class EventsController extends Controller
             if (!empty($event->featured_image) && file_exists('upload/featured/' . $event->featured_image)) {
                 unlink('upload/featured/' . $event->featured_image);
             }
-
             $event->delete();
-
             if (Auth::check()) {
-                return redirect()->back()->with('success', 'Event deleted successfully.');
+                return redirect()->back()->with('success', 'Event successfully deleted.');
             }
         }
         return redirect()->back()->with('error', 'Event not found.');

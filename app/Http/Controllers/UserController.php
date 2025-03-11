@@ -74,15 +74,25 @@ class UserController extends Controller
         $user->name = trim($request->name);
         $user->email = trim($request->email);
 
+        // Store the old profile picture filename for deletion
+        $oldProfilePic = $user->profile_pic;
+
         if (!empty($request->file('profile_pic'))) {
+            // If a new profile picture is uploaded, delete the old one
+            if (!empty($oldProfilePic) && file_exists('upload/profile/' . $oldProfilePic)) {
+                unlink('upload/profile/' . $oldProfilePic);
+            }
+
+            // Process the new profile picture
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(20);
-            $filename =  strtolower($randomStr) . '.' . $ext;
+            $filename = strtolower($randomStr) . '.' . $ext;
             $file->move('upload/profile/', $filename);
 
             $user->profile_pic = $filename;
         }
+
         $user->address = trim($request->address);
         $user->phonenumber = trim($request->phonenumber);
         $user->position = trim($request->position);

@@ -98,15 +98,7 @@
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            // Redirect to perform deletion
-            Swal.fire({
-                title: "Deleted!",
-                text: "Church Member successfully deleted.",
-                icon: "success"
-            }).then(() => {
-                // Redirect to execute the backend deletion logic
                 window.location.href = `/admin/member/delete/${id}`;
-            });
         }
     });
 }
