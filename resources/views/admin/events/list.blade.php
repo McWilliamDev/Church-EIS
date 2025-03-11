@@ -86,15 +86,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Perform the deletion with a success alert
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Event successfully deleted.",
-                        icon: "success"
-                    }).then(() => {
-                        // Redirect to execute the backend deletion logic
                         window.location.href = `/admin/events/delete/${id}`;
-                    });
                 }
             });
         }

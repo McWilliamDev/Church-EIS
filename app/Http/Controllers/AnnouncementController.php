@@ -111,11 +111,11 @@ class AnnouncementController extends Controller
     public function DeleteAnnouncement($id)
     {
         $announcement = AnnouncementModel::getSingle($id);
-
         if (!$announcement) {
             return redirect('admin/announcements')->with('error', "Announcement not found");
         }
         $announcement->delete();
-        return redirect()->back();
+
+        return redirect('admin/announcements')->with('success', "Announcement successfully deleted.");
     }
 }

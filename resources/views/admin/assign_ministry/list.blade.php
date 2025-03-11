@@ -116,16 +116,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Show success alert before redirecting
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Assigned Member successfully deleted from Ministry.",
-                        icon: "success"
-                        
-                    }).then(() => {
-                        // Redirect to execute the backend deletion logic
                         window.location.href = `/admin/assign_ministry/delete/${id}`;
-                    });
                 }
             });
         }

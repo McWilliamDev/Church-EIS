@@ -84,16 +84,9 @@
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
-            if (result.isConfirmed) {
-                // Proceed with deletion
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Church Administrator successfully deleted.",
-                    icon: "success"
-                }).then(() => {
+            if (result.isConfirmed) {   
                     // Redirect after confirmation
                     window.location.href = '{{ url("admin/admin/delete") }}/' + id;
-                });
             }
         });
     }

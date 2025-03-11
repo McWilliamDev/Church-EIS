@@ -71,15 +71,23 @@ class AdminController extends Controller
         $admin->name = trim($request->name);
         $admin->email = trim($request->email);
 
+        $oldProfilePic = $admin->profile_pic;
+
         if (!empty($request->file('profile_pic'))) {
+            // If a new profile picture is uploaded, delete the old one
+            if (!empty($oldProfilePic) && file_exists('upload/profile/' . $oldProfilePic)) {
+                unlink('upload/profile/' . $oldProfilePic);
+            }
+
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
             $randomStr = date('Ymdhis') . Str::random(20);
-            $filename =  strtolower($randomStr) . '.' . $ext;
+            $filename = strtolower($randomStr) . '.' . $ext;
             $file->move('upload/profile/', $filename);
 
             $admin->profile_pic = $filename;
         }
+
         $admin->address = trim($request->address);
         $admin->phonenumber = trim($request->phonenumber);
         $admin->position = trim($request->position);
@@ -93,6 +101,6 @@ class AdminController extends Controller
         $admin = User::getSingle($id);
         $admin->is_delete = 1;
         $admin->save();
-        return redirect('admin/admin/list');
+        return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
     }
 }

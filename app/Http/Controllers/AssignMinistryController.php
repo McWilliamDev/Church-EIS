@@ -83,7 +83,7 @@ class AssignMinistryController extends Controller
         $record = AssignMinistryModel::find($id);
         if ($record) {
             $record->delete();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'Assigned member successfully deleted from the Ministry.');
         } else {
             return redirect('admin/assign_ministry/list')->with('error', 'No record found');
         }

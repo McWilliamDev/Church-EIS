@@ -122,12 +122,16 @@ class MinistryController extends Controller
 
     public function delete($id)
     {
+        // Find the ministry by ID
         $ministry = MinistryModel::getSingle($id);
-        $ministry->is_delete = 1;
-        $ministry->save();
 
-        if (Auth::check()) {
-            return redirect()->back();
+        if ($ministry) {
+            $ministry->is_delete = 1;
+            $ministry->save();
+            return redirect()->back()->with('success', 'Ministry successfully marked as deleted.');
+        } else {
+
+            return redirect()->back()->with('error', 'Ministry not found.');
         }
     }
 }

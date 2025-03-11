@@ -61,8 +61,8 @@ class MembersModel extends Model
     }
     public function getProfile()
     {
-        if (!empty($this->profile_pic) && file_exists('upload/profile/' . $this->profile_pic)) {
-            return url('upload/profile/' . $this->profile_pic);
+        if (!empty($this->profile_pic) && file_exists('upload/member_profiles/' . $this->profile_pic)) {
+            return url('upload/member_profiles/' . $this->profile_pic);
         } else {
             return "";
         }
