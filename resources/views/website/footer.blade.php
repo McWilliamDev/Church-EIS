@@ -7,19 +7,19 @@
 
       <ul class="footer-links">
         <li>
-           <a href="/home">Home</a>
+         <li><a href="{{ route('home') }}">Home</a></li>
         </li>
         <li>
-           <a href="/aboutus">About Us</a>
+         <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
         </li>
         <li>
-           <a href="/ministry">Ministries</a>
+         <li><a href="{{ route('event') }}">Events</a></li>
         </li>
         <li>
-           <a href="/events">Events</a>
+         <li><a href="{{ route('resources') }}">Announcements</a></li>
         </li>
         <li>
-           <a href="/resources">Resources</a>
+         <li><a href="{{ route('resources') }}">Resources</a></li>
         </li>
       </ul>
 

@@ -7,18 +7,11 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
              <ul class="navbar-nav">
-                <li class="nav-item">
-                   <a class="nav-link" href="/aboutus">About Us</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link" href="/ministry">Ministries</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link " href="/events">Events</a>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link " href="/resources">Resources</a>
-                </li>
+               <li><a href="{{ route('home') }}">Home</a></li>
+               <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
+               <li><a href="{{ route('event') }}">Events</a></li>
+               <li><a href="{{ route('resources') }}">Announcements</a></li>
+               <li><a href="{{ route('resources') }}">Resources</a></li>
              </ul>
           </div>
        </nav>
@@ -30,6 +23,7 @@
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
             <li><a href="{{ route('event') }}">Events</a></li>
+            <li><a href="{{ route('resources') }}">Announcements</a></li>
             <li><a href="{{ route('resources') }}">Resources</a></li>
           </ul>
        </div>

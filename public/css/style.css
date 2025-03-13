@@ -309,8 +309,8 @@ button {
 
 .menu_main li {
     float: left;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     font-size: 18px;
     text-transform: uppercase;
     padding-top: 10px;
@@ -394,16 +394,20 @@ button {
 }
 
 .generalh2 {
-    text-align: center;
+    text-align: left;
+    margin-left: 80px;
+    margin-right: 50px;
     margin-top: 15px;
     color: #a2d923ff;
+    font-size: 40px;
+    font-weight: 500;
 }
 
 .generalp {
-    text-align: center; 
-    width: 50%;        
-    margin: 0 auto;
-    margin-bottom: 40px;
+    text-align: left; 
+    margin-left: 80px;
+    margin-right: 50px;
+    margin-bottom: 30px;
 }
 
 .banner_text {
@@ -475,6 +479,10 @@ button {
     font-size: 50px;
     color: #046625ff;
     font-weight: bold;
+}
+
+.ministry_p {
+    text-align: center;
 }
 
 .ministry_text {
@@ -557,23 +565,22 @@ button {
 }
 
 .service_taital {
-    width: 100%;
-    float: left;
-    font-size: 60px;
+    margin-left: 80px;
+    margin-right: 80px;
+    text-align: left;
+    font-size: 45px;
     color: #046625ff; 
     font-weight: bold;
-    margin-left: 20px;
 }
 
 .service_text {
-    width: 100%;
+    margin-left: 80px;
+    margin-right: 80px;
     float: left;
     font-size: 16px;
     color: #1f1f1f;
-    margin: 0px;
     padding-top: 20px;
     margin-top: 10px;
-    margin-left: 20px;
 }
 
 .service_verse {
@@ -581,10 +588,11 @@ button {
     float: left;
     font-size: 16px;
     color: grey;
-    margin: 0px;
+    margin-left: 80px;
+    margin-right: 80px;
     padding-top: 10px;
     padding-bottom: 30px;
-    margin-left: 20px;
+
 }
 
 .readmore_bt {
@@ -711,7 +719,7 @@ button {
 
 .pastor_taital {
     width: 100%;
-    font-size: 40px;
+    font-size: 60px;
     color: #046625ff;
     font-weight: bold;
     padding-top: 30px;
@@ -792,6 +800,17 @@ button {
     padding-bottom: 0px;
 }
 
+.pastor_role {
+    text-align: center; 
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+
+.pastor_des {
+    text-align: center; 
+}
+
 .customer_text {
     width: 100%;
     float: left;
@@ -824,23 +843,24 @@ button {
 .general_section {
     width: 100%;
     float: left;
-    padding-bottom: 60px;
-    padding-top: 60px;
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
 
 .general_taital {
-    width: 100%;
+    margin-left: 80px;
+    margin-right: 80px;
     font-size: 45px;
     color: #056627ff;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
 }
 
 .general_text {
-    width: 70%;
-    margin: 0 auto;
+    margin-left: 80px;
+    margin-right: 80px;
     padding-top: 30px;
-    text-align: center;
+    text-align: left;
 }
 
 .read_bt_1 {
@@ -981,7 +1001,7 @@ button {
     background-color:black;
     width: 100%;
     float: left;
-    height: 270px;
+    height: 260px;
     padding-top: 65px;
     background-size: 100% 100%;
     padding-bottom: 10px;
@@ -991,7 +1011,7 @@ button {
 
 .social {
     text-align: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     color: white;
 }
 
@@ -1031,7 +1051,7 @@ ul a {
 ul li {
     font-size: 17px;
     display: inline-block;
-    padding: 0 15px;
+    padding: 0 10px;
     text-align: center;
     border-radius: 20px;
 }
@@ -1039,7 +1059,7 @@ ul li {
 /* Change text color to white on hover */
 ul li:hover a {
     opacity: 1; /* Make the link fully opaque */
-    color: black; /* Change text color to white */
+    color: white; /* Change text color to white */
 }
 
 ul li:hover {
