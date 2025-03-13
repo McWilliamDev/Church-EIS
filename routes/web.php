@@ -13,9 +13,13 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\AssignMinistryController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\ResourcesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
+Route::get('/', function () {
+    return view('website.home');
+});
 
 // Homepage Route
 Route::get('/home', function () {
@@ -24,13 +28,13 @@ Route::get('/home', function () {
 
 Route::get('/ministry', function () {
     $ministry = DB::table('ministry')->get(); // Correct variable name
-    return view('website.ministry', ['ministry' => $ministry]); 
+    return view('website.ministry', ['ministry' => $ministry]);
 })->name('ministry');
 
 // Events Route
 Route::get('/event', function () {
     $events = DB::table('events')->get();
-    return view('website.event', ['events' => $events]); 
+    return view('website.event', ['events' => $events]);
 })->name('event');
 
 // Resources Route
@@ -150,6 +154,14 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('/admin/finance/edit/{id}', [FinanceController::class, 'edit'])->name('finance.edit');
     Route::put('/admin/finance/update/{id}', [FinanceController::class, 'update'])->name('finance.update');
     Route::delete('admin/finance/delete/{id}', [FinanceController::class, 'delete'])->name('finance.delete');
+
+    //Church Resources Route
+    Route::get('admin/church_resources/list', [ResourcesController::class, 'list']);
+    Route::get('admin/church_resources/add', [ResourcesController::class, 'add']);
+    Route::post('admin/church_resources/add', [ResourcesController::class, 'insert']);
+    Route::get('admin/church_resources/edit/{id}', [ResourcesController::class, 'edit'])->name('resources.edit');
+    Route::post('admin/church_resources/edit/{id}', [ResourcesController::class, 'update']);
+    Route::get('admin/church_resources/delete/{id}', [ResourcesController::class, 'delete']);
 });
 
 // Dashboard Routes for Users
