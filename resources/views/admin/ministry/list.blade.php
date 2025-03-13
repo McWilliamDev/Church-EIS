@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{ $value->id }}</td>
                                     <td>{{ $value->ministry_name }}</td>
-                                    <td>{{ $value->ministry_description }}</td>
+                                    <td class="break-word">{{ $value->ministry_description }}</td>
                                     <td>
                                         @if ($value->ministry_status == 0)
                                             Active
@@ -49,7 +49,11 @@
                                     </td>
                                     <td>
                                         @if (!empty($value->getMinistryProfile()))
-                                            <img src="{{ $value->getMinistryProfile() }}" style="height: 50px; width:50px;">
+                                        <a href="#">
+                                            <img src="{{ $value->getMinistryProfile() }}" style="height: 50px; width:50px;" 
+                                                data-bs-toggle="modal" data-bs-target="#imageModal" 
+                                                data-image="{{ $value->getMinistryProfile() }}" class="clickable-image">
+                                            </a>
                                         @endif
                                     </td>
                                     <td>{{ $value->created_by }}</td>
@@ -66,6 +70,20 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Ministry Featured Photo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Profile Picture" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('script')
@@ -73,6 +91,10 @@
     <script>
         $(document).ready(function() {
             $('#ministryTable').DataTable();
+            $('.clickable-image').on('click', function() {
+                var imageSrc = $(this).data('image');
+                $('#modalImage').attr('src', imageSrc);
+            });
         });
 
         function confirmDelete(event, id, ministry_name) {

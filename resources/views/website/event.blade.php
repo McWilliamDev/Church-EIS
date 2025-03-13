@@ -73,7 +73,7 @@
        <div class="card mb-3" style="border-radius: 10px;">
         <div class="row g-0" style="padding-bottom: 0px">
           <div class="col-md-4">
-            <img src="{{ asset('upload/posts/' . $post->featured_image) }}" class="img-fluid rounded-start" alt="Image">
+            <img src="{{ asset('upload/featured/' . $post->featured_image) }}" class="img-fluid rounded-start" alt="Image">
           </div>
           <div class="col-md-8">
             <div class="card-body">

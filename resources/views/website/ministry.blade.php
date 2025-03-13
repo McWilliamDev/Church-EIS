@@ -94,7 +94,7 @@
          <div class="row">
             @foreach($ministry as $post)
             @if($post->is_delete != 1)
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="card">
                         <img src="{{ $post->ministry_profile ? asset('upload/ministry/' . $post->ministry_profile) : asset('images/default-ministry.png') }}" class="ministry_img" alt="{{ $post->ministry_name }}">
                         <div class="btn_main">
