@@ -127,8 +127,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncement']);
     Route::post('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncementUser']);
 
-    Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
-
     //Events Calendar
     //Route::get('admin/events/calendar', [EventController::class, 'index']);
     //Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');

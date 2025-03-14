@@ -53,7 +53,7 @@
 
             <div class="col-6">
                 <label class="form-label">Date of Birth<span style="color: red;">*</span></label>
-                <input type="date" class="form-control" value="{{ old('date_of_birth') }}" name="date_of_birth"
+                <input type="date" class="form-control" value="{{ old('date_of_birth') }}" name="date_of_birth" max="{{ date('Y-m-d') }}"
                     required>
                 <div style="color: red">{{ $errors->first('date_of_birth') }}</div>
             </div>

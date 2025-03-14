@@ -48,7 +48,7 @@
     
         <div class="d-flex justify-content-end">
             <button type="button" class="btn btn-secondary" onclick="redirectToReports()">Cancel</button>
-            <button type="submit" class="btn btn-primary ms-3">Update</button>
+            <button type="submit" class="btn btn-primary ms-3">Save Changes</button>
         </div>
     </form>
     

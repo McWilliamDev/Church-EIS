@@ -30,7 +30,7 @@
 
             <div class="col-6">
                 <label class="form-label">Date & Time<span style="color: red">*</span></label>
-                <input type="datetime-local" class="form-control" value="{{ old('date', $getRecord->date) }}" name="date" required >
+                <input type="datetime-local" class="form-control" value="{{ old('date', $getRecord->date ? date('Y-m-d\TH:i', strtotime($getRecord->date)) : '') }}" name="date" required min="{{ date('Y-m-d\TH:i') }}">
                 <div style="color: red">{{ $errors->first('date') }}</div>
             </div>
             
