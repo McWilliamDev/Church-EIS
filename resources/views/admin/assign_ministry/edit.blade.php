@@ -45,7 +45,7 @@
             </div>
 
                 <div class="col-4 d-flex justify-content-start">
-                    <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3 mt-3">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3 mt-3">Save Changes</button>
                 </div>
             </form>
         </div>

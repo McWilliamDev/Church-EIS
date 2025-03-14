@@ -15,12 +15,12 @@
 
             <div class="col-12">
                 <label class="form-label">Notice Date</label>
-                <input type="date" class="form-control" value="{{ $getRecord->notice_date }}" name="notice_date" required>
+                <input type="date" class="form-control" value="{{ $getRecord->notice_date }}" name="notice_date" required min="{{ date('Y-m-d') }}">
             </div>
-
+            
             <div class="col-12">
                 <label class="form-label">Publish Date</label>
-                <input type="date" class="form-control" value="{{ $getRecord->publish_date }}" name="publish_date" required>
+                <input type="date" class="form-control" value="{{ $getRecord->publish_date }}" name="publish_date" required min="{{ date('Y-m-d') }}">
             </div>
 
             <div class="col-12">
@@ -29,7 +29,7 @@
             </div>
 
             <div class="d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Save Changes</button>
             </div>
         </form>
     </div>

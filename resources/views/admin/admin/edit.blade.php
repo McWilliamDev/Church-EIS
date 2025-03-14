@@ -55,7 +55,7 @@
 
 
             <div class="d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Save Changes</button>
             </div>
         </form>
     </div>

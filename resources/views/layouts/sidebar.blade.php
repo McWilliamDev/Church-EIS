@@ -82,12 +82,12 @@
                 </a>
 
                 <ul id="finance" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
+                    <!--<li class="sidebar-item">
                         <a href="#" class="sidebar-link">Create Finances</a>
-                    </li>
+                    </li>-->
 
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/finance/list') }}" class="sidebar-link">Generate Finance Reports</a>
+                        <a href="{{ url('admin/finance/list') }}" class="sidebar-link">Finance Analytics & Reports</a>
                     </li>
                 </ul>
             </li>
