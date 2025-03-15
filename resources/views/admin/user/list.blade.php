@@ -19,7 +19,6 @@
                 <h6 class="my-0 fs-5 fw-bold">List of Administrators</h6>
             </div>
 
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="adminTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
@@ -41,7 +40,11 @@
                                     <td>{{ $value->id }}</td>
                                     <td>
                                         @if (!empty($value->getProfile()))
-                                            <img src="{{ $value->getProfile() }}" style="height: 50px; width:50px; border-radius:50px;">
+                                        <a href="#">
+                                            <img src="{{ $value->getProfile() }}" style="height: 50px; width:50px; border-radius:50px;" 
+                                                data-bs-toggle="modal" data-bs-target="#imageModal" 
+                                                data-image="{{ $value->getProfile() }}" class="clickable-image">
+                                            </a>
                                         @endif
                                     </td>
                                     <td>{{ $value->name }}</td>
@@ -59,6 +62,19 @@
                         </tbody>
                     </table>
                 </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Profile Picture</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="Profile Picture" class="img-fluid">
+                </div>
             </div>
         </div>
     </div>
@@ -69,6 +85,10 @@
 <script>
     $(document).ready(function() {
         $('#adminTable').DataTable();
+        $('.clickable-image').on('click', function() {
+            var imageSrc = $(this).data('image');
+            $('#modalImage').attr('src', imageSrc);
+        });
     });
 
     function confirmDelete(event, id, name) {

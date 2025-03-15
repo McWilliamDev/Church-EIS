@@ -55,7 +55,6 @@
                 <h6 class="my-0 fs-5 fw-bold">List of Announcements</h6>
             </div>
 
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="announcementTable" width="100%" cellspacing="0">
                         <thead>
@@ -91,7 +90,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
 @endsection

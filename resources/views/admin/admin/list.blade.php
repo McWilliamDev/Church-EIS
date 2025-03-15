@@ -19,7 +19,6 @@
                 <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
             </div>
 
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="adminTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
@@ -63,7 +62,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
 

@@ -25,7 +25,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/user/list') }}" class="sidebar-link">Admin</a>
+                        <a href="{{ url('admin/user/list') }}" class="sidebar-link">Users</a>
                     </li>
                 </ul>
             </li>
@@ -114,6 +114,13 @@
                 <a href="{{ url('admin/church_resources/list') }}" class="sidebar-link">
                     <i class="lni lni-folder-1"></i>
                     <span>Church Resources</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a href="{{ url('admin/archived/members') }}" class="sidebar-link">
+                    <i class="lni lni-box-archive-1"></i>
+                    <span>Archived</span>
                 </a>
             </li>
 <!--------------------------------------------------------------------------------------------------------------------->
