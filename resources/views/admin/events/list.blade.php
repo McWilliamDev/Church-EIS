@@ -18,8 +18,6 @@
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Events</h6>
             </div>
-
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="eventTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
@@ -65,7 +63,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
 

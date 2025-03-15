@@ -165,4 +165,34 @@ class MembersController extends Controller
 
         return redirect()->back()->with('error', 'Member not found.');
     }
+
+    //Archived Functions
+    public function archived()
+    {
+        $data['getRecord'] = MembersModel::where('is_delete', 1)->paginate(999);
+        $data['header_title'] = "Archived Members";
+        return view('admin.archived.members', $data);
+    }
+    public function restore($id)
+    {
+        $member = MembersModel::find($id);
+        if ($member) {
+            $member->is_delete = 0;
+            $member->save();
+            return redirect('admin/archived/members')->with('success', 'Member has been restored.');
+        }
+        return redirect('admin/archived/members')->with('error', 'User  not found.');
+    }
+    public function deleteArchived($id)
+    {
+        $member = MembersModel::find($id);
+        if ($member) {
+            if (!empty($member->profile_pic) && file_exists(public_path('upload/member_profiles/' . $member->profile_pic))) {
+                unlink(public_path('upload/member_profiles/' . $member->profile_pic));
+            }
+            $member->delete();
+            return redirect('admin/archived/members')->with('success', 'Member has been deleted permanently.');
+        }
+        return redirect('admin/archived/members')->with('error', 'Member not found.');
+    }
 }
