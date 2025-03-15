@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>NGGC - Login</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
@@ -18,7 +18,7 @@
             <div class="row flex-grow-1">
                 <!-- Left Side -->
                 <div class="col-md-6 d-none d-md-block p-0">
-                    <div class="full-height bg-cover" style="background-image: url('https://storage.googleapis.com/a1aa/image/S39QHqrwNFcveg4cLi8RStsg6Pz7e43092-1_7-joy4.jpg');">
+                    <div class="full-height bg-cover">
                         <div class="d-flex flex-column justify-content-end h-100 p-5 text-white">
                             <i class="fas fa-quote-left fa-2x"></i>
                             <p class="mt-4">That person is like a tree planted by streams of water, which yields its fruit in season and
@@ -35,13 +35,13 @@
                     @csrf
                     <!--Logo-->
                     <a href="#" class="d-flex justify-content-center mb-3">
-                        <img src="images/primarylogo.jpg" alt="logo" width="60">
+                        <img src="{{ asset('images/primarylogo.jpg') }}" alt="logo" width="60">
                     </a>
                     <!--Logo End-->
 
                     <div class="text-center mb-4">
                         <h3 class="fw-bold">Admin Login</h3>
-                        @include('alerts')
+                        @include('alerts1')
                     </div>
 
                     <div class="input-group mb-3">

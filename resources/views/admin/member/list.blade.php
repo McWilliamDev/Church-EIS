@@ -18,8 +18,6 @@
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
             </div>
-
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="memberTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
@@ -63,6 +61,7 @@
                                     <td style="min-width: 200px;">
                                         <a href="{{ url('admin/member/edit', $value->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
+                                            
                                         <a href="{{ url('admin/member/delete', $value->id) }}"
                                             class="btn btn-danger btn-sm"
                                             onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
@@ -72,7 +71,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
 @endsection

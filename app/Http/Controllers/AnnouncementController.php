@@ -12,56 +12,39 @@ use Illuminate\Support\Facades\Mail;
 
 class AnnouncementController extends Controller
 {
+
     public function SendAnnouncement()
     {
+        $data['members'] = MembersModel::where('is_delete', 0)->get();
         $data['header_title'] = 'Send Announcement';
         return view('admin.announcements.send_announcement', $data);
     }
 
-    public function SearchUser(Request $request)
-    {
-        $json = array();
-        if (!empty($request->search)) {
-            $getUser = User::SearchUser($request->search);
-            foreach ($getUser as $value) {
-                $type = '';
-                if ($value->user_type == 'admin') {
-                    $type = 'Church Administrator';
-                } elseif ($value->user_type == 'user') {
-                    $type = 'Administrator';
-                }
-                $name = $value->name . ' ' . $value->email . ' - ' . $type;
-                $json[] = ['id' => $value->id, 'text' => $name];
-            }
-        }
-
-        echo json_encode($json);
-    }
-
     public function SendAnnouncementUser(Request $request)
     {
-        if (!empty($request->user_id)) {
-            $user = User::getSingle($request->user_id);
-            $user->description = $request->description;
-            $user->send_subject = $request->subject;
+        // Check if the "send to all" checkbox is checked
+        if ($request->has('email_to_all')) {
+            // Get all members
+            $members = MembersModel::where('is_delete', 0)->get();
+            foreach ($members as $member) {
+                $member->description = $request->description;
+                $member->send_subject = $request->subject;
 
-            Mail::to($user->email)->send(new SendAnnouncementMail($user));
-        }
-        if (!empty($request->email_to)) {
-            foreach ($request->email_to as $user_type) {
-                $getUser = User::getEmailUser($user_type);
-                foreach ($getUser as $user) {
-                    $user->description = $request->description;
-                    $user->send_subject = $request->subject;
+                Mail::to($member->email)->send(new SendAnnouncementMail($member));
+            }
+        } elseif (!empty($request->member_id)) {
+            // Send to the selected member
+            $member = MembersModel::getSingle($request->member_id);
+            if ($member) {
+                $member->description = $request->description;
+                $member->send_subject = $request->subject;
 
-                    Mail::to($user->email)->send(new SendAnnouncementMail($user));
-                }
+                Mail::to($member->email)->send(new SendAnnouncementMail($member));
             }
         }
 
         return redirect()->back()->with('success', "Announcement Email successfully sent");
     }
-
     public function Announcement()
     {
         $data['getRecord'] = AnnouncementModel::getRecord();
@@ -77,6 +60,14 @@ class AnnouncementController extends Controller
 
     public function InsertAnnouncement(Request $request)
     {
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'notice_date' => 'required|date|after_or_equal:today',
+            'publish_date' => 'required|date|after_or_equal:today|different:notice_date',
+            'description' => 'required|string',
+        ]);
+
         $announcement = new AnnouncementModel();
         $announcement->title = $request->title;
         $announcement->notice_date = $request->notice_date;
@@ -97,6 +88,14 @@ class AnnouncementController extends Controller
 
     public function UpdateAnnouncement($id, Request $request)
     {
+        // Validate the request
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'notice_date' => 'required|date|after_or_equal:today',
+            'publish_date' => 'required|date|after_or_equal:today|different:notice_date',
+            'description' => 'required|string',
+        ]);
+
         $announcement = AnnouncementModel::getSingle($id);
         $announcement->title = $request->title;
         $announcement->notice_date = $request->notice_date;
@@ -117,10 +116,4 @@ class AnnouncementController extends Controller
 
         return redirect('admin/announcements')->with('success', "Announcement successfully deleted.");
     }
-
-    public function fetchAnnouncements()
-        {
-            $announcements = AnnouncementModel::all();
-            return view('/home', ['announcements' => $announcements]);
-        }
 }

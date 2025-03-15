@@ -15,12 +15,12 @@
 
             <div class="col-12">
                 <label class="form-label">Notice Date</label>
-                <input type="date" class="form-control" name="notice_date" required>
+                <input type="date" class="form-control" name="notice_date" min="{{ date('Y-m-d') }}" required>
             </div>
-
+            
             <div class="col-12">
                 <label class="form-label">Publish Date</label>
-                <input type="date" class="form-control" name="publish_date" required>
+                <input type="date" class="form-control" name="publish_date" min="{{ date('Y-m-d') }}" required>
             </div>
 
             <div class="col-12">

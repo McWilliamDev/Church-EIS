@@ -56,7 +56,7 @@
             <div class="col-6">
                 <label class="form-label">Date of Birth<span style="color: red;">*</span></label>
                 <input type="date" class="form-control" value="{{ old('date_of_birth', $getRecord->date_of_birth) }}"
-                    name="date_of_birth" required>
+                    name="date_of_birth" max="{{ date('Y-m-d') }}" required>
                 <div style="color: red">{{ $errors->first('date_of_birth') }}</div>
             </div>
 
@@ -85,13 +85,13 @@
                 <label class="form-label">Profile Picture</label>
                 <input type="file" class="form-control" name="profile_pic">
                 <div style="color: red">{{ $errors->first('profile_pic') }}</div>
-                @if (!empty($getRecord->getProfile()))
-                    <img src="{{ $getRecord->getProfile() }}" style="width: auto; height:50px;">
+                @if (!empty($getRecord->getMemberProfile()))
+                    <img src="{{ $getRecord->getMemberProfile() }}" style="width: auto; height:50px;">
                 @endif
             </div>
 
             <div class="d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Save Changes</button>
             </div>
         </form>
     </div>

@@ -92,17 +92,15 @@
                                 <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex align-items-center justify-content-between">
-                                        <h6 class="m-0 fw-bold">Monthly Donation Earnings Overview</h6>
+                                        <h6 class="m-0 fw-bold">Monthly Earnings Overview</h6>
                                         <div class="dropdown">
                                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuLink">
                                                 <li><h6 class="dropdown-header">Finance Report</h6></li>
-                                                <li><a class="dropdown-item" href="#">Add Finance</a></li>
-                                                <li><a class="dropdown-item" href="#">View Finance List</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('admin/finance/add') }}">Add Finance</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('admin/finance/list') }}">View Finance List</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -126,11 +124,9 @@
                                                 <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuLink">
-                                                <li><h6 class="dropdown-header">Dropdown Header:</h6></li>
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                <li><hr class="dropdown-divider"></li>
-                                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                <li><h6 class="dropdown-header">Member Status</h6></li>
+                                                <li><a class="dropdown-item" href="{{ url('admin/member/add') }}">Add Member</a></li>
+                                                <li><a class="dropdown-item" href="{{ url('admin/member/list') }}">View Members</a></li>
                                             </ul>
                                         </div>
                                     </div>

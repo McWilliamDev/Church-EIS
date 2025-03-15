@@ -16,7 +16,7 @@
 
         <div class="card p-2 g-col-6">
             <div class="card-header">
-                <h5 class="fw-bold fs-5">Search Member</h5>
+                <h5 class="fw-bold fs-5">Search Member's Ministry</h5>
             </div>
 
             <form method="get" action="">
@@ -57,7 +57,6 @@
                 <h6 class="my-0 fs-5 fw-bold">List of Assigned Members to Ministry</h6>
             </div>
 
-            <div class="card-body my-0">
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="assignministryTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
@@ -91,7 +90,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
         </div>
     </div>
 @endsection

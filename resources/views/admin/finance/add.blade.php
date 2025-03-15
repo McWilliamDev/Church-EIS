@@ -15,7 +15,7 @@
 <div class="container-form m-auto">
     <h3 class="fw-bold fs-4 my-3">Add New Report</h3>
     <form id="modalForm" method="POST" action="{{ route('finance.addFinance') }}">
-        @csrf <!-- Laravel CSRF token -->
+        @csrf 
         <div class="mb-3">
             <label for="member" class="form-label">Member Name</label>
             <select id="userSelect" name="member" style="width: 100%;">

@@ -55,8 +55,6 @@ Route::get('', function () {
     return view('website.home', ['announcements' => $announcements]);
 })->name('home');
 
-
-
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'Authlogin']);
@@ -84,7 +82,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
     Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
 
-
     //Ministry Route
     Route::get('admin/ministry/list', [MinistryController::class, 'list']);
     Route::get('admin/ministry/add', [MinistryController::class, 'add']);
@@ -101,7 +98,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::post('admin/assign_ministry/edit/{id}', [AssignMinistryController::class, 'update']);
     Route::get('admin/assign_ministry/delete/{id}', [AssignMinistryController::class, 'delete']);
 
-
     //Change Password
     Route::get('admin/change_password', [ProfileController::class, 'change_password']);
     Route::post('admin/change_password', [ProfileController::class, 'update_change_password']);
@@ -110,7 +106,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::post('admin/profile', [ProfileController::class, 'UpdateMyProfileAdmin']);
     Route::post('admin/profile/upload-image', [ProfileController::class, 'uploadProfileImage'])->name('upload-image');
     Route::delete('admin/profile/delete-image', [ProfileController::class, 'deleteProfileImage'])->name('delete-image');
-
 
     //Users List
     Route::get('admin/user/list', [UserController::class, 'list']);
@@ -140,14 +135,6 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncement']);
     Route::post('admin/send_announcements', [AnnouncementController::class, 'SendAnnouncementUser']);
 
-    Route::get('admin/announcements/search_users', [AnnouncementController::class, 'SearchUser']);
-
-    //Events Calendar
-    //Route::get('admin/events/calendar', [EventController::class, 'index']);
-    //Route::post('admin/events/calendar', [EventController::class, 'store'])->name('calendar.store');
-    //Route::patch('admin/events/calendar/update/{id}', [EventController::class, 'update'])->name('calendar.update');
-    //Route::delete('admin/events/calendar/destroy/{id}', [EventController::class, 'destroy'])->name('calendar.destroy');
-
     //Events Calendar V2
     Route::get('admin/events_calendar', [EventsCalendarController::class, 'EventsCalendar']);
     Route::get('/events', [EventsController::class, 'getEvents']);
@@ -175,6 +162,11 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/church_resources/edit/{id}', [ResourcesController::class, 'edit'])->name('resources.edit');
     Route::post('admin/church_resources/edit/{id}', [ResourcesController::class, 'update']);
     Route::get('admin/church_resources/delete/{id}', [ResourcesController::class, 'delete']);
+
+    //Archived
+    Route::get('admin/archived/members', [MembersController::class, 'archived']);
+    Route::get('admin/archived/restore/{id}', [MembersController::class, 'restore']);
+    Route::get('admin/archived/delete/{id}', [MembersController::class, 'deleteArchived']);
 });
 
 // Dashboard Routes for Users

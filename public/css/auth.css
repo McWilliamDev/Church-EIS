@@ -18,8 +18,10 @@ a:hover{
 .btn i{
     vertical-align: text-top;
 }
-.left-side {
+.bg-cover {
     background-image: url('https://storage.googleapis.com/a1aa/image/S39QHqrwNFcveg4cLi8RStsg6Pz7e43092-1_7-joy4.jpg');
+    background-size: cover; 
+    background-position: center; 
     color: white;
     padding: 20px;
 }

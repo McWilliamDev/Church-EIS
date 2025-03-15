@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('style')
     <link rel="stylesheet" href="{{ url('plugins/select2.min.css') }}">
     <style type="text/css">
@@ -8,9 +7,10 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="container-fluid">
-        @include('alerts')
+
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Send Announcement</h3>
         </div>
@@ -23,16 +23,24 @@
             </div>
 
             <div class="form-group">
-                <label>Send Email to Admins </label>
-                <select name="user_id" class="form-select select2" style="width: 100%;">
-                    <option value="">Select</option>
+                <label>Send Email to Member</label>
+                <select id="userSelect" name="member_id" style="width: 100%;">
+                    <option value="">Select a member</option>
+                    @if($members->isEmpty())
+                        <option>No members found</option>
+                    @else
+                        @foreach($members as $member)
+                            <option value="{{ $member->id }}">{{ $member->name }} {{ $member->last_name }} - {{ $member->email }}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
 
             <div class="form-group">
                 <label style="display: block;">Email To</label>
-                <label style="margin-right:25px;"><input type="checkbox" value="admin" name="email_to[]" style="margin-right: 10px;">Church Administrators</label>
-                <label style="margin-right:25px;"><input type="checkbox" value="user" name="email_to[]" style="margin-right: 10px;">Admins</label>
+                <label style="margin-right:25px;">
+                    <input type="checkbox" value="all" name="email_to_all" style="margin-right: 10px;"> All Church Members
+                </label>
             </div>
 
             <div class="col-12"> 
@@ -48,30 +56,13 @@
 @endsection
 
 @section('script')
+@include('alerts')
     <script>
-
         $(document).ready(function() {
-        $('.select2').select2({
-            ajax: {
-        url: '{{ url('admin/announcements/search_users') }}',
-            dataType: 'json',
-            delay: 250,
-            data: function (data) {
-                return {
-                    search: data.term,
-                };
-            },
-            processResults: function (response) {
-                return {
-                    results: response,
-                };
-            },
-        }
-    });
-
-        $('#summernote').summernote({
-            height: 200, 
+            $('#userSelect').select2(); 
+            $('#summernote').summernote({
+                height: 200, 
+            });
         });
-    });
     </script>
 @endsection
