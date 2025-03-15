@@ -36,7 +36,6 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
                 <li><a href="{{ route('event') }}">Events</a></li>
-                <li><a href="{{ route('resources') }}">Announcements</a></li>
                 <li><a href="{{ route('resources') }}">Resources</a></li>
             </ul>
         </div>
@@ -57,27 +56,6 @@
                 <p class="banner_text1"><i>Psalms 1:3</i></p>
              </div>
           </div>
-          <div class="carousel-item">
-             <div class="container">
-                <h1 class="banner_taital">Ministries</h1>
-                <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-                <div class="read_bt"><a href="#section2">Read More</a></div>
-             </div>
-          </div>
-          <div class="carousel-item">
-             <div class="container">
-                <h1 class="banner_taital">Events</h1>
-                <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-                <div class="read_bt"><a href="#section3">Read More</a></div>
-             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container">
-               <h1 class="banner_taital">Resources</h1>
-               <p class="banner_text">There are many variations of passages of Lorem Ipsum available, but the majority have sufferedThere are ma available, but the majority have suffered</p>
-               <div class="read_bt"><a href="#section4">Read More</a></div>
-            </div>
-         </div>
        </div>
     </div>
  </div>
@@ -98,7 +76,7 @@
                     <div class="card">
                         <img src="{{ $post->ministry_profile ? asset('upload/ministry/' . $post->ministry_profile) : asset('images/default-ministry.png') }}" class="ministry_img" alt="{{ $post->ministry_name }}">
                         <div class="btn_main">
-                            <p class="ministry_p">{{ $post->ministry_name }}</p>
+                            <p class="ministry_name">{{ $post->ministry_name }}</p>
                         </div>
                         <p class="ministry_p">{{ $post->ministry_description }}</p>
                     </div>

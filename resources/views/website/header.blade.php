@@ -10,7 +10,6 @@
                <li><a href="{{ route('home') }}">Home</a></li>
                <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
                <li><a href="{{ route('event') }}">Events</a></li>
-               <li><a href="{{ route('resources') }}">Announcements</a></li>
                <li><a href="{{ route('resources') }}">Resources</a></li>
              </ul>
           </div>
@@ -23,7 +22,6 @@
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
             <li><a href="{{ route('event') }}">Events</a></li>
-            <li><a href="{{ route('resources') }}">Announcements</a></li>
             <li><a href="{{ route('resources') }}">Resources</a></li>
           </ul>
        </div>

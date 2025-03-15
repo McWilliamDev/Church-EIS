@@ -36,7 +36,6 @@
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
                 <li><a href="{{ route('event') }}">Events</a></li>
-                <li><a href="{{ route('resources') }}">Announcements</a></li>
                 <li><a href="{{ route('resources') }}">Resources</a></li>
             </ul>
          </div>
@@ -72,79 +71,28 @@
 
        <div class="container">
         <div class="row">
-            <div class="col-md-6 col-12"> <!-- Added col-12 for mobile -->
-                <div class="card mb-3" style="border-radius: 10px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-6">
-                            <img src="images/website/img-2.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h3 class="card-title">Card title</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <br><a href="#">View File</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-12"> <!-- Added col-12 for mobile -->
-                <div class="card mb-3" style="border-radius: 10px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-6">
-                            <img src="images/website/img-3.png" class="card-img" alt="...">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card-body">
-                                <h3 class="card-title">Card title</h3>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                                <br><a href="#">View File</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+         @foreach($resources as $post)
+         <div class="col-md-6 col-12">
+             <div class="card mb-3" style="border-radius: 10px;">
+                 <div class="row no-gutters">
+                     <div class="col-md-4">
+                         <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img" alt="..." style="width: 200px; height: 200px">
+                     </div>
+                     <div class="col-md-8">
+                         <div class="card-body">
+                             <h3 class="card-title">{{ $post->file_name }}</h3>
+                             <p class="card-text">{{ $post->description }}</p>
+                             <br>
+                             <a href="{{ asset('upload/resources/' . $post->file_image) }}" class="file-download" download> Download
+                             </a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     @endforeach
         </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-          <div class="col-md-6 col-12"> <!-- Added col-12 for mobile -->
-              <div class="card mb-3" style="border-radius: 10px;">
-                  <div class="row no-gutters">
-                      <div class="col-md-6">
-                          <img src="images/website/img-2.png" class="card-img" alt="...">
-                      </div>
-                      <div class="col-md-6">
-                          <div class="card-body">
-                              <h3 class="card-title">Card title</h3>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                              <br><a href="#">View File</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-6 col-12"> <!-- Added col-12 for mobile -->
-              <div class="card mb-3" style="border-radius: 10px;">
-                  <div class="row no-gutters">
-                      <div class="col-md-6">
-                          <img src="images/website/img-3.png" class="card-img" alt="...">
-                      </div>
-                      <div class="col-md-6">
-                          <div class="card-body">
-                              <h3 class="card-title">Card title</h3>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-                              <br><a href="#">View File</a>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-
-
     </div>
  </div>
 
