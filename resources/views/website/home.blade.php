@@ -41,9 +41,9 @@
                                     <div class="col-md-10 d-flex">
                                         <div class="card-body-announcements flex-grow-1">
                                             <h3 class="card-title">{{ $post->title }}</h3>
-                                            <p class="announcements-text">{{ $post->description }}</p>
+                                            <p class="card-text"><small class="text-muted">{{ $post->publish_date }}</small></p> 
                                             <br>
-                                            <p class="card-text"><small class="text-muted">{{ $post->publish_date }}</small></p>
+                                            <p class="announcements-text">{{ $post->description }}</p>
                                         </div>
                                     </div>
                                 </div>
