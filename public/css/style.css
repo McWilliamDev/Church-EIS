@@ -316,7 +316,7 @@ button {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .menu_main li a {
@@ -325,9 +325,8 @@ button {
 }
 
 .menu_main li a:hover {
-    background-color: white; /* Background color on hover */
-    color: black; /* Text color on hover */
-    border-color: white; /* Change border color on hover */
+    background: linear-gradient(to right, #056627, #a1d921);
+    color: white;
 }
 
 .mb-lg-0,
@@ -367,7 +366,6 @@ button {
     font-family: 'Righteous', Regular;
     margin-top: 10px;
     padding-top: 30px;
-
 }
 
 .banner_taital2 {
@@ -481,12 +479,19 @@ button {
     font-weight: bold;
 }
 
+.ministry_name {
+    text-align: center;
+    height: 75px; 
+}
+
 .ministry_p {
     text-align: center;
+    margin: 0 20 10 20px;
+    height: 100px;
 }
 
 .ministry_text {
-    float: left;
+    text-align: left;
     width: 100%;
     margin: 0 auto;
 }
@@ -509,9 +514,20 @@ button {
     text-align: center;
 }
 
+.btn_main_pastor p {
+    font-size: 16px;
+    color: #056324ff;
+    text-align: center;
+    border-radius: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0.7;
+    padding-top: 20px;
+}
+
 .btn_main a {
     width: 100%;
-    float: left;
+    text-align: center;
     font-size: 16px;
     color: black;
     text-align: center;
@@ -519,14 +535,11 @@ button {
     border-radius: 30px;
     font-weight: bold;
     margin-top: 20px;
-    margin-bottom: 50px;
     text-transform: uppercase;
     opacity: 0.7;
 }
 
 .btn_main p {
-    width: 100%;
-    float: left;
     font-size: 16px;
     color: #056324ff;
     text-align: center;
@@ -534,7 +547,6 @@ button {
     border-radius: 30px;
     font-weight: bold;
     margin-top: 10px;
-    margin-bottom: 0px;
     text-transform: uppercase;
     opacity: 0.7;
 }
@@ -725,6 +737,15 @@ button {
     padding-top: 30px;
     text-align: center;
     margin-bottom: 0px;
+}
+
+.pastor_img {
+    width: 100%;
+    float: left;
+    text-align: center; 
+    width: 500px; 
+    height: 300px; 
+    padding-bottom: 10px;
 }
 
 .pastor_section_2 {
@@ -998,11 +1019,11 @@ button {
 /* footer section start */
 
 .footer_section {
-    background-color:black;
+    background: linear-gradient(to right, #118207ff, #a2d923ff);
     width: 100%;
     float: left;
-    height: 260px;
-    padding-top: 65px;
+    height: 180px;
+    padding-top: 25px;
     background-size: 100% 100%;
     padding-bottom: 10px;
     background-repeat: no-repeat;
@@ -1011,7 +1032,7 @@ button {
 
 .social {
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     color: white;
 }
 
@@ -1024,7 +1045,7 @@ button {
     display: inline-block;
     text-align: center;
     margin: 0 15px;
-    opacity: 0.4;
+    opacity: 0.7;
     border: 1px solid #ccc;
     border-radius: 50px;
 }
@@ -1045,7 +1066,7 @@ ul {
 ul a {
     text-decoration: none;
     opacity: 0.7;  
-    color: grey;
+    color: white;
 }
 
 ul li {
@@ -1056,21 +1077,22 @@ ul li {
     border-radius: 20px;
 }
 
-/* Change text color to white on hover */
+
 ul li:hover a {
-    opacity: 1; /* Make the link fully opaque */
-    color: white; /* Change text color to white */
+    opacity: 1; 
+    color: white; 
 }
 
 ul li:hover {
-    opacity: 1; /* Ensure the list item is fully opaque */
+    opacity: 1;
 }
 
 .copyright {
-    padding-top: 20px;
+    padding-top: 15px;
     text-align: center;
-    font-size: 13px;
+    font-size: 12px;
     padding-right: 15px;
+    color: white;
 }
 
 /* footer section end */
@@ -1134,6 +1156,75 @@ h3 {
 
 .card {
     margin-bottom: 30px;
+    border-radius: 10px;
+}
+
+.card-title {
+    color: rgb(5, 99, 36);
+    font-size: large;
+}
+
+.card-body {
+    max-height: 200px;
+}
+
+.card-body-announcements {
+    margin: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #000;
+}
+.close-btn:hover {
+    color: red;
+}
+
+.file-download:hover {
+    background: linear-gradient(to right, #056627, #a1d921);
+}
+
+.card-body-announcements {
+    padding: 0 0 0 40px;
+}
+
+.announcement-title {
+        text-align: center;
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #056627;
+}
+
+.card-body-announcements {
+        flex-grow: 1; /* Expands to fill space */
+}
+
+.announcements-text {
+    font-size: small;
+}
+
+.carousel-buttons {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.carousel-buttons .btn {
+    margin: 5px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    background-color: #056627;
+    opacity: 0.8;
+}
+
+.carousel-buttons .btn:hover {
+    background-color: #a1d921;
 }
 
 

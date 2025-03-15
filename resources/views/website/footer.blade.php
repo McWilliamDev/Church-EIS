@@ -16,9 +16,6 @@
          <li><a href="{{ route('event') }}">Events</a></li>
         </li>
         <li>
-         <li><a href="{{ route('resources') }}">Announcements</a></li>
-        </li>
-        <li>
          <li><a href="{{ route('resources') }}">Resources</a></li>
         </li>
       </ul>

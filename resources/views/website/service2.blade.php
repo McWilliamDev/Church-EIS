@@ -5,10 +5,10 @@
              <div class="service_taital_main">
                 <h1 class="service_taital">Saturday</h1>
 
-                <p class="service_text">Our service is held every <b>Sunday from 2:00 PM to 5:00 PM</b> at 3rd floor Unity Hall, 90 General Espino, Brgy. South Signal, Taguig City.</p>
+                <p class="service_text">Our Prayer Fellowship is held every <b>Saturday from 6:00 PM to 7:00 PM</b> at 3rd floor Unity Hall, 90 General Espino, Brgy. South Signal, Taguig City.</p>
 
-                <p class="service_text" style="color: gray; font-size: 14px;">Consequently, faith comes from hearing the message, and the message is heard through the word about Christ.</p>
-                <p class="service_verse"><i>Romans 10:17</i></p>
+                <p class="service_text" style="color: gray; font-size: 14px;">But if we walk in the light, as he is in the light, we have fellowship with one another, and the blood of Jesus, his Son, purifies us from all sin.</p>
+                <p class="service_verse"><i>1 John 1:7</i></p>
              </div>
           </div>
           <div class="col-md-6 padding_right_0">

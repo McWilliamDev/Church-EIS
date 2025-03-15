@@ -16,31 +16,44 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ResourcesController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\ResourceController;
+use Illuminate\Support\Carbon;
 
+// Home and Landing Page
 Route::get('/', function () {
     return view('website.home');
 });
-
-// Homepage Route
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('website.home');
 })->name('home');
 
+// Ministry
 Route::get('/ministry', function () {
-    $ministry = DB::table('ministry')->get(); // Correct variable name
+    $ministry = DB::table('ministry')->get();
     return view('website.ministry', ['ministry' => $ministry]);
 })->name('ministry');
 
-// Events Route
+// Events
 Route::get('/event', function () {
-    $events = DB::table('events')->get();
+    $today = Carbon::today(); // Get today's date
+    $nextTwoWeeks = $today->copy()->addDays(15);
+
+    $events = DB::table('events')
+        ->whereBetween('date', [$today, $nextTwoWeeks])
+        ->orderBy('date', 'asc')
+        ->get();
+
     return view('website.event', ['events' => $events]);
 })->name('event');
 
-// Resources Route
-Route::get('/resources', function () {
-    return view('website.resources');
-})->name('resources');
+// Resources
+Route::get('/resources', [ResourceController::class, 'index'])->name('resources');
+
+// Announcements
+Route::get('', function () {
+    $announcements = DB::table('announcements')->get();
+    return view('website.home', ['announcements' => $announcements]);
+})->name('home');
 
 
 

@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Mail;
 
 class AnnouncementController extends Controller
 {
-
     public function SendAnnouncement()
     {
         $data['header_title'] = 'Send Announcement';
         return view('admin.announcements.send_announcement', $data);
     }
+
     public function SearchUser(Request $request)
     {
         $json = array();
@@ -40,7 +40,6 @@ class AnnouncementController extends Controller
 
     public function SendAnnouncementUser(Request $request)
     {
-
         if (!empty($request->user_id)) {
             $user = User::getSingle($request->user_id);
             $user->description = $request->description;
@@ -118,4 +117,10 @@ class AnnouncementController extends Controller
 
         return redirect('admin/announcements')->with('success', "Announcement successfully deleted.");
     }
+
+    public function fetchAnnouncements()
+        {
+            $announcements = AnnouncementModel::all();
+            return view('/home', ['announcements' => $announcements]);
+        }
 }
