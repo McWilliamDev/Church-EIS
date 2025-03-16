@@ -35,13 +35,13 @@
                                 <div class="row g-0 align-items-center w-100">
                                     <div class="col-md-2 d-flex justify-content-center align-items-center">
                                         <img src="images/announcement.png" class="img-fluid rounded-start" 
-                                             alt="Image" style="object-fit: contain; padding: 10px 0 0 30px;">
+                                            alt="Image" style="object-fit: contain; padding: 10px 0 0 30px;">
                                     </div>
 
                                     <div class="col-md-10 d-flex">
                                         <div class="card-body-announcements flex-grow-1">
                                             <h3 class="card-title">{{ $post->title }}</h3>
-                                            <p class="card-text"><small class="text-muted">{{ $post->publish_date }}</small></p> 
+                                            <p class="card-text"><small class="text-muted">{{ $post->notice_date }}</small></p> 
                                             <br>
                                             <p class="announcements-text">{{ $post->description }}</p>
                                         </div>

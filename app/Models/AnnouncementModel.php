@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Request;
 
 class AnnouncementModel extends Model
@@ -11,6 +12,10 @@ class AnnouncementModel extends Model
     use HasFactory;
 
     protected $table = 'announcements';
+    protected $casts = [
+        'notice_date' => 'datetime',
+        'publish_date' => 'datetime',
+    ];
 
     public static function getSingle($id)
     {
@@ -46,5 +51,15 @@ class AnnouncementModel extends Model
             ->paginate(999999);
 
         return $return;
+    }
+    public static function getUpcomingAnnouncements()
+    {
+        $today = Carbon::now();
+        $nextWeek = $today->copy()->addDays(7);
+
+        return self::where('notice_date', '>=', $today)
+            ->where('notice_date', '<=', $nextWeek)
+            ->orderBy('notice_date', 'asc')
+            ->get();
     }
 }

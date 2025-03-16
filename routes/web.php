@@ -20,7 +20,7 @@ use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Carbon;
 
 // Home and Landing Page
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('website.home');
 });
 Route::get('/', function () {
@@ -159,7 +159,7 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/church_resources/list', [ResourcesController::class, 'list']);
     Route::get('admin/church_resources/add', [ResourcesController::class, 'add']);
     Route::post('admin/church_resources/add', [ResourcesController::class, 'insert']);
-    Route::get('admin/church_resources/edit/{id}', [ResourcesController::class, 'edit'])->name('resources.edit');
+    Route::get('admin/church_resources/edit/{id}', [ResourcesController::class, 'edit']);
     Route::post('admin/church_resources/edit/{id}', [ResourcesController::class, 'update']);
     Route::get('admin/church_resources/delete/{id}', [ResourcesController::class, 'delete']);
 

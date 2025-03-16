@@ -83,7 +83,7 @@
                              <h3 class="card-title">{{ $post->file_name }}</h3>
                              <p class="card-text">{{ $post->description }}</p>
                              <br>
-                             <a href="{{ asset('upload/resources/' . $post->file_image) }}" class="file-download" download> Download
+                             <a href="{{ asset('upload/resources/documents/' . $post->document) }}" class="file-download" download> Download
                              </a>
                          </div>
                      </div>

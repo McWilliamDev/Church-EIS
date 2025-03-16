@@ -10,10 +10,9 @@ class ResourceController extends Controller
     public function index()
     {
         $resources = DB::table('church_resources')
-            ->where('is_delete', 0) // Only fetch records where is_delete = 1
+            ->where('is_delete', 0)
             ->get();
-    
+
         return view('website.resources', ['resources' => $resources]);
     }
-
 }

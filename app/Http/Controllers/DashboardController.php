@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnnouncementModel;
 use App\Models\EventsModel;
 use App\Models\MembersModel;
 use App\Models\User;
@@ -31,8 +32,12 @@ class DashboardController extends Controller
             } else if (Auth::user()->user_type == 'user') {
                 $data['TotalMembers'] = MembersModel::getTotalMembers();
                 $data['reports'] = FinanceModel::with('member')->get();
+
                 $data['upcomingEvents'] = EventsModel::getUpcomingEvents();
                 $data['upcomingEventsCount'] = $data['upcomingEvents']->count();
+
+                $data['upcomingAnnouncements'] = AnnouncementModel::getUpcomingAnnouncements();
+                $data['upcomingAnnouncementsCount'] = $data['upcomingAnnouncements']->count();
 
                 $memberStatusCounts = MembersModel::getMemberStatusCounts();
                 $data['activeMembersCount'] = $memberStatusCounts['active'];
