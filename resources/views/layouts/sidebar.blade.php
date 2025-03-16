@@ -140,12 +140,23 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="{{ url('user/events/calendar') }}" class="sidebar-link">
+                <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#events" aria-expanded="false" aria-controls="#events">
                     <i class="lni lni-calendar-days"></i>
                     <span>Events</span>
                 </a>
-            </li>
 
+                <ul id="events" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="{{ url('user/events/list') }}" class="sidebar-link">View Events</a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ url('user/events_calendar') }}" class="sidebar-link">View Calendar Events</a>
+                    </li>
+
+                </ul>
+            </li>
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
                     data-bs-target="#ministry" aria-expanded="false" aria-controls="#ministry">
@@ -157,7 +168,7 @@
                         <a href="{{ url('user/ministry/list') }}" class="sidebar-link">Ministry Group</a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/assign_ministry/list') }}" class="sidebar-link">Assign Ministry</a>
+                        <a href="{{ url('user/assign_ministry/list') }}" class="sidebar-link">Assign Ministry</a>
                     </li>
                 </ul>
             </li>
@@ -168,12 +179,13 @@
                     <i class="lni lni-dollar-circle"></i>
                     <span>Finance Tracking</span>
                 </a>
+
                 <ul id="finance" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
+                    <!--<li class="sidebar-item">
                         <a href="#" class="sidebar-link">Create Finances</a>
-                    </li>
+                    </li>-->
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Generate Finance Reports</a>
+                        <a href="{{ url('user/finance/list') }}" class="sidebar-link">Finance Analytics & Reports</a>
                     </li>
                 </ul>
             </li>
@@ -197,7 +209,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ url('user/church_resources/list') }}" class="sidebar-link">
                     <i class="lni lni-folder-1"></i>
                     <span>Church Resources</span>
                 </a>

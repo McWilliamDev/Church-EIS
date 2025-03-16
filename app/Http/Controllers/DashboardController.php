@@ -29,6 +29,15 @@ class DashboardController extends Controller
 
                 return view('admin.dashboard', $data);
             } else if (Auth::user()->user_type == 'user') {
+                $data['TotalMembers'] = MembersModel::getTotalMembers();
+                $data['reports'] = FinanceModel::with('member')->get();
+                $data['upcomingEvents'] = EventsModel::getUpcomingEvents();
+                $data['upcomingEventsCount'] = $data['upcomingEvents']->count();
+
+                $memberStatusCounts = MembersModel::getMemberStatusCounts();
+                $data['activeMembersCount'] = $memberStatusCounts['active'];
+                $data['inactiveMembersCount'] = $memberStatusCounts['inactive'];
+
                 return view('user.dashboard', $data);
             }
         }

@@ -175,11 +175,50 @@ Route::group(['middleware' => ['user', 'twofactor']], function () {
     Route::post('user/member/edit/{id}', [MembersController::class, 'update']);
     Route::get('user/member/delete/{id}', [MembersController::class, 'delete']);
 
-    //User Ministry 
+    //User Events 
+    Route::get('user/events/list', [EventsController::class, 'list']);
+    Route::get('user/events/add', [EventsController::class, 'add']);
+    Route::post('user/events/add', [EventsController::class, 'insert']);
+    Route::get('user/events/edit/{id}', [EventsController::class, 'edit']);
+    Route::post('user/events/edit/{id}', [EventsController::class, 'update']);
+    Route::get('user/events/delete/{id}', [EventsController::class, 'delete']);
+
+    Route::get('user/events_calendar', [EventsCalendarController::class, 'EventsCalendar']);
+    Route::get('/events', [EventsController::class, 'getEvents']);
+
+    //Ministry Route
     Route::get('user/ministry/list', [MinistryController::class, 'list']);
     Route::get('user/ministry/add', [MinistryController::class, 'add']);
     Route::post('user/ministry/add', [MinistryController::class, 'insert']);
     Route::get('user/ministry/edit/{id}', [MinistryController::class, 'edit']);
     Route::post('user/ministry/edit/{id}', [MinistryController::class, 'update']);
     Route::get('user/ministry/delete/{id}', [MinistryController::class, 'delete']);
+
+    //Assign Ministry Route
+    Route::get('user/assign_ministry/list', [AssignMinistryController::class, 'list']);
+    Route::get('user/assign_ministry', [AssignMinistryController::class, 'assign']);
+    Route::post('user/assign_ministry', [AssignMinistryController::class, 'assigned']);
+    Route::get('user/assign_ministry/edit/{id}', [AssignMinistryController::class, 'edit']);
+    Route::post('user/assign_ministry/edit/{id}', [AssignMinistryController::class, 'update']);
+    Route::get('user/assign_ministry/delete/{id}', [AssignMinistryController::class, 'delete']);
+
+    //Announcement
+    Route::get('user/announcements', [AnnouncementController::class, 'Announcement']);
+    Route::get('user/announcements/create_announcement/add', [AnnouncementController::class, 'AddAnnouncement']);
+    Route::post('user/announcements/create_announcement/add', [AnnouncementController::class, 'InsertAnnouncement']);
+    Route::get('user/announcements/create_announcement/edit/{id}', [AnnouncementController::class, 'EditAnnouncement']);
+    Route::post('user/announcements/create_announcement/edit/{id}', [AnnouncementController::class, 'UpdateAnnouncement']);
+    Route::get('user/announcements/create_announcement/delete/{id}', [AnnouncementController::class, 'DeleteAnnouncement']);
+
+    //Send Announcements
+    Route::get('user/send_announcements', [AnnouncementController::class, 'SendAnnouncement']);
+    Route::post('user/send_announcements', [AnnouncementController::class, 'SendAnnouncementUser']);
+
+    //Church Resources Route
+    Route::get('user/church_resources/list', [ResourcesController::class, 'list']);
+    Route::get('user/church_resources/add', [ResourcesController::class, 'add']);
+    Route::post('user/church_resources/add', [ResourcesController::class, 'insert']);
+    Route::get('user/church_resources/edit/{id}', [ResourcesController::class, 'edit'])->name('resources.edit');
+    Route::post('user/church_resources/edit/{id}', [ResourcesController::class, 'update']);
+    Route::get('user/church_resources/delete/{id}', [ResourcesController::class, 'delete']);
 });

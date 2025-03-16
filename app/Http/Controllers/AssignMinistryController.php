@@ -49,7 +49,13 @@ class AssignMinistryController extends Controller
         $assignedministry->ministry_status = $request->ministry_status;
         $assignedministry->save();
 
-        return redirect('admin/assign_ministry/list')->with('success', "Member successfully assigned to Ministry");
+        if (Auth::check()) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/assign_ministry/list')->with('success', 'Member successfully assigned to Ministry');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/assign_ministry/list')->with('success', 'Member successfully assigned to Ministry');
+            }
+        }
     }
     public function edit($id)
     {
@@ -75,7 +81,13 @@ class AssignMinistryController extends Controller
         $assignedministry->ministry_status = $request->ministry_status;
         $assignedministry->save();
 
-        return redirect('admin/assign_ministry/list')->with('success', "Assigned Ministry successfully updated");
+        if (Auth::check()) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/assign_ministry/list')->with('success', 'Assigned Ministry successfully updated');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/assign_ministry/list')->with('success', 'Assigned Ministry successfully updated');
+            }
+        }
     }
 
     public function delete($id)
@@ -83,9 +95,10 @@ class AssignMinistryController extends Controller
         $record = AssignMinistryModel::find($id);
         if ($record) {
             $record->delete();
-            return redirect()->back()->with('success', 'Assigned member successfully deleted from the Ministry.');
-        } else {
-            return redirect('admin/assign_ministry/list')->with('error', 'No record found');
+
+            if (Auth::check()) {
+                return redirect()->back()->with('success', 'Assigned member successfully deleted from the Ministry.');
+            }
         }
     }
 }
