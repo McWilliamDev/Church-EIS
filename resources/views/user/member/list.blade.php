@@ -1,86 +1,43 @@
 @extends('layouts.app')
 
+@section('style')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-sm-6">
             <h3 class="fw-bold fs-4 my-3">Church Members (Total: {{ $getRecord->total() }})</h3>
         </div>
+        
         <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('user/member/add') }}" class="btn my-2">Add Church Members</a>
+            <a href="{{ url('user/member/add') }}" class="btn my-2">Add Church Member</a>
         </div>
-
-        <div class="container-fluid shadow-lg ">
-            <div class="card p-2 g-col-6">
-                <div class="card-header">
-                    <h5 class="fw-bold fs-5">Search Member</h5>
-                </div>
-
-                <form method="get" action="">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-2">
-                                <label for="name">Name</label>
-                                <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
-                                    placeholder="Name">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" value="{{ Request::get('email') }}"
-                                    name="email" placeholder="Email">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="date">Phone No.</label>
-                                <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
-                                    name="phonenumber" placeholder="Phone Number">
-                            </div>
-
-                            <div class="form-group col-md-2">
-                                <label for="date">Member Status</label>
-                                <select class="form-select" name="member_status">
-                                    <option value="">Select Status</option>
-                                    <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
-                                        Active</option>
-                                    <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
-                                        Inactive</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-md-3 d-flex align-items-end">
-                                <button class="btn btn-primary me-2" type="submit">Search</button>
-                                <a href="{{ url('user/member/list') }}" class="btn btn-danger">Reset</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+        
+        <div class="card shadow-lg mb-4">
+            <div class="py-2">
+                <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
             </div>
-            <div class="col-md-12">
-                @include('alerts')
-                <div class="table-responsive" style="overflow: auto;">
-                    <table class="table table-striped caption-top">
-                        <caption class="fs-5 fw-semibold">List of Church Members</caption>
-                        <thead>
+                <div class="table-responsive shadow-sm">
+                    <table class="table table-striped" id="memberTable" width="100%" cellspacing="0">
+                        <thead class="mt-5">
                             <tr class="highlight">
-                                <th scope="col">#</th>
-                                <th scope="col">Profile Picture</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone No. </th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Ministry</th>
-                                <th scope="col">Date of Birth</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Created By</th>
-                                <th scope="col">Date Added</th>
-                                <th scope="col">Action</th>
+                                <th >Profile Picture</th>
+                                <th >Name</th>
+                                <th >Email</th>
+                                <th >Phone No. </th>
+                                <th >Gender</th>
+                                <th >Date of Birth</th>
+                                <th >Address</th>
+                                <th >Status</th>
+                                <th >Created By</th>
+                                <th >Date Added</th>
+                                <th >Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
                                     <td>
                                         @if (!empty($value->getProfile()))
                                             <img src="{{ $value->getProfile() }}"
@@ -91,7 +48,6 @@
                                     <td>{{ $value->email }}</td>
                                     <td>{{ $value->phonenumber }}</td>
                                     <td>{{ $value->gender }}</td>
-                                    <td>{{ $value->ministry_name }}</td>
                                     <td>
                                         @if (!empty($value->date_of_birth))
                                             {{ date('d-m-Y', strtotime($value->date_of_birth)) }}
@@ -105,6 +61,7 @@
                                     <td style="min-width: 200px;">
                                         <a href="{{ url('user/member/edit', $value->id) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
+                                            
                                         <a href="{{ url('user/member/delete', $value->id) }}"
                                             class="btn btn-danger btn-sm"
                                             onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
@@ -114,21 +71,34 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="d-flex justify-content-center">
-                    {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
-                </div>
-            </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+@include('alerts')
     <script>
+        $(document).ready(function() {
+            $('#memberTable').DataTable();
+        });
+
         function confirmDelete(event, id, name) {
-            event.preventDefault();
+    event.preventDefault(); // Stop default action
 
-            var confirmation = confirm('Are you sure you want to delete this Church Member: ' + name + '?');
-
-            if (confirmation) {
-                window.location.href = '{{ url('user/member/delete') }}' + '/' + id;
-            }
+    // SweetAlert confirmation dialog
+    Swal.fire({
+        title: 'Are you sure?',
+        text: `You are about to delete this Church Member: ${name}. This action cannot be undone!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+                window.location.href = `/user/member/delete/${id}`;
         }
+    });
+}
     </script>
 @endsection

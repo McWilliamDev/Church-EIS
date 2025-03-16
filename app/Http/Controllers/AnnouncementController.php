@@ -17,7 +17,14 @@ class AnnouncementController extends Controller
     {
         $data['members'] = MembersModel::where('is_delete', 0)->get();
         $data['header_title'] = 'Send Announcement';
-        return view('admin.announcements.send_announcement', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.announcements.send_announcement', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.announcements.send_announcement', $data);
+            }
+        }
     }
 
     public function SendAnnouncementUser(Request $request)
@@ -43,19 +50,35 @@ class AnnouncementController extends Controller
             }
         }
 
-        return redirect()->back()->with('success', "Announcement Email successfully sent");
+        if (!empty(Auth::check())) {
+            return redirect()->back()->with('success', "Announcement Email successfully sent");
+        }
     }
     public function Announcement()
     {
         $data['getRecord'] = AnnouncementModel::getRecord();
         $data['header_title'] = 'Create Announcement';
-        return view('admin.announcements.create_announcement.list', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.announcements.create_announcement.list', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.announcements.create_announcement.list', $data);
+            }
+        }
     }
 
     public function AddAnnouncement()
     {
         $data['header_title'] = 'Add Announcement';
-        return view('admin.announcements.create_announcement.add', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.announcements.create_announcement.add', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.announcements.create_announcement.add', $data);
+            }
+        }
     }
 
     public function InsertAnnouncement(Request $request)
@@ -76,14 +99,27 @@ class AnnouncementController extends Controller
         $announcement->created_by = Auth::user()->id;
         $announcement->save();
 
-        return redirect('admin/announcements')->with('success', "Announcement successfully created");
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/announcements')->with('success', "Announcement successfully created");
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/announcements')->with('success', "Announcement successfully created");
+            }
+        }
     }
 
     public function EditAnnouncement($id)
     {
         $data['getRecord'] = AnnouncementModel::getSingle($id);
         $data['header_title'] = 'Edit Announcement';
-        return view('admin.announcements.create_announcement.edit', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.announcements.create_announcement.edit', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.announcements.create_announcement.edit', $data);
+            }
+        }
     }
 
     public function UpdateAnnouncement($id, Request $request)
@@ -103,17 +139,30 @@ class AnnouncementController extends Controller
         $announcement->description = $request->description;
         $announcement->save();
 
-        return redirect('admin/announcements')->with('success', "Announcement successfully updated");
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/announcements')->with('success', "Announcement successfully updated");
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/announcements')->with('success', "Announcement successfully updated");
+            }
+        }
     }
 
-    public function DeleteAnnouncement($id)
+    public function deleteAnnouncement($id)
     {
         $announcement = AnnouncementModel::getSingle($id);
         if (!$announcement) {
-            return redirect('admin/announcements')->with('error', "Announcement not found");
+            return redirect()->back()->with('error', "Announcement not found");
         }
         $announcement->delete();
 
-        return redirect('admin/announcements')->with('success', "Announcement successfully deleted.");
+        if (Auth::check()) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/announcements')->with('success', "Announcement successfully deleted.");
+            } elseif (Auth::user()->user_type == 'user') {
+                return redirect('user/announcements')->with('success', "Announcement successfully deleted.");
+            }
+        }
+        return redirect('login')->with('error', 'Please log in to access this page.');
     }
 }

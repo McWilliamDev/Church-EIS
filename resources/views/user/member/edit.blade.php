@@ -54,23 +54,9 @@
             </div>
 
             <div class="col-6">
-                <label class="form-label">Ministry<span style="color: red;">*</span></label>
-                <select class="form-select" required name="ministry_id">
-                    <option value="">Select Ministry</option>
-                    @foreach ($getMinistry as $value)
-                        <option {{ old('ministry_id', $getRecord->ministry_id) == $value->id ? 'selected' : '' }}
-                            value="{{ $value->id }}">{{ $value->ministry_name }}</option>
-                    @endforeach
-
-
-                </select>
-                <div style="color: red">{{ $errors->first('ministry_name') }}</div>
-            </div>
-
-            <div class="col-6">
                 <label class="form-label">Date of Birth<span style="color: red;">*</span></label>
                 <input type="date" class="form-control" value="{{ old('date_of_birth', $getRecord->date_of_birth) }}"
-                    name="date_of_birth" required>
+                    name="date_of_birth" max="{{ date('Y-m-d') }}" required>
                 <div style="color: red">{{ $errors->first('date_of_birth') }}</div>
             </div>
 
@@ -105,7 +91,7 @@
             </div>
 
             <div class="d-flex justify-content-evenly">
-                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Update</button>
+                <button type="submit" class="btn btn-primary btn-sm w-25 h-75 mb-3">Save Changes</button>
             </div>
         </form>
     </div>

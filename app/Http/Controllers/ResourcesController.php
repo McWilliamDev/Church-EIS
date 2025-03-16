@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\ResourcesModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
 
 class ResourcesController extends Controller
 {
@@ -13,12 +15,25 @@ class ResourcesController extends Controller
     {
         $data['getRecord'] = ResourcesModel::getRecord();
         $data['header_title'] = "Church Resources";
-        return view('admin.resources.list', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.resources.list', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.resources.list', $data);
+            }
+        }
     }
     public function add()
     {
         $data['header_title'] = "Add Church Resources";
-        return view('admin.resources.add', $data);
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.resources.add', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.resources.add', $data);
+            }
+        }
     }
     public function insert(Request $request)
     {
@@ -54,14 +69,28 @@ class ResourcesController extends Controller
         }
 
         $resources->save();
-        return redirect('admin/church_resources/list')->with('success', 'File Added Successfully');
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/church_resources/list')->with('success', 'File Added Successfully');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/church_resources/list')->with('success', 'File Added Successfully');
+            }
+        }
     }
     public function edit($id)
     {
         $resource = ResourcesModel::findOrFail($id);
         $data['resource'] = $resource;
         $data['header_title'] = "Edit Church Resources";
-        return view('admin.resources.edit', $data);
+
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.resources.edit', $data);
+            } else if (Auth::user()->user_type == 'user') {
+                return view('user.resources.edit', $data);
+            }
+        }
     }
     public function update(Request $request, $id)
     {
@@ -106,7 +135,13 @@ class ResourcesController extends Controller
         }
         $resources->save();
 
-        return redirect('admin/church_resources/list')->with('success', 'File successfully updated.');
+        if (!empty(Auth::check())) {
+            if (Auth::user()->user_type == 'admin') {
+                return redirect('admin/church_resources/list')->with('success', 'File successfully updated.');
+            } else if (Auth::user()->user_type == 'user') {
+                return redirect('user/church_resources/list')->with('success', 'File successfully updated.');
+            }
+        }
     }
     public function delete($id)
     {
@@ -114,6 +149,6 @@ class ResourcesController extends Controller
         $resource->is_delete = 1;
         $resource->save();
 
-        return redirect('admin/church_resources/list')->with('success', 'File Deleted Successfully');
+        return redirect()->back()->with('success', 'File Deleted Successfully');
     }
 }
