@@ -66,8 +66,8 @@
 
 <div class="ministry_section layout_padding" id="resources">
     <div class="container">
-       <h1 class="ministry_taital">Resources</h1>
-       <p class="resources_text">Church Resources provide members and visitors with access to spiritual materials, sermon archives, event guides, and ministry tools to support faith and community growth.</p>
+       <h1 class="ministry_taital">Our <span>Resources</span></h1>
+       <p class="resources_text">Our growth materials provide valuable resources to support spiritual development, leadership training, and community engagement for a stronger faith journey</p>
 
        <div class="container">
         <div class="row">
