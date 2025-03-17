@@ -68,6 +68,8 @@
 <div class="event_section layout_padding">
     <div class="container">
 
+      <h1 class="event_taital">Our <span>Events</span></h1>
+      <p class="event_text">Our events bring our community together through faith, fellowship, and meaningful activities that inspire spiritual growth and connection</p>
        @foreach($events as $post)
        <div class="card mb-3" style="border-radius: 10px;">
         <div class="row g-0" style="padding-bottom: 0px">

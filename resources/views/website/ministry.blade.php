@@ -65,8 +65,8 @@
 
 <div class="ministry_section layout_padding">
     <div class="container">
-       <h1 class="ministry_taital">Ministries</h1>
-       <p class="ministry_text">Empowering individuals to serve God and others through various ministries that foster worship, and community.</p>
+       <h1 class="ministry_taital">Our <span>Ministries</span></h1>
+       <p class="ministry_text">Our ministries are dedicated to serving the community through faith, fellowship, and outreach, fostering spiritual growth and meaningful connections</p>
 
        <div class="ministry_section_2">
          <div class="row">
