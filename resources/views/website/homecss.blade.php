@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+setcookie("session_cookie", "value", [
+    'expires' => time() + 3600,
+    'path' => '/',
+    'domain' => 'yourdomain.com',
+    'secure' => true, 
+    'httponly' => true, 
+    'samesite' => 'Strict' 
+]);
+
+?>
 <!-- basic -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +39,4 @@
 <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Righteous&display=swap" rel="stylesheet">
     <!-- owl stylesheets --> 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
