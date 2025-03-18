@@ -24,9 +24,10 @@
                 <label class="form-label">Position</label>
                 <select class="form-select" required name="position">
                     <option value="">Select Position</option>
-                    <option {{ old('position') == 'Senior Pastor' ? 'selected' : '' }} value="Senior Pastor">Senior Pastor</option>
                     <option {{ old('position') == 'Lead Pastor' ? 'selected' : '' }} value="Lead Pastor">Lead Pastor</option>
+                    <option {{ old('position') == 'Finance Director' ? 'selected' : '' }} value="Finance Director">Finance Director</option>
                     <option {{ old('position') == 'Assigned Administrator' ? 'selected' : '' }} value="Assigned Administrator">Assigned Administrator</option>
+                    <option {{ old('position') == 'Board Member' ? 'selected' : '' }} value="Board Member">Board Member</option>
                 </select>
                 <div style="color: red">{{ $errors->first('position') }}</div>
             </div>
@@ -37,6 +38,7 @@
                     placeholder="09XX-XXXX-XXX">
                     <div style="color: red">{{ $errors->first('phonenumber') }}</div>
             </div>
+            
             <div class="col-6">
                 <label class="form-label">Address</label>
                 <input type="address" class="form-control" value="{{ old('address') }}" name="address" required

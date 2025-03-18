@@ -15,17 +15,12 @@
 
             <div class="col-12">
                 <label class="form-label">Notice Date</label>
-                <input type="date" class="form-control" value="{{ $getRecord->notice_date }}" name="notice_date" required min="{{ date('Y-m-d') }}">
-            </div>
-            
-            <div class="col-12">
-                <label class="form-label">Publish Date</label>
-                <input type="date" class="form-control" value="{{ $getRecord->publish_date }}" name="publish_date" required min="{{ date('Y-m-d') }}">
+                <input type="date" class="form-control" value="{{ \Carbon\Carbon::parse($getRecord->notice_date)->format('Y-m-d') }}" name="notice_date" required min="{{ date('Y-m-d') }}">
             </div>
 
             <div class="col-12">
                 <label class="form-label">Description</label>
-                <textarea id="summernote" class="form-control" name="description" style="height: 300px"> {{ $getRecord->description }}</textarea>
+                <textarea class="form-control" name="description" maxlength="250" rows="4" placeholder="Maximum 250 Characters"> {{ $getRecord->description }}</textarea>
             </div>
 
             <div class="d-flex justify-content-evenly">

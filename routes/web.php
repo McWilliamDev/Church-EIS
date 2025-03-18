@@ -163,10 +163,15 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::post('admin/church_resources/edit/{id}', [ResourcesController::class, 'update']);
     Route::get('admin/church_resources/delete/{id}', [ResourcesController::class, 'delete']);
 
-    //Archived
+    //Archived Members
     Route::get('admin/archived/members', [MembersController::class, 'archived']);
     Route::get('admin/archived/restore/{id}', [MembersController::class, 'restore']);
     Route::get('admin/archived/delete/{id}', [MembersController::class, 'deleteArchived']);
+
+    //Archived Church Resources
+    Route::get('admin/archived/church_resources', [ResourcesController::class, 'archived']);
+    Route::get('admin/archived/restore/{id}', [ResourcesController::class, 'restore']);
+    Route::get('admin/archived/delete/{id}', [ResourcesController::class, 'deleteArchived']);
 });
 
 // Dashboard Routes for Users

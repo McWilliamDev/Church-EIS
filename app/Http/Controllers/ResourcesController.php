@@ -151,4 +151,38 @@ class ResourcesController extends Controller
 
         return redirect()->back()->with('success', 'File Deleted Successfully');
     }
+    public function archived()
+    {
+        $data['getRecord'] = ResourcesModel::where('is_delete', 1)->paginate(999);
+        $data['header_title'] = "Archived Church Resources";
+        return view('admin.archived.resources', $data);
+    }
+    public function restore($id)
+    {
+        $resource = ResourcesModel::find($id);
+        if ($resource) {
+            $resource->is_delete = 0;
+            $resource->save();
+            return redirect('admin/archived/church_resources')->with('success', 'File has been restored.');
+        }
+        return redirect('admin/archived/church_resources')->with('error', 'File not found.');
+    }
+
+    public function deleteArchived($id)
+    {
+        $resource = ResourcesModel::find($id);
+        if ($resource) {
+            // Check and delete the associated image if it exists
+            if (!empty($resource->file_image) && file_exists(public_path('upload/resources/' . $resource->file_image))) {
+                unlink(public_path('upload/resources/' . $resource->file_image));
+            }
+            // Check and delete the associated document if it exists
+            if (!empty($resource->document) && file_exists(public_path('upload/resources/documents/' . $resource->document))) {
+                unlink(public_path('upload/resources/documents/' . $resource->document));
+            }
+            $resource->delete(); // Permanently delete the resource
+            return redirect('admin/archived/church_resources')->with('success', 'File has been deleted permanently.');
+        }
+        return redirect('admin/archived/church_resources')->with('error', 'File not found.');
+    }
 }

@@ -14,7 +14,6 @@ class AnnouncementModel extends Model
     protected $table = 'announcements';
     protected $casts = [
         'notice_date' => 'datetime',
-        'publish_date' => 'datetime',
     ];
 
     public static function getSingle($id)
@@ -25,7 +24,8 @@ class AnnouncementModel extends Model
     public static function getRecord()
     {
         $return = self::select('announcements.*', 'users.name as created_by_name')
-            ->join('users', 'users.id', '=', 'announcements.created_by');
+            ->join('users', 'users.id', '=', 'announcements.created_by')
+            ->orderBy('notice_date', 'desc');
 
         if (!empty(Request::get('title'))) {
             $return = $return->where('announcements.title', 'LIKE', '%' . trim(Request::get('title')) . '%');
@@ -37,14 +37,6 @@ class AnnouncementModel extends Model
 
         if (!empty(Request::get('notice_date_to'))) {
             $return = $return->where('announcements.notice_date', '<=', Request::get('notice_date_to'));
-        }
-
-        if (!empty(Request::get('publish_date_from'))) {
-            $return = $return->where('announcements.publish_date', '>=', Request::get('publish_date_from'));
-        }
-
-        if (!empty(Request::get('publish_date_to'))) {
-            $return = $return->where('announcements.publish_date', '<=', Request::get('publish_date_to'));
         }
 
         $return = $return->orderBy('announcements.id', 'desc')
@@ -59,7 +51,7 @@ class AnnouncementModel extends Model
 
         return self::where('notice_date', '>=', $today)
             ->where('notice_date', '<=', $nextWeek)
-            ->orderBy('notice_date', 'asc')
+            ->orderBy('notice_date', 'desc')
             ->get();
     }
 }

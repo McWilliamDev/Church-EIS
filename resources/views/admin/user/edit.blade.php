@@ -27,9 +27,10 @@
                 <label class="form-label">Position</label>
                 <select class="form-select" value="{{ old('position', $getRecord->position) }}" required name="position">
                     <option value="">Select Position</option>
-                    <option {{ old('position', $getRecord->position) == 'Senior Pastor' ? 'selected' : '' }} value="Senior Pastor">Senior Pastor</option>
-                    <option {{ old('position', $getRecord->position) == 'Lead Pastor' ? 'selected' : '' }} value="Lead Pastor">Lead Pastor</option>
-                    <option {{ old('position', $getRecord->position) == 'Assigned Administrator' ? 'selected' : '' }} value="Assigned Administrator">Assigned Administrator</option>
+                    <option {{ (old('position', $getRecord->position)=='Lead Pastor')? 'selected' : '' }} value="Lead Pastor">Lead Pastor</option>
+                    <option {{ (old('position', $getRecord->position)=='Finance Director')? 'selected' : '' }} value="Finance Director">Finance Director</option>
+                    <option {{ (old('position', $getRecord->position)=='Assigned Administrator')? 'selected' : '' }} value="Assigned Administrator">Assigned Administrator</option>
+                    <option {{ (old('position', $getRecord->position)=='Board Member')? 'selected' : '' }} value="Board Member">Board Member</option>
                 </select>
                 <div style="color: red">{{ $errors->first('position') }}</div>
             </div>

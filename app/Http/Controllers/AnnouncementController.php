@@ -87,14 +87,12 @@ class AnnouncementController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'notice_date' => 'required|date|after_or_equal:today',
-            'publish_date' => 'required|date|after_or_equal:today|different:notice_date',
             'description' => 'required|string',
         ]);
 
         $announcement = new AnnouncementModel();
         $announcement->title = $request->title;
         $announcement->notice_date = $request->notice_date;
-        $announcement->publish_date = $request->publish_date;
         $announcement->description = $request->description;
         $announcement->created_by = Auth::user()->id;
         $announcement->save();
@@ -128,14 +126,12 @@ class AnnouncementController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'notice_date' => 'required|date|after_or_equal:today',
-            'publish_date' => 'required|date|after_or_equal:today|different:notice_date',
             'description' => 'required|string',
         ]);
 
         $announcement = AnnouncementModel::getSingle($id);
         $announcement->title = $request->title;
         $announcement->notice_date = $request->notice_date;
-        $announcement->publish_date = $request->publish_date;
         $announcement->description = $request->description;
         $announcement->save();
 

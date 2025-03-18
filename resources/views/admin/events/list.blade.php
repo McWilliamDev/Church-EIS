@@ -22,7 +22,6 @@
                     <table class="table table-striped" id="eventTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
                             <tr class="highlight">
-                                <th scope="col">#</th>
                                 <th scope="col">Event Name</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Location</th>
@@ -35,7 +34,6 @@
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
                                     <td>{{ $value->title }}</td>
                                     <td class="break-word">{{ $value->description }}</td>
                                     <td>{{ $value->location }}</td>
