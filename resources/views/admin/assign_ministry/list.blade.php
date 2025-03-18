@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group col-md-2">
-                            <label>Member Ministry Status</label>
+                            <label>Member Status</label>
                             <select class="form-select" name="ministry_status">
                                 <option value="">Select Status</option>
                                 <option {{ Request::get('ministry_status') == 100 ? 'selected' : '' }} value="100">Active</option>

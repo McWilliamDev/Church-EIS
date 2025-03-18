@@ -32,16 +32,6 @@
                         <input type="date" class="form-control" value="{{ Request::get('notice_date_to') }}" name="notice_date_to">
                     </div>
 
-                    <div class="form-group col-md-2">
-                        <label>Publish Date From</label>
-                        <input type="date" class="form-control" value="{{ Request::get('publish_date_from') }}" name="publish_date_from">
-                    </div>
-
-                    <div class="form-group col-md-2">
-                        <label>Publish Date To</label>
-                        <input type="date" class="form-control" value="{{ Request::get('publish_date_to') }}" name="publish_date_to">
-                    </div>
-
                     <div class="form-group col-md-3 d-flex align-items-end">
                         <button class="btn btn-primary me-2" type="submit" style="margin-top: 10px;">Search</button>
                         <a href="{{ url('admin/announcements') }}" class="btn btn-danger">Reset</a>
@@ -59,22 +49,20 @@
                     <table class="table table-striped" id="announcementTable" width="100%" cellspacing="0">
                         <thead>
                             <tr class="highlight">
-                                <th scope="col">#</th>
-                                <th scope="col">Title</th>
                                 <th scope="col">Notice Date</th>
-                                <th scope="col">Publish Date</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Created By</th>
                                 <th scope="col">Created Date</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($getRecord as $value)
+                            @foreach($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
-                                    <td>{{ $value->title }}</td>
                                     <td>{{ date('d-m-Y', strtotime($value->notice_date)) }}</td>
-                                    <td>{{ date('d-m-Y', strtotime($value->publish_date)) }}</td>
+                                    <td>{{ $value->title }}</td>
+                                    <td>{{ Str::limit($value->description, 50) }}</td>
                                     <td>{{ $value->created_by_name }}</td>
                                     <td>{{ date('d-m-Y', strtotime($value->created_at)) }}</td>
                                     <td>
@@ -82,11 +70,7 @@
                                         <a href="{{ url('admin/announcements/create_announcement/delete', $value->id) }}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->title }}')">Delete</a>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="100%">No Record Found.</td>
-                                </tr>
-                            @endempty
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -100,7 +84,6 @@
         $(document).ready(function() {
             $('#announcementTable').DataTable();
         });
-
         function confirmDelete(event, id, title) {
             event.preventDefault(); // Stop default link or form behavior
 

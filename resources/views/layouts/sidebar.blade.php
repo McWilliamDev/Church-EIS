@@ -118,11 +118,23 @@
             </li>
 
             <li class="sidebar-item">
-                <a href="{{ url('admin/archived/members') }}" class="sidebar-link">
+                <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
+                    data-bs-target="#archived" aria-expanded="false" aria-controls="#archived">
                     <i class="lni lni-box-archive-1"></i>
                     <span>Archived</span>
                 </a>
+
+                <ul id="archived" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="{{ url('admin/archived/members') }}" class="sidebar-link">Members</a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a href="{{ url('admin/archived/church_resources') }}" class="sidebar-link">Church Resources</a>
+                    </li>
+                </ul>
             </li>
+            
 <!--------------------------------------------------------------------------------------------------------------------->
         @elseif(Auth::user()->user_type == 'user')
             <li class="sidebar-item">

@@ -23,7 +23,6 @@
                     <table class="table table-striped" id="adminTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
                             <tr class="highlight">
-                                <th scope="col">#</th>
                                 <th scope="col">Profile Picture</th>
                                 <th scope="col">Full Name</th>
                                 <th scope="col">Email</th>
@@ -37,7 +36,6 @@
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
                                     <td>
                                         @if (!empty($value->getProfile()))
                                         <a href="#">

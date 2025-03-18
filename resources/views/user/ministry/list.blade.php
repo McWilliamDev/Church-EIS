@@ -22,7 +22,6 @@
                     <table class="table table-striped" id="ministryTable" width="100%" cellspacing="0">
                         <thead class="mt-5">
                             <tr class="highlight">
-                                <th scope="col">#</th>
                                 <th scope="col">Ministry Name</th>
                                 <th scope="col">Ministry Description</th>
                                 <th scope="col">Status</th>
@@ -35,7 +34,6 @@
                         <tbody>
                             @foreach ($getRecord as $value)
                                 <tr>
-                                    <td>{{ $value->id }}</td>
                                     <td>{{ $value->ministry_name }}</td>
                                     <td class="break-word">{{ $value->ministry_description }}</td>
                                     <td>
