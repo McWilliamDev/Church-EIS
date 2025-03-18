@@ -75,35 +75,32 @@
         </script>
         @endif
 
-        <!-- choose section start -->
         @include('website.general')
-        <!-- choose section end -->
+
 
         {{-- Infographics section start --}}
         <div class="container-fluid">
             <div class="row stats-container">
-                <div class="col-12 col-md-3 stat-box">
-                    <i class="fas fa-users"></i>
-                    <h2>50</h2>
-                    <p>Members</p>
-                </div>
+
                 <div class="col-12 col-md-3 stat-box">
                     <i class="fas fa-user"></i>
-                    <h2>6</h2>
+                    <h2>{{ $ministryCount }}</h2>
                     <p>Ministries</p>
                 </div>
                 <div class="col-12 col-md-3 stat-box">
                     <i class="fas fa-calendar-alt"></i>
-                    <h2>9</h2>
+                    <h2>{{ $eventCount }}</h2>
                     <p>Events</p>
                 </div>
                 <div class="col-12 col-md-3 stat-box">
                     <i class="fas fa-book"></i>
-                    <h2>13</h2>
+                    <h2>{{ $resourceCount }}</h2>
                     <p>Resources</p>
                 </div>
             </div>
         </div>
+
+        {{-- Infographics section end --}}
 
         <!-- SERVICE section start -->
         <div class="service-section">
