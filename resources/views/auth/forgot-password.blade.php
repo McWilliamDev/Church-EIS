@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+
+setcookie("session_cookie", "value", [
+    'expires' => time() + 3600, // 1 hour
+    'path' => '/',
+    'domain' => 'yourdomain.com',
+    'secure' => true, 
+    'httponly' => true, 
+    'samesite' => 'Strict' 
+]);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -3,6 +3,18 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    <IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set Access-Control-Allow-Origin "https://nggc.org"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+    Header set Content-Security-Policy "frame-ancestors 'self';"
+    Header unset X-Powered-By
+    Header set Cache-Control "no-cache, no-store, must-revalidate, private"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+    </IfModule>
+
     RewriteEngine On
 
     # Handle Authorization Header
