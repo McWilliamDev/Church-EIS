@@ -19,23 +19,29 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Carbon;
 
-// Home and Landing Page
-Route::get('/home', function () {
-    return view('website.home');
-});
+use App\Models\Ministry;
+use App\Models\Event;
+use App\Models\ChurchResource;
+
+// Homepage routes and infographic back end
 Route::get('/', function () {
-    return view('website.home');
+    $ministryCount = DB::table('ministry')->where('is_delete', 0)->count();
+    $eventCount = DB::table('events')->count();
+    $resourceCount = DB::table('church_resources')->where('is_delete', 0)->count();
+    $announcements = DB::table('announcements')->get();
+
+    return view('website.home', compact('ministryCount', 'eventCount', 'resourceCount', 'announcements'));
 })->name('home');
 
-// Ministry
+// Ministry Page
 Route::get('/ministry', function () {
     $ministry = DB::table('ministry')->get();
-    return view('website.ministry', ['ministry' => $ministry]);
+    return view('website.ministry', compact('ministry'));
 })->name('ministry');
 
-// Events
+// Events Page
 Route::get('/event', function () {
-    $today = Carbon::today(); // Get today's date
+    $today = Carbon::today(); 
     $nextTwoWeeks = $today->copy()->addDays(15);
 
     $events = DB::table('events')
@@ -43,17 +49,12 @@ Route::get('/event', function () {
         ->orderBy('date', 'asc')
         ->get();
 
-    return view('website.event', ['events' => $events]);
+    return view('website.event', compact('events'));
 })->name('event');
 
-// Resources
+// Resources Page
 Route::get('/resources', [ResourceController::class, 'index'])->name('resources');
 
-// Announcements
-Route::get('', function () {
-    $announcements = DB::table('announcements')->get();
-    return view('website.home', ['announcements' => $announcements]);
-})->name('home');
 
 //Function for Login
 Route::get('/admin', [AuthController::class, 'login'])->name('login');
