@@ -45,7 +45,7 @@
 
             <div class="col-12"> 
                 <label class="form-label">Description</label>
-                <textarea id="summernote" class="form-control" name="description" style="height: 300px"></textarea>
+                <textarea class="form-control" name="description" style="height: 300px"></textarea>
             </div>
 
             <div class="d-flex justify-content-evenly">
@@ -60,9 +60,6 @@
     <script>
         $(document).ready(function() {
             $('#userSelect').select2(); 
-            $('#summernote').summernote({
-                height: 200, 
-            });
         });
     </script>
 @endsection

@@ -7,16 +7,16 @@
 @section('content')
     <div class="row">
         <div class="col-sm-6">
-            <h3 class="fw-bold fs-4 my-3">Administrators (Total: {{ $getRecord->total() }})</h3>
+            <h3 class="fw-bold fs-4 my-3">Board Members (Total: {{ $getRecord->total() }})</h3>
         </div>
         
         <div class="col-sm-6 button-list" style="text-align: right">
-            <a href="{{ url('admin/user/add') }}" class="btn my-2">Add Administrators</a>
+            <a href="{{ url('admin/user/add') }}" class="btn my-2">Add Board Member</a>
         </div>
         
         <div class="card shadow-lg mb-4">
             <div class="py-2">
-                <h6 class="my-0 fs-5 fw-bold">List of Administrators</h6>
+                <h6 class="my-0 fs-5 fw-bold">List of Board Members</h6>
             </div>
 
                 <div class="table-responsive shadow-sm">

@@ -19,10 +19,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ResourceController;
 use Illuminate\Support\Carbon;
 
-use App\Models\Ministry;
-use App\Models\Event;
-use App\Models\ChurchResource;
-
 // Homepage routes and infographic back end
 Route::get('/', function () {
     $ministryCount = DB::table('ministry')->where('is_delete', 0)->count();
@@ -41,7 +37,7 @@ Route::get('/ministry', function () {
 
 // Events Page
 Route::get('/event', function () {
-    $today = Carbon::today(); 
+    $today = Carbon::today();
     $nextTwoWeeks = $today->copy()->addDays(15);
 
     $events = DB::table('events')
@@ -166,8 +162,8 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
 
     //Archived Members
     Route::get('admin/archived/members', [MembersController::class, 'archived']);
-    Route::get('admin/archived/restore/{id}', [MembersController::class, 'restore']);
-    Route::get('admin/archived/delete/{id}', [MembersController::class, 'deleteArchived']);
+    Route::get('admin/archived/restore/member/{id}', [MembersController::class, 'restore']);
+    Route::get('admin/archived/delete/member/{id}', [MembersController::class, 'deleteArchived']);
 
     //Archived Church Resources
     Route::get('admin/archived/church_resources', [ResourcesController::class, 'archived']);

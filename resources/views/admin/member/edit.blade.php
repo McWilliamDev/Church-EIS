@@ -85,8 +85,8 @@
                 <label class="form-label">Profile Picture</label>
                 <input type="file" class="form-control" name="profile_pic">
                 <div style="color: red">{{ $errors->first('profile_pic') }}</div>
-                @if (!empty($getRecord->getMemberProfile()))
-                    <img src="{{ $getRecord->getMemberProfile() }}" style="width: auto; height:50px;">
+                @if (!empty($getRecord->getProfile()))
+                    <img src="{{ $getRecord->getProfile() }}" style="width: auto; height:50px;">
                 @endif
             </div>
 
