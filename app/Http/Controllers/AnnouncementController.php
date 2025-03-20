@@ -9,9 +9,11 @@ use App\Models\MembersModel;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SendAnnouncementMail;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
-class AnnouncementController extends Controller
-{
+class AnnouncementController extends Controller {
+
 
     public function SendAnnouncement()
     {
@@ -161,4 +163,21 @@ class AnnouncementController extends Controller
         }
         return redirect('login')->with('error', 'Please log in to access this page.');
     }
+
+    public function CheckAnnouncement()
+    {
+        $today = Carbon::now()->toDateString();
+        $futureDate = Carbon::now()->addDays(30)->toDateString();
+    
+        // Debugging
+        \Log::info("Today: $today, Future Date: $futureDate");
+    
+        $data['getRecord'] = AnnouncementModel::whereDate('notice_date', '>=', $today)
+            ->whereDate('notice_date', '<=', $futureDate)
+            ->orderBy('notice_date', 'asc')
+            ->get();
+    
+        return view('user.announcements.create_announcement.list', $data);
+    }
+    
 }
