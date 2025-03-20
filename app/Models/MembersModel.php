@@ -9,8 +9,13 @@ use Illuminate\Support\Facades\Request;
 class MembersModel extends Model
 {
     use HasFactory;
+    //protected $fillable = ['id', 'name', 'last_name', 'email', 'phonenumber', 'gender', 'ministry_id', 'date_of_birth', 'profile_pic', 'address', 'member_status', 'created_by', 'created_at', 'updated_at', 'is_delete', 'locked_by', 'locked_at'];
     protected $table = 'members';
 
+    protected $fillable = [
+        'locked_by',
+        'locked_at'
+    ];
     public static function getSingle($id)
     {
         return self::find($id);

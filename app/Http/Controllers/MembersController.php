@@ -85,6 +85,26 @@ class MembersController extends Controller
     {
         $data['getRecord'] = MembersModel::getSingle($id);
         if (!empty($data['getRecord'])) {
+            // Check if the record is locked
+            if ($data['getRecord']->locked_by && $data['getRecord']->locked_by !== Auth::id()) {
+                // Check if the lock has expired (e.g., 15 minutes)
+                if ($data['getRecord']->locked_at && now()->diffInMinutes($data['getRecord']->locked_at) > 15) {
+                    // Unlock the record
+                    $data['getRecord']->update([
+                        'locked_by' => null,
+                        'locked_at' => null,
+                    ]);
+                } else {
+                    return redirect('admin/member/list')->with('error', 'This member is currently being modified by another admin.');
+                }
+            }
+
+            // Lock the record
+            $data['getRecord']->update([
+                'locked_by' => Auth::id(),
+                'locked_at' => now(),
+            ]);
+
             $data['getMinistry'] = MinistryModel::getRecord();
             $data['header_title'] = "Edit Member";
 
@@ -111,6 +131,13 @@ class MembersController extends Controller
         ]);
 
         $member = MembersModel::getSingle($id);
+
+        // Check if the record is locked
+        if ($member->locked_by && $member->locked_by !== Auth::id()) {
+            return redirect('admin/member/list')->with('error', 'This member is currently being edited by another admin.');
+        }
+
+        // Update the member details
         $member->name = $request->name;
         $member->last_name = $request->last_name;
         $member->email = $request->email;
@@ -141,6 +168,10 @@ class MembersController extends Controller
 
         $member->address = $request->address;
         $member->member_status = $request->member_status;
+
+        // Unlock the record after update
+        $member->locked_by = null;
+        $member->locked_at = null;
         $member->save();
 
         if (Auth::check()) {

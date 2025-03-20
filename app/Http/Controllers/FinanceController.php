@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\FinanceModel;
 use App\Models\MembersModel;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 class FinanceController extends Controller
 {
@@ -27,11 +28,32 @@ class FinanceController extends Controller
     public function edit($id)
     {
         $data['header_title'] = "Edit Finance";
-        $report = FinanceModel::with('member')->findOrFail($id); // Fetch finance record with related member
-        $members = MembersModel::all(); // Fetch all members
+        $report = FinanceModel::with('member')->findOrFail($id);
+
+        // Check if the record is locked
+        if ($report->locked_by && $report->locked_by !== Auth::id()) {
+            // Check if the lock has expired (e.g., 15 minutes)
+            if ($report->locked_at && now()->diffInMinutes($report->locked_at) > 15) {
+                // Unlock the record
+                $report->update([
+                    'locked_by' => null,
+                    'locked_at' => null,
+                ]);
+            } else {
+                Alert::error('Error!', 'This record is currently being modified by another admin.');
+                return redirect()->route('finance.list');
+            }
+        }
+
+        // Lock the record
+        $report->update([
+            'locked_by' => Auth::id(),
+            'locked_at' => now(),
+        ]);
+
+        $members = MembersModel::all();
         return view('admin.finance.edit', $data, compact('report', 'members'));
     }
-
 
 
     public function addFinance(Request $request)
@@ -51,10 +73,12 @@ class FinanceController extends Controller
             'type' => $request->type,
             'amount' => $request->amount,
             'date' => $request->date,
-            'purpose' => $request->purpose
+            'purpose' => $request->purpose,
+            'locked_by' => null, // Ensure it's not locked
+            'locked_at' => null,
         ]);
-        Alert::success('Success!', 'Data has been added successfully.');
-        // Redirect with success message
+
+        Alert::success('Success!', 'Finance Record has been added successfully.');
         return redirect()->route('finance.list');
     }
 
@@ -69,16 +93,25 @@ class FinanceController extends Controller
             'purpose' => 'required|string|max:150',
         ]);
 
-        // Find the record and update it
+        // Find the record and check if it's locked
         $report = FinanceModel::findOrFail($id);
+        if ($report->locked_by && $report->locked_by !== Auth::id()) {
+            Alert::error('Error!', 'This record is currently being edited by another admin.');
+            return redirect()->route('finance.list');
+        }
+
+        // Update the record
         $report->update([
             'member_id' => $request->member,
             'type' => $request->type,
             'amount' => $request->amount,
             'date' => $request->date,
             'purpose' => $request->purpose,
+            'locked_by' => null, // Unlock the record after update
+            'locked_at' => null,
         ]);
-        Alert::success('Success!', 'Data has been updated successfully.');
+
+        Alert::success('Success!', 'Finance Record has been updated successfully.');
         return redirect()->route('finance.list');
     }
 
@@ -87,7 +120,7 @@ class FinanceController extends Controller
         $report = FinanceModel::findOrFail($id);
         $report->delete();
 
-        Alert::success('Success!', 'Data has been deleted successfully.');
+        Alert::success('Success!', 'Finance Record has been deleted successfully.');
         return redirect()->route('finance.list');
     }
 }

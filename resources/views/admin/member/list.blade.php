@@ -16,7 +16,7 @@
         
         <div class="card shadow-lg mb-4">
             <div class="py-2">
-                <h6 class="my-0 fs-5 fw-bold">List of Church Administrators</h6>
+                <h6 class="my-0 fs-5 fw-bold">List of Church Members</h6>
             </div>
                 <div class="table-responsive shadow-sm">
                     <table class="table table-striped" id="memberTable" width="100%" cellspacing="0">

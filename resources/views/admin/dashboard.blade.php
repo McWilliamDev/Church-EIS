@@ -33,7 +33,7 @@
                                 <div class="row g-0 align-items-center">
                                     <div class="col">
                                         <div class="text-xs fw-bold text-uppercase mb-1">
-                                            Total Users
+                                            Total Board Members
                                         </div>
                                         <div class="h5 mb-0 fw-bold text-gray">{{ $TotalUser }}</div>
                                     </div>

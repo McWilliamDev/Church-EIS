@@ -25,7 +25,7 @@
                     </li>
 
                     <li class="sidebar-item">
-                        <a href="{{ url('admin/user/list') }}" class="sidebar-link">Users</a>
+                        <a href="{{ url('admin/user/list') }}" class="sidebar-link">Board Members</a>
                     </li>
                 </ul>
             </li>

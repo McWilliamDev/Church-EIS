@@ -11,7 +11,7 @@ class FinanceModel extends Model
 
     protected $table = 'finance';
     // `member_id`, `type`, `amount`, `purpose`, `updated_at`, `created_at`
-    protected $fillable = ['member_id', 'type', 'amount', 'date', 'purpose']; // Allow mass assignment
+    protected $fillable = ['member_id', 'type', 'amount', 'date', 'purpose', 'locked_by', 'locked_at']; // Allow mass assignment
     public $timestamps = false;
 
     public function member()

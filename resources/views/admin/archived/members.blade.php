@@ -43,9 +43,9 @@
                                     <td>{{ $value->address }}</td>
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->updated_at)) }}</td>
                                     <td style="min-width: 200px;">
-                                        <a href="{{ url('admin/archived/restore', $value->id) }}"
+                                        <a href="{{ url('admin/archived/restore/member', $value->id) }}"
                                             class="btn btn-primary btn-sm">Restore</a>
-                                        <a href="{{ url('admin/archived/delete', $value->id) }}"
+                                        <a href="{{ url('admin/archived/delete/member', $value->id) }}"
                                             class="btn btn-danger btn-sm"
                                             onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
                                     </td>
