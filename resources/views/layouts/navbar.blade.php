@@ -46,12 +46,6 @@
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>
-                            Activity Log
-                        </a>
-                    </li>
-                    <li>
                         <hr class="dropdown-divider">
                     </li>
                     <li>
@@ -73,12 +67,6 @@
                         <a class="dropdown-item" href="{{ url('user/change_password') }}">
                             <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>
                             Change Password
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>
-                            Activity Log
                         </a>
                     </li>
                     <li>

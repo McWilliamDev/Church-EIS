@@ -63,16 +63,6 @@
                 </div>
             </div>
         </div>
-        
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var announcementModal = new bootstrap.Modal(document.getElementById('announcementModal'), {
-                    backdrop: true,  
-                    keyboard: true   
-                });
-                announcementModal.show();
-            });
-        </script>
         @endif
 
         @include('website.general')
@@ -118,6 +108,15 @@
         <!-- footer section end -->
 
 <!---------------------------------------------------------- Javascript ------------------------------------------------------------->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var announcementModal = new bootstrap.Modal(document.getElementById('announcementModal'), {
+            backdrop: true,  
+            keyboard: true   
+        });
+        announcementModal.show();
+    });
+</script>
 
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>

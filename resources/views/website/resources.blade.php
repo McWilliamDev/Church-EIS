@@ -71,26 +71,26 @@
 
        <div class="container">
         <div class="row">
-         @foreach($resources as $post)
-         <div class="col-md-6 col-12">
-             <div class="card mb-3" style="border-radius: 10px;">
-                 <div class="row no-gutters">
-                     <div class="col-md-4">
-                         <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img" alt="..." style="width: 200px; height: 200px">
-                     </div>
-                     <div class="col-md-8">
-                         <div class="card-body">
-                             <h3 class="card-title">{{ $post->file_name }}</h3>
-                             <p class="card-text">{{ $post->description }}</p>
-                             <br>
-                             <a href="{{ asset('upload/resources/documents/' . $post->document) }}" class="file-download" download> Download
-                             </a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     @endforeach
+            @foreach($resources as $post)
+            <div class="col-md-6 col-12">
+                <div class="card mb-3" style="border-radius: 10px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img" alt="..." style="width: 200px; height: 200px">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ $post->file_name }}</h3>
+                                <p class="card-text">{{ $post->description }}</p>
+                                <br>
+                                <a href="{{ asset('upload/resources/documents/' . $post->document) }}" class="file-download" download="{{ $post->file_name }}"> Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
         </div>
     </div>
     </div>
