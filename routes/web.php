@@ -15,41 +15,19 @@ use App\Http\Controllers\AssignMinistryController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\ResourcesController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\ResourceController;
-use Illuminate\Support\Carbon;
+use App\Http\Controllers\WebsiteController;
 
-// Homepage routes and infographic back end
-Route::get('/', function () {
-    $ministryCount = DB::table('ministry')->where('is_delete', 0)->count();
-    $eventCount = DB::table('events')->count();
-    $resourceCount = DB::table('church_resources')->where('is_delete', 0)->count();
-    $announcements = DB::table('announcements')->get();
+// Homepage route
+Route::get('/', [WebsiteController::class, 'home'])->name('home');
 
-    return view('website.home', compact('ministryCount', 'eventCount', 'resourceCount', 'announcements'));
-})->name('home');
+// Ministry Page route
+Route::get('/ministry', [WebsiteController::class, 'ministry'])->name('ministry');
 
-// Ministry Page
-Route::get('/ministry', function () {
-    $ministry = DB::table('ministry')->get();
-    return view('website.ministry', compact('ministry'));
-})->name('ministry');
+// Events Page route
+Route::get('/event', [WebsiteController::class, 'event'])->name('event');
 
-// Events Page
-Route::get('/event', function () {
-    $today = Carbon::today();
-    $nextTwoWeeks = $today->copy()->addDays(15);
-
-    $events = DB::table('events')
-        ->whereBetween('date', [$today, $nextTwoWeeks])
-        ->orderBy('date', 'asc')
-        ->get();
-
-    return view('website.event', compact('events'));
-})->name('event');
-
-// Resources Page
-Route::get('/resources', [ResourceController::class, 'index'])->name('resources');
+// Resources Page route
+Route::get('/resources', [WebsiteController::class, 'resources'])->name('resources');
 
 
 //Function for Login

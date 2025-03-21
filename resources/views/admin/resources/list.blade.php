@@ -17,26 +17,26 @@
 
             <div class="row">
                 @foreach($getRecord as $resource)
-                    <div class="col-lg-3 col-xl-2">
-                        <div class="file-man-box">
-                            <a href="javascript:void(0);" class="file-close" onclick="confirmDelete(event, '{{ $resource->id }}', '{{ $resource->file_name }}')"><i class="fa fa-times-circle"></i></a>
-                            <div class="file-img-box">
-                                <img src="{{ $resource->getImage() ?: asset('images/default.png') }}" alt="icon">
-                            </div>
-                            <a href="{{ $resource->getDocument() }}" class="file-download" download><i class="fa fa-download"></i></a>
-                            <a href="{{ url('admin/church_resources/edit', $resource->id) }}" class="file-edit"><i class="fa fa-edit"></i></a> <!-- Edit Icon -->
-                            <div class="file-man-title">
-                                <h5 class="mb-0 text-overflow fw-bold">{{ $resource->file_name }}</h5>
-                                <p class="mb-0"><small>
-                                    @php
-                                        $documentSize = $resource->getDocumentSize();
-                                    @endphp
-                                    Document Size: {{ $documentSize > 0 ? round($documentSize / 1024, 2) . ' KB' : 'N/A' }}
-                                </small></p>
-                            </div>
+                <div class="col-lg-3 col-xl-2">
+                    <div class="file-man-box">
+                        <a href="javascript:void(0);" class="file-close" onclick="confirmDelete(event, '{{ $resource->id }}', '{{ $resource->file_name }}')"><i class="fa fa-times-circle"></i></a>
+                        <div class="file-img-box">
+                            <img src="{{ $resource->getImage() ?: asset('images/default.png') }}" alt="icon">
+                        </div>
+                        <a href="{{ $resource->getDocument() }}" class="file-download" download="{{ $resource->file_name }}"><i class="fa fa-download"></i></a>
+                        <a href="{{ url('admin/church_resources/edit', $resource->id) }}" class="file-edit"><i class="fa fa-edit"></i></a> <!-- Edit Icon -->
+                        <div class="file-man-title">
+                            <h5 class="mb-0 text-overflow fw-bold">{{ $resource->file_name }}</h5>
+                            <p class="mb-0"><small>
+                                @php
+                                    $documentSize = $resource->getDocumentSize();
+                                @endphp
+                                Document Size: {{ $documentSize > 0 ? round($documentSize / 1024, 2) . ' KB' : 'N/A' }}
+                            </small></p>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@
         
         @if($reports->isEmpty())
         <div class="h4 text-center p-4 bg-light rounded mt-3">
-            No reports found
+            No financial records found
         </div>
         
         @else
@@ -76,7 +76,7 @@
 
         @if($reports->isEmpty())
             <div class="h4 text-center p-4 bg-light rounded mt-3">
-                No reports found
+                No financial records found
             </div>
         @else
         <table class="table table-striped" id="financeTable">
