@@ -187,23 +187,6 @@
 
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
-                    data-bs-target="#finance" aria-expanded="false" aria-controls="#finance">
-                    <i class="lni lni-dollar-circle"></i>
-                    <span>Finance Tracking</span>
-                </a>
-
-                <ul id="finance" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <!--<li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Create Finances</a>
-                    </li>-->
-                    <li class="sidebar-item">
-                        <a href="{{ url('user/finance/list') }}" class="sidebar-link">Finance Analytics & Reports</a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link has-dropdown collapsed" data-bs-toggle="collapse"
                     data-bs-target="#announcements" aria-expanded="false" aria-controls="#announcements">
                     <i class="lni lni-megaphone-1"></i>
                     <span>Announcements</span>

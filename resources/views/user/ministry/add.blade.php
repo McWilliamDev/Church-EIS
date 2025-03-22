@@ -14,11 +14,6 @@
             </div>
 
             <div class="col-6">
-                <label class="form-label">Ministry Description<span style="color: red">*</span></label>
-                <input type="text" class="form-control" name="ministry_description" required placeholder="Ministry Description">
-            </div>
-
-            <div class="col-6">
                 <label class="form-label">Status<span style="color: red">*</span></label>
                 <select class="form-select" name="status">
                     <option value="0">Active</option>
@@ -30,6 +25,11 @@
                 <label class="form-label">Ministry Profile<span style="color: red">*</span></label>
                 <input type="file" class="form-control" name="ministry_profile" required>
                 <div style="color: red">{{ $errors->first('ministry_profile') }}</div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Ministry Description<span style="color: red">*</span></label>
+                <textarea class="form-control" name="ministry_description" required placeholder="Ministry Description" rows="3"></textarea>
             </div>
 
             <div class="d-flex justify-content-evenly">

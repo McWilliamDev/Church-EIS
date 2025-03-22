@@ -35,7 +35,7 @@ class AuthController extends Controller
             // Check if the user needs to go through two-factor authentication
             if ($user->user_type == 'admin' || $user->user_type == 'user') {
                 // Redirect to two-factor authentication
-                return redirect()->route('two-factor.index');
+                return redirect()->route('two-factor.index')->with('success', 'Your authentication code has been sent to your email');
             }
 
             // If no 2FA is required, redirect to the dashboard directly

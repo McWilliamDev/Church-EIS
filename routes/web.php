@@ -43,9 +43,8 @@ Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 Route::group(['middleware' => 'auth', 'admin'], function () {
     Route::get('/two-factor', [TwoFactorController::class, 'index'])->name('two-factor.index');
     Route::post('/two-factor', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
+    Route::post('/two-factor/resend', [TwoFactorController::class, 'resend'])->name('two-factor.resend');
 });
-
-Route::post('/admin/finance/add', [FinanceController::class, 'addFinance'])->name('finance.addFinance');
 
 // Dashboard Routes for Admin 
 Route::group(['middleware' => ['admin', 'twofactor']], function () {
@@ -124,11 +123,12 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
 
     // Finance Tracker
     Route::get('admin/finance/list', [FinanceController::class, 'list'])->name('finance.list');
-
+    Route::post('/admin/finance/add', [FinanceController::class, 'addFinance'])->name('finance.addFinance');
     Route::get('admin/finance/add', [FinanceController::class, 'add'])->name('finance.add');
     Route::get('/admin/finance/edit/{id}', [FinanceController::class, 'edit'])->name('finance.edit');
     Route::put('/admin/finance/update/{id}', [FinanceController::class, 'update'])->name('finance.update');
     Route::delete('admin/finance/delete/{id}', [FinanceController::class, 'delete'])->name('finance.delete');
+
 
     //Church Resources Route
     Route::get('admin/church_resources/list', [ResourcesController::class, 'list']);
