@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Mail\TwoFactorMail;
 use Illuminate\Support\Facades\Mail;
 
 class TwoFactorController extends Controller
@@ -13,29 +14,54 @@ class TwoFactorController extends Controller
     {
         /** @var User $user */
         $user = Auth::user();
-        $code = rand(100000, 999999);
-        $user->two_factor_code = $code;
-        $user->save();
 
-        Mail::raw("Your two-factor code is $code", function ($message) use ($user) {
-            $message->to($user->email)->subject('Two-Factor Code');
-        });
-        return view('auth.two-factor');
+        if (!$user->two_factor_code || now()->isAfter($user->two_factor_expires_at)) {
+            $code = rand(100000, 999999);
+            $user->two_factor_code = $code;
+            $user->two_factor_expires_at = now()->addMinutes(3);
+            $user->save();
+
+            // Pass both user and code
+            Mail::to($user->email)->send(new TwoFactorMail($user, $code));
+        }
+
+        return view('auth.two-factor', [
+            'expiryTimestamp' => strtotime($user->two_factor_expires_at)
+        ]);
     }
+
+    public function resend(Request $request)
+    {
+        /** @var User $user */
+        $user = Auth::user();
+
+        if (now()->isAfter($user->two_factor_expires_at)) {
+            $code = rand(100000, 999999);
+            $user->two_factor_code = $code;
+            $user->two_factor_expires_at = now()->addMinutes(3);
+            $user->save();
+
+            // Pass both user and code to the Mailable class
+            Mail::to($user->email)->send(new TwoFactorMail($user, $code));
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Code cannot be resent yet.']);
+    }
+
+
 
     public function verify(Request $request)
     {
-        $request->validate([
-            'code' => 'required|integer',
-        ]);
 
         $user = Auth::user();
-        if ($request->code == $user->two_factor_code) {
+        if ($request->code == $user->two_factor_code && now()->isBefore($user->two_factor_expires_at)) {
             session(['two_factor_authenticated' => true]);
-
 
             /** @var User $user */
             $user->two_factor_code = null;
+            $user->two_factor_expires_at = null; // Clear expiration time
             $user->save();
 
             if ($user->user_type == 'admin') {
@@ -45,6 +71,6 @@ class TwoFactorController extends Controller
             }
         }
 
-        return redirect()->route('two-factor.index')->with(['error' => 'The provided code is incorrect']);
+        return redirect()->route('two-factor.index')->with(['error' => 'The provided code is incorrect or has expired. Please try again']);
     }
 }
