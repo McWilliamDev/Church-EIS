@@ -3,7 +3,7 @@
       <div class="row">
 
           <div class="col-md-6 mb-4">
-            <h2 class="logo mb-4">New Ground <span>Generation Church</span> </h2>
+            <h2 class="logo_footer mb-4">New Ground <span>Generation Church</span> </h2>
               <p>New Ground cultivates deeply rooted disciples of Jesus that will disciple others and bear fruit through planting churches.</p> <br>
               <a href="https://www.facebook.com/profile.php?id=61562209020397" target="_blank" class="socmed"><i class="fab fa-facebook-f"></i></a>
               <a href="https://www.instagram.com/newgroundgenerationchurch/" target="_blank" class="socmed"><i class="fab fa-instagram"></i></a>

@@ -13,6 +13,13 @@
 /*------------------------------------------------------------------- 767px x 599px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 599px) and (max-width: 767px) {
+    .general_text, .generalp, .general_taital, .generalh2, .service_taital1, .general_text, .service_text, .service_verse {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .service_taital_main {
+        padding-top: 30px;
+    }
     .logo {
         text-align: center;
     }
@@ -85,6 +92,13 @@
 /*------------------------------------------------------------------- 599px x 280px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 280px) and (max-width: 599px) {
+    .general_text, .generalp, .general_taital, .generalh2, .service_taital1, .general_text, .service_text, .service_verse {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .service_taital_main {
+        padding-top: 30px;
+    }
     .cart-content-right {
         padding-bottom: 5px;
     }
@@ -129,8 +143,9 @@
 
 @media (min-width: 992px) and (max-width: 1199px) {
     .header_section {
-        padding: 0px;
         background-size: cover;
+        padding: 0px;
+        height: auto;
     }
     .banner_text {
         width: 100%;
@@ -189,7 +204,21 @@
     }
     .footer_section {
         background-size: cover;
-        padding-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .footer_section h2 {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .footer_section h3 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .socmed {
+        font-size: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
     .input_btn_main {
         width: 60%;
@@ -198,8 +227,9 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .header_section {
-        padding: 0px;
         background-size: cover;
+        padding: 0px;
+        height: auto;
     }
     .banner_text {
         width: 100%;
@@ -260,9 +290,22 @@
         width: 100%;
     }
     .footer_section {
-        padding-top: 0px;
         background-size: cover;
-        padding-bottom: 30px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .footer_section h2 {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .footer_section h3 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .socmed {
+        font-size: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
     .input_btn_main {
         width: 90%;
@@ -273,6 +316,8 @@
     .navbar-light .navbar-toggler {
         color: rgba(0, 0, 0, .5);
         border-color: transparent;
+        margin-right: 30px;
+        margin-bottom: 10px;
     }
     #main_slider a.carousel-control-prev {
         position: absolute;
@@ -287,13 +332,12 @@
         display: none;
     }
     .header_section {
-        background-image: url(../images/mobile-bg.png);
         background-size: cover;
         padding: 0px;
         height: auto;
     }
     .navbar-toggler {
-        background-color: #ffffff;
+        background-color: black;
         padding-bottom: 20px;
     }
     .logo {
@@ -315,7 +359,7 @@
         font-size: 50px;
     }
     .bg-light {
-        background-color: transparent !important;
+        background-color: black;
     }
     .header_main {
         padding: 0px;
@@ -374,7 +418,6 @@
         padding-right: 15px;
     }
     .blog_section {
-        background-image: url(../images/blog-mobile-bg.png);
         background-size: cover;
         padding: 50px 0px;
     }
@@ -431,14 +474,27 @@
         margin: 0 auto;
     }
     .footer_section {
-        background-image: url(../images/footer-mobile-bg.png);
         background-size: cover;
-        padding: 50px 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .footer_section h2 {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .footer_section h3 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .socmed {
+        font-size: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
     }
     .input_btn_main {
         width: 100%;
         display: inherit;
-        background-color: transparent !important;
+        background-color: black;
     }
     .subscribe_bt {
         margin: 0 auto;
@@ -448,14 +504,14 @@
     }
     .subscribe_bt a {
         width: 100%;
-        background-color: #ffffff;
+        background-color: black;
         margin-top: 50px;
         border-radius: 40px;
         margin-bottom: 50px;
     }
     .subscribe_bt a:hover {
         color: #000;
-        background-color: #ffffff;
+        background-color: black;
     }
     .social_icon {
         display: inline-block;
@@ -473,6 +529,8 @@
     .navbar-light .navbar-toggler {
         color: rgba(0, 0, 0, .5);
         border-color: transparent;
+        margin-right: 30px;
+        margin-bottom: 10px;
     }
     #main_slider a.carousel-control-prev {
         position: absolute;
@@ -487,9 +545,9 @@
         display: none;
     }
     .header_section {
-        background-image: url(../images/mobile-bg.png);
         background-size: cover;
-        padding: 0px; 
+        padding: 0px;
+        height: auto;
     }
     .navbar-toggler {
         background-color: #ffffff;
@@ -511,9 +569,8 @@
         font-size: 50px;
     }
     .bg-light {
-        background-color: transparent !important;
+        background-color: black;
         padding-top: 20px;
-        padding-bottom: 20px;
     }
     .header_main {
         padding: 0px;
@@ -573,7 +630,6 @@
         padding-right: 15px;
     }
     .blog_section {
-        background-image: url(../images/blog-mobile-bg.png);
         background-size: cover;
         padding: 50px 0px;
     }
@@ -629,15 +685,32 @@
     .getquote_bt {
         margin: 0 auto;
     }
+
+
     .footer_section {
-        background-image: url(../images/footer-mobile-bg.png);
         background-size: cover;
-        padding: 50px 0px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
+    .footer_section h2 {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    .footer_section h3 {
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .socmed {
+        font-size: 30px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    
     .input_btn_main {
         width: 100%;
         display: inherit;
-        background-color: transparent !important;
+        background-color: black;
     }
     .subscribe_bt {
         margin: 0 auto;
@@ -647,14 +720,14 @@
     }
     .subscribe_bt a {
         width: 100%;
-        background-color: #ffffff;
+        background-color: black;
         margin-top: 50px;
         border-radius: 40px;
         margin-bottom: 50px;
     }
     .subscribe_bt a:hover {
         color: #000;
-        background-color: #ffffff;
+        background-color: black;
     }
     .social_icon {
         display: inline-block;
@@ -666,5 +739,50 @@
         width: 100%;
         padding-top: 90px;
     }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-img {
+        text-align: center;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+/* Mobile screen adjustments */
+@media (max-width: 576px) {
+    #announcementModal .modal-dialog {
+        max-width: 300px; /* Make modal smaller on mobile */
+        margin: auto; /* Center horizontally */
+        display: flex;
+        align-items: center; /* Center vertically */
+        justify-content: center; /* Center horizontally */
+    }
+
+    #announcementModal .col-md-2 {
+        display: none; /* Hide the image on mobile */
+    }
+
+    #announcementModal .col-md-10 {
+        width: 100%; /* Ensure full width for text */
+    }
+
+    #announcementModal .modal-content {
+        padding: 0; /* Remove padding for more space for text */
+    }
+}
+
+/* Center modal on larger screens */
+#announcementModal .modal-dialog {
+    margin: auto;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+    
 
 }

@@ -229,7 +229,7 @@ button {
     width: 100%;
     float: left;
     background-image: url('/images/bannerbg.jpg');
-    height: 670px;
+    height: auto;
     background-size: 100%;
     padding: 0px 0px 20px 0px;
 }
@@ -295,9 +295,10 @@ button {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
-    width: 100%;
+    width: auto;
     text-align: center;
     margin: 0 auto;
+    max-width: 100%;
 }
 
 .menu_main ul {
@@ -352,7 +353,6 @@ button {
 .banner_section {
     width: 100%;
     float: left;
-    padding-bottom: 120px;
 }
 
 .banner_taital {
@@ -365,7 +365,7 @@ button {
     text-transform: uppercase;
     font-family: georgia;
     margin-top: 10px;
-    padding-top: 30px;
+    padding-top: 00px;
 }
 
 .banner_taital2 {
@@ -395,7 +395,7 @@ button {
     text-align: left;
     margin-left: 80px;
     margin-right: 50px;
-    margin-top: 15px;
+    margin-top: 25px;
     color: #056627;
     font-size: 40px;
     font-family: Georgia;
@@ -429,6 +429,7 @@ button {
     font-weight: 400;
     color: whitesmoke;
     opacity: 0.6;
+    padding-bottom: 40px;
 }
 
 .read_bt {
@@ -492,7 +493,8 @@ button {
 .ministry_p {
     text-align: center;
     margin: 0 20 10 20px;
-    height: 100px;
+    height: auto;
+    padding-bottom: 10px;
     font-size: 12px;
 }
 
@@ -580,7 +582,7 @@ img {
 .service_taital_main {
     width: 100%;
     padding-left: 10px;
-    padding-top: 70px;
+    padding-top:20px;
     padding-bottom: 20px;
 }
 
@@ -766,13 +768,12 @@ img {
 }
 
 .pastor_img {
-    width: 100%;
     float: left;
     text-align: center; 
-    width: 500px; 
-    height: 300px; 
     padding-bottom: 10px;
     border-radius: 0px;
+    width: 100%;
+    height: auto;
 }
 
 .pastor_section_2 {
@@ -1050,7 +1051,7 @@ img {
     background-color: #1b1919;
     width: 100%;
     float: left;
-    padding-top: 40px;
+    padding-top: 30px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -1069,12 +1070,14 @@ img {
     color: white;
     text-align: left;
     font-family: georgia;
+    font-size: 30px;
 }
 
 .footer_section h3 {
     color: white;
     text-align: left;
     font-family: georgia;
+    font-size: 25px;
 }
 
 .footer_section .contact a {
@@ -1167,10 +1170,6 @@ h3 {
     font-size: 12px;
 }
 
-.card-body-announcements {
-    margin: 20px;
-}
-
 .close-btn {
     position: absolute;
     top: 10px;
@@ -1185,12 +1184,12 @@ h3 {
     color: red;
 }
 
-.file-download:hover {
-    background: linear-gradient(to right, #056627, #a1d921);
+.file-download {
+    margin-bottom: 10px;
 }
 
-.card-body-announcements {
-    padding: 0 0 0 40px;
+.file-download:hover {
+    background: linear-gradient(to right, #056627, #a1d921);
 }
 
 .announcement-title {
@@ -1298,10 +1297,11 @@ span {
     }
 }
 
-.block_fromside {
-    animation-range: entry 0% cover -200%;
-    animation: appear linear;
-    animation-timeline: view();
+.modal-body {
+    padding-bottom: 0px;
+    box-shadow: none;
 }
+
+
 
 
