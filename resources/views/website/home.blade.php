@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
-    @include('website.homecss')
-    <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @include('website.homecss')
+        <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     </head>
 <!---------------------------------------------------------- Border ------------------------------------------------------------->
 
@@ -25,21 +25,14 @@
                 <div class="modal-content">
         
                     <div class="modal-body">
-                        <h4 class="announcement-title">ANNOUNCEMENTS</h4>
-        
                         <div id="announcementCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
                             <div class="carousel-inner">
                                 @foreach ($announcements as $index => $post)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <div class="card mb-4 announcement-box p-4 d-flex" style="border-radius: 10px; width: 100%;">
+                                    <div class="card mb-4 announcement-box p-4 d-flex" style="border-radius: 10px; width: 100%; box-shadow: none;">
                                         
                                         <div class="row g-0 align-items-center w-100">
-                                            <div class="col-md-2 d-flex justify-content-center align-items-center">
-                                                <img src="images/announcement.png" class="img-fluid rounded-start" 
-                                                    alt="Image" style="object-fit: contain; padding: 10px 0 0 30px;">
-                                            </div>
-        
-                                            <div class="col-md-10 d-flex">
+                                            <div class="col-md-12 d-flex">
                                                 <div class="card-body-announcements flex-grow-1">
                                                     <h3 class="card-title">{{ $post->title }}</h3>
                                                     <p class="card-text"><small class="text-muted">{{ $post->notice_date }}</small></p> 
