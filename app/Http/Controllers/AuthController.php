@@ -29,7 +29,9 @@ class AuthController extends Controller
         ]);
 
         $remember = !empty($request->remember);
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember)) {
+
+        // Attempt to authenticate the user with the additional condition for is_delete
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'is_delete' => 0], $remember)) {
             $user = Auth::user();
 
             // Check if the user needs to go through two-factor authentication
@@ -60,15 +62,25 @@ class AuthController extends Controller
     }
     public function PostForgotPassword(Request $request)
     {
-        $user = User::getEmailSingle($request->email);
+        // Validate the email input
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        // Retrieve the user by email, ensuring to check if they are not deleted
+        $user = User::where('email', $request->email)->where('is_delete', 0)->first();
+
         if (!empty($user)) {
+            // Generate a random token for password reset
             $user->remember_token = Str::random(30);
             $user->save();
+
+            // Send the password reset email
             Mail::to($user->email)->send(new ForgotPasswordMail($user));
 
             return redirect()->back()->with('success', "Password reset link sent to your email");
         } else {
-            return redirect()->back()->with('error', "Email Not Found");
+            return redirect()->back()->with('error', "Email Not Found or User is Deleted");
         }
     }
     public function reset($remember_token)

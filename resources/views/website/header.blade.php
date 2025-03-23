@@ -11,7 +11,7 @@
            <li><a href="{{ route('home') }}">Home</a></li>
            <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
            <li><a href="{{ route('event') }}">Events</a></li>
-           <li><a href="{{ route('resources') }}">Resources</a></li>
+           <li><a href="{{ route('materials') }}">Resources</a></li>
          </ul>
       </div>
    </nav>
@@ -24,7 +24,7 @@
         <li><a href="{{ route('home') }}">Home</a></li>
         <li><a href="{{ route(name: 'ministry') }}">Ministry</a></li>
         <li><a href="{{ route('event') }}">Events</a></li>
-        <li><a href="{{ route('resources') }}">Resources</a></li>
+        <li><a href="{{ route('materials') }}">Resources</a></li>
       </ul>
    </div>
 </div>

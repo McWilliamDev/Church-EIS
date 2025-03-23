@@ -23,7 +23,7 @@
                   <li class="mb-2"><a href="{{ route('home') }}" class="footer_link">Home</a></li>
                   <li class="mb-2"><a href="{{ route('ministry') }}" class="footer_link">Ministry</a></li>
                   <li class="mb-2"><a href="{{ route('event') }}" class="footer_link">Events</a></li>
-                  <li class="mb-2"><a href="{{ route('resources') }}" class="footer_link">Resources</a></li>
+                  <li class="mb-2"><a href="{{ route('materials') }}" class="footer_link">Resources</a></li>
               </ul>
           </div>
       </div>

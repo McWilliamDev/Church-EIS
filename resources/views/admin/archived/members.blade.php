@@ -78,7 +78,7 @@
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-                window.location.href = `/admin/archived/delete/${id}`;
+                window.location.href = `/admin/archived/delete/member/${id}`;
         }
     });
 }
