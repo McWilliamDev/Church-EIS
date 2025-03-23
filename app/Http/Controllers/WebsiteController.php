@@ -43,7 +43,7 @@ class WebsiteController extends Controller
 
         return view('website.event', compact('events'));
     }
-    public function resources()
+    public function materials()
     {
         $resources = DB::table('church_resources')
             ->where('is_delete', 0)

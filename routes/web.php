@@ -27,7 +27,7 @@ Route::get('/ministry', [WebsiteController::class, 'ministry'])->name('ministry'
 Route::get('/event', [WebsiteController::class, 'event'])->name('event');
 
 // Resources Page route
-Route::get('/resources', [WebsiteController::class, 'resources'])->name('resources');
+Route::get('/resources-materials', [WebsiteController::class, 'materials'])->name('materials');
 
 
 //Function for Login

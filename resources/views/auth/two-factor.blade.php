@@ -70,7 +70,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         localStorage.setItem('twoFactorExpiry', {{ $expiryTimestamp }});
     </script>
@@ -111,6 +111,7 @@
         }
 
         function resendCode() {
+            document.getElementById("resend-button").disabled = true; // Disable button while processing
             fetch('/two-factor/resend', {
                 method: 'POST',
                 headers: {
@@ -130,6 +131,9 @@
                 } else {
                     swal("Error!", "Failed to resend code.", "error");
                 }
+            })
+            .finally(() => {
+                document.getElementById("resend-button").disabled = false; // Re-enable button after processing
             });
         }
 
