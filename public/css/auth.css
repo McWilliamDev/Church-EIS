@@ -50,4 +50,6 @@ a:hover{
     background-size: cover;
     background-position: center;
 }
-
+.input-group-text {
+    cursor: pointer;
+}

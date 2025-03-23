@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 setcookie("session_cookie", "value", [
     'expires' => time() + 3600, // 1 hour
     'path' => '/',
@@ -10,7 +9,6 @@ setcookie("session_cookie", "value", [
     'httponly' => true, 
     'samesite' => 'Strict' 
 ]);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +17,6 @@ setcookie("session_cookie", "value", [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGGC - Login</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/auth.css') }}">
@@ -30,14 +27,13 @@ setcookie("session_cookie", "value", [
         <div class="row h-100">
             <!--Left Side-->
             <div class="row flex-grow-1">
-                <!-- Left Side -->
                 <div class="col-md-6 d-none d-md-block p-0">
                     <div class="full-height bg-cover">
                         <div class="d-flex flex-column justify-content-end h-100 p-5 text-white">
                             <i class="fas fa-quote-left fa-2x"></i>
                             <p class="mt-4">That person is like a tree planted by streams of water, which yields its fruit in season and
                                 whose leaf does not wither—whatever they do prospers.</p>
-                                <p><strong>-Psalms 1:3</strong></p>
+                            <p><strong>-Psalms 1:3</strong></p>
                         </div>
                     </div>
                 </div>
@@ -55,12 +51,11 @@ setcookie("session_cookie", "value", [
 
                     <div class="text-center mb-4">
                         <h3 class="fw-bold">Admin Login</h3>
-                        @include('alerts1')
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">
-                            <i class='bx bx-user'></i>
+                            <i class='fa-solid fa-user'></i>
                         </span>
                         <input type="email" class="form-control form-control-lg fs-6" required name="email"
                             placeholder="Email">
@@ -68,7 +63,7 @@ setcookie("session_cookie", "value", [
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">
-                            <i class='bx bx-lock-alt'></i>
+                            <i class='fa-solid fa-key'></i>
                         </span>
                         <input type="password" class="form-control form-control-lg fs-6" required name="password"
                             placeholder="Password">
@@ -93,6 +88,29 @@ setcookie("session_cookie", "value", [
         </div>
     </div>
     </div>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('sweetalert::alert')
+    @include('alerts')
+
+    <script>
+            @if(session('error'))
+                Swal.fire({
+                    title: "Error!",
+                    text: "{{ session('error') }}",
+                    icon: "error",
+                    confirmButtonText: "OK"
+                });
+            @endif
+    
+            // Check for success message in session
+            @if(session('success'))
+                Swal.fire({
+                    title: "Success!",text: "{{ session('success') }}",
+                    icon: "success",
+                    confirmButtonText: "OK"
+                });
+            @endif
+    </script>
+</body>
 </html>
