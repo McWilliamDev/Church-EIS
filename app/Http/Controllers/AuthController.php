@@ -80,36 +80,47 @@ class AuthController extends Controller
 
             return redirect()->back()->with('success', "Password reset link sent to your email");
         } else {
-            return redirect()->back()->with('error', "Email Not Found or User is Deleted");
+            return redirect()->back()->with('error', "Email Not Found");
         }
     }
     public function reset($remember_token)
     {
         $user = User::getTokenSingle($remember_token);
         if (!empty($user)) {
-            $data['$user'] = $user;
-            return view('auth.reset-password');
+            $data['user'] = $user; // Corrected variable name
+            return view('auth.reset-password', $data);
         } else {
             return redirect()->back()->with('error', "Invalid Token");
         }
     }
 
-    //Reset Password Function
+    // Reset Password Function
     public function PostReset($token, Request $request)
     {
-        if ($request->password == $request->confirmpassword) {
-            $user = User::getTokenSingle($token);
-            if ($user) {
-                $user->password = Hash::make($request->password);
-                $user->remember_token = Str::random(30);
-                $user->save();
+        // Define password validation rules
+        $rules = [
+            'password' => 'required|string|min:8|regex:/[A-Z]/|regex:/[a-z]/|regex:/[0-9]/|regex:/[@$!%*?&]/',
+            'confirmpassword' => 'required|string|same:password',
+        ];
 
-                return redirect('admin')->with('success', "Password Reset Successfully");
-            } else {
-                return redirect()->back()->with('error', "Invalid token!");
+        // Validate the request
+        $request->validate($rules);
+
+        $user = User::getTokenSingle($token);
+        if ($user) {
+            // Check if the new password is the same as the old password
+            if (Hash::check($request->password, $user->password)) {
+                return redirect()->back()->with('error', "New password cannot be the same as the old password.");
             }
+
+            // Update the password
+            $user->password = Hash::make($request->password);
+            $user->remember_token = Str::random(30);
+            $user->save();
+
+            return redirect('admin')->with('success', "Password Reset Successfully");
         } else {
-            return redirect()->back()->with('error', "Password and Confirm Password does not match");
+            return redirect()->back()->with('error', "Invalid token!");
         }
     }
 

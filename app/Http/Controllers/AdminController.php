@@ -26,6 +26,15 @@ class AdminController extends Controller
         request()->validate([
             'email' => 'required|email|unique:users',
             'phonenumber' => 'max:20|min:11',
+            'password' => [
+                'required',
+                'string',
+                'min:8', // Minimum length
+                'regex:/[A-Z]/', // At least one uppercase letter
+                'regex:/[a-z]/', // At least one lowercase letter
+                'regex:/[0-9]/', // At least one number
+                'regex:/[@$!%*?&]/', // At least one special character
+            ],
         ]);
         $admin = new User;
         $admin->name = trim($request->name);

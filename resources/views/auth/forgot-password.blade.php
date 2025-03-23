@@ -19,7 +19,6 @@ setcookie("session_cookie", "value", [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGGC - Forgot Password?</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ url('vendor/fontawesome-free/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url('css/auth.css') }}">
@@ -55,12 +54,11 @@ setcookie("session_cookie", "value", [
 
                     <div class="text-center mb-4">
                         <h3 class="fw-bold">Forgot Password</h3>
-                        @include('alerts1')
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text">
-                            <i class='bx bx-envelope'></i>
+                            <i class='fa-solid fa-envelope'></i>
                         </span>
                         <input type="email" class="form-control form-control-lg fs-6" required name="email"
                             placeholder="Email">
@@ -74,5 +72,27 @@ setcookie("session_cookie", "value", [
     </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('sweetalert::alert')
+
+<script>
+        @if(session('error'))
+            Swal.fire({
+                title: "Error!",
+                text: "{{ session('error') }}",
+                icon: "error",
+                confirmButtonText: "OK"
+            });
+        @endif
+
+        // Check for success message in session
+        @if(session('success'))
+            Swal.fire({
+                title: "Success!",text: "{{ session('success') }}",
+                icon: "success",
+                confirmButtonText: "OK"
+            });
+        @endif
+</script>
 
 </html>

@@ -54,6 +54,7 @@
             <div class="col-6">
                 <label class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" required placeholder="Password">
+                <div style="color: red">{{ $errors->first('password') }} Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
             </div>
 
             <div class="d-flex justify-content-evenly">
