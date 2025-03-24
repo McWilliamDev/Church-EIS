@@ -13,13 +13,13 @@ class UserController extends Controller
     public function list()
     {
         $data['getRecord'] = User::getUser();
-        $data['header_title'] = "Administrator List";
+        $data['header_title'] = "Board Members List";
         return view('admin.user.list', $data);
     }
 
     public function add()
     {
-        $data['header_title'] = "Add Administrator";
+        $data['header_title'] = "Add Board Member";
         return view('admin.user.add', $data);
     }
 
@@ -50,14 +50,14 @@ class UserController extends Controller
         $user->user_type = 'user';
         $user->save();
 
-        return redirect('admin/user/list')->with('success', "Admin successfully added");
+        return redirect('admin/user/list')->with('success', "Board Member successfully added");
     }
 
     public function edit($id)
     {
         $data['getRecord'] = User::getSingle($id);
         if (!empty($data['getRecord'])) {
-            $data['header_title'] = "Edit Administrator";
+            $data['header_title'] = "Edit Board Member";
             return view('admin.user.edit', $data);
         } else {
             return redirect('admin/user/list')->with('error', 'No Record Found');
@@ -99,7 +99,7 @@ class UserController extends Controller
         $user->user_type = 'user';
         $user->save();
 
-        return redirect('admin/user/list')->with('success', "Admin successfully updated");
+        return redirect('admin/user/list')->with('success', "Board Member successfully updated");
     }
     public function delete($id)
     {

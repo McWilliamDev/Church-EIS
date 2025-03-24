@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="col-sm-6">
-            <h3 class="fw-bold fs-4 my-3">Edit Administrator</h3>
+            <h3 class="fw-bold fs-4 my-3">Edit Board Member</h3>
         </div>
 
         <form class="row g-3" method="POST" action="" enctype="multipart/form-data">
