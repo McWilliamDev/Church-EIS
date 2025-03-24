@@ -95,7 +95,7 @@
         // SweetAlert confirmation dialog
         Swal.fire({
             title: 'Are you sure?',
-            text: `You are about to delete Administrator ${name}. This action cannot be undone!`,
+            text: `You are about to delete Board Member ${name}. This action cannot be undone!`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -106,7 +106,7 @@
                 // Proceed with deletion
                 Swal.fire({
                     title: "Deleted!",
-                    text: "Admin successfully deleted.",
+                    text: "Board Member successfully deleted.",
                     icon: "success"
                 }).then(() => {
                     // Redirect after confirmation
