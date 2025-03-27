@@ -365,7 +365,7 @@ button {
     text-transform: uppercase;
     font-family: georgia;
     margin-top: 10px;
-    padding-top: 00px;
+    padding-top: 30px;
 }
 
 .banner_taital2 {
@@ -493,7 +493,7 @@ button {
 .ministry_p {
     text-align: center;
     margin: 0 20 10 20px;
-    height: auto;
+    height: 120px;
     padding-bottom: 10px;
     font-size: 12px;
 }

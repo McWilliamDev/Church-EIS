@@ -32,7 +32,7 @@
                <div class="service_taital_main">
                   <h1 class="service_taital1">Saturday</h1>
 
-                  <p class="service_text">Our Prayer Fellowship is held every <b>Saturday from 6:00 PM to 7:00 PM</b> at Unity Hall (3rd floor) of Barangay South Signal Village Hall, 90 General Espino St, Taguig City</p>
+                  <p class="service_text">Our Prayer Fellowship is held every <b>Saturday from 6:00 PM to 7:00 PM</b> at B43 L28 Tulip St. Dreamland Subdivision, Hagonoy, Taguig City</p>
 
                   <p class="service_text" style="color: gray; font-size: 14px;">But if we walk in the light, as he is in the light, we have fellowship with one another, and the blood of Jesus, his Son, purifies us from all sin.</p>
                   <p class="service_verse"><i>1 John 1:7</i></p>
