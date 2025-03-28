@@ -30,8 +30,8 @@ setcookie("session_cookie", "value", [
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!-- Responsive-->
 <link rel="stylesheet" href="css/responsive.css">
-<!-- fevicon -->
-<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+<link rel="icon" type="image/png" href="{{ asset('/favicon-32x32.png') }}">
 <!-- Tweaks for older IEs-->
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 <!-- fonts -->
