@@ -107,9 +107,17 @@ class AdminController extends Controller
     }
     public function delete($id)
     {
-        $admin = User::getSingle($id);
-        $admin->is_delete = 1;
-        $admin->save();
-        return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
+        $admin = User::find($id);
+
+        if ($admin) {
+            if (!empty($admin->profile_pic) && file_exists('upload/profile/' . $admin->profile_pic)) {
+                unlink('upload/profile/' . $admin->profile_pic);
+            }
+            $admin->delete();
+
+            return redirect('admin/admin/list')->with('success', "Church Administrator successfully deleted");
+        } else {
+            return redirect('admin/admin/list')->with('error', 'No Record Found');
+        }
     }
 }

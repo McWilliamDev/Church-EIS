@@ -103,15 +103,8 @@
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                // Proceed with deletion
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Board Member successfully deleted.",
-                    icon: "success"
-                }).then(() => {
                     // Redirect after confirmation
                     window.location.href = '{{ url("admin/user/delete") }}/' + id;
-                });
             }
         });
     }
