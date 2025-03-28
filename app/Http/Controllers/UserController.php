@@ -103,12 +103,16 @@ class UserController extends Controller
     }
     public function delete($id)
     {
-        $getRecord = User::getSingle($id);
-        if (!empty($getRecord)) {
-            $getRecord->is_delete = 1;
-            $getRecord->save();
+        $getRecord = User::find($id);
 
-            return redirect('admin/user/list');
+        if ($getRecord) {
+            if (!empty($getRecord->profile_pic) && file_exists('upload/profile/' . $getRecord->profile_pic)) {
+                unlink('upload/profile/' . $getRecord->profile_pic);
+            }
+
+            $getRecord->delete();
+
+            return redirect('admin/user/list')->with('success', "Board Member successfully deleted");
         } else {
             return redirect()->back()->with('error', "No Record Found");
         }
