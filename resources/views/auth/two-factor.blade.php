@@ -50,7 +50,8 @@
                     <div id="timer" class="text-danger mb-3" aria-live="polite"></div>
 
                     <button type="submit" class="btn btn-success btn-lg w-100 mb-3">Submit</button>
-                    <button type="button" id="resend-button" class="btn btn-warning btn-lg w-100 mb-3" onclick="resendCode()" disabled>Resend Code</button>
+                    <button type="button" id="resend-button" class="btn btn-warning btn-lg w-100 mb-3" onclick="resendCode()" hidden>Resend Code</button>
+                    
                     @if ($errors->any())
                     <div class="text-danger">
                         @foreach ($errors->all() as $error)
@@ -111,7 +112,7 @@
 
             if (timeLeft <= 0) {
                 document.getElementById("timer").innerHTML = "Code expired!";
-                document.getElementById("resend-button").disabled = false;
+                document.getElementById("resend-button").hidden = false;
                 return;
             }
 
@@ -119,7 +120,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(countdown);
                     document.getElementById("timer").innerHTML = "Code expired!";
-                    document.getElementById("resend-button").disabled = false;
+                    document.getElementById("resend-button").hidden = false;
                 } else {
                     const minutes = Math.floor(timeLeft / 60);
                     const seconds = timeLeft % 60;
@@ -130,7 +131,7 @@
         }
 
         function resendCode() {
-            document.getElementById("resend-button").disabled = true; // Disable button while processing
+            document.getElementById("resend-button").hidden = true; // Disable button while processing
             fetch('/two-factor/resend', {
                 method: 'POST',
                 headers: {
@@ -152,7 +153,7 @@
                 }
             })
             .finally(() => {
-                document.getElementById("resend-button").disabled = false; // Re-enable button after processing
+                document.getElementById("resend-button").hidden = false; // Re-enable button after processing
             });
         }
 
