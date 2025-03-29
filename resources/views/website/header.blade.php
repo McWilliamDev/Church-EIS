@@ -33,24 +33,21 @@
    document.addEventListener("DOMContentLoaded", function() {
        const navToggle = document.getElementById("navbar-toggler");
        const navbarNav = document.getElementById("navbarNav");
-       const navLinks = navbarNav.querySelectorAll("a"); // Select all navbar links
+       const navLinks = navbarNav.querySelectorAll("a");
 
-       // Toggle navbar on button click
        navToggle.addEventListener("click", function() {
            navbarNav.classList.toggle("show");
        });
 
-       // Collapse navbar when a link is clicked
        navLinks.forEach(link => {
            link.addEventListener("click", function() {
-               navbarNav.classList.remove("show"); // Remove "show" to collapse
+               navbarNav.classList.remove("show");
            });
        });
    });
 </script>
 
 <style>
-   /* Ensure smooth transition */
    .collapse {
        display: none;
        transition: max-height 0.3s ease-in-out;
