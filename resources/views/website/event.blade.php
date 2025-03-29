@@ -32,8 +32,8 @@
 <div class="event_section layout_padding">
     <div class="container">
 
-      <h1 class="event_taital">Our <span>Events</span></h1>
-      <p class="event_text">Our events bring our community together through faith, fellowship, and meaningful activities that inspire spiritual growth and connection</p>
+      <h1 class="event_taital ">Our <span>Events</span></h1>
+      <p class="event_text ">Our events bring our community together through faith, fellowship, and meaningful activities that inspire spiritual growth and connection</p>
        @foreach($events as $post)
        <div class="card mb-3" style="border-radius: 10px;">
         <div class="row g-0" style="padding-bottom: 0px">
@@ -42,10 +42,10 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h3 class="card-title">{{ $post->title }}</h3>
-              <p class="card-text">{{ $post->description }}</p>
-              <br><p class="card-text"><small class="text-muted">{{ $post->date }}</small></p>
-              <p class="card-text"><small class="text-muted">{{ $post->location }}</small></p>
+              <h3 class="card-title block">{{ $post->title }}</h3>
+              <p class="card-text block">{{ $post->description }}</p>
+              <br><p class="card-text block"><small class="text-muted">{{ $post->date }}</small></p>
+              <p class="card-text block"><small class="text-muted">{{ $post->location }}</small></p>
             </div>
           </div>
         </div>

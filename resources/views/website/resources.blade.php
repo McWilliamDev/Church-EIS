@@ -30,8 +30,8 @@
 
 <div class="ministry_section layout_padding" id="resources">
     <div class="container">
-       <h1 class="ministry_taital">Our <span>Resources</span></h1>
-       <p class="resources_text">Our growth materials provide valuable resources to support spiritual development, leadership training, and community engagement for a stronger faith journey</p>
+       <h1 class="ministry_taital ">Our <span>Resources</span></h1>
+       <p class="resources_text ">Our growth materials provide valuable resources to support spiritual development, leadership training, and community engagement for a stronger faith journey</p>
 
        <div class="container">
         <div class="row">
@@ -43,11 +43,11 @@
                             <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img" class="resources-img" alt="..." style="width: 200px; height: 200px">
                         </div>
                         <div class="col-md-8">
-                            <div class="card-body" style="margin-bottom: 10px;">
-                                <h3 class="card-title">{{ $post->file_name }}</h3>
-                                <p class="card-text">{{ $post->description }}</p>
+                            <div class="card-body block" style="margin-bottom: 10px;">
+                                <h3 class="card-title block">{{ $post->file_name }}</h3>
+                                <p class="card-text block">{{ $post->description }}</p>
                                 <br>
-                                <a href="{{ asset('upload/resources/documents/' . $post->document) }}" class="file-download" download="{{ $post->file_name }}"> Download
+                                <a href="{{ asset('upload/resources/documents/' . $post->document) }}" class="file-download block" download="{{ $post->file_name }}"> Download
                                 </a>
                                 <br>
                             </div>

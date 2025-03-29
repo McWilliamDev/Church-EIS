@@ -63,19 +63,19 @@
             <div class="row stats-container">
 
                 <div class="col-12 col-md-3 stat-box">
-                    <i class="fas fa-user"></i>
-                    <h2>{{ $ministryCount }}</h2>
-                    <p>Ministries</p>
+                    <i class="fas fa-user block"></i>
+                    <h2 class="block">{{ $ministryCount }}</h2>
+                    <p class="block">Ministries</p>
                 </div>
                 <div class="col-12 col-md-3 stat-box">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h2>{{ $eventCount }}</h2>
-                    <p>Events</p>
+                    <i class="fas fa-calendar-alt block"></i>
+                    <h2 class="block">{{ $eventCount }}</h2>
+                    <p class="block">Events</p>
                 </div>
                 <div class="col-12 col-md-3 stat-box">
-                    <i class="fas fa-book"></i>
-                    <h2>{{ $resourceCount }}</h2>
-                    <p>Resources</p>
+                    <i class="fas fa-book block"></i>
+                    <h2 class="block">{{ $resourceCount }}</h2>
+                    <p class="block">Resources</p>
                 </div>
             </div>
         </div>
