@@ -28,8 +28,8 @@
 
 <div class="ministry_section layout_padding">
     <div class="container">
-       <h1 class="ministry_taital">Our <span>Ministries</span></h1>
-       <p class="ministry_text">Our ministries are dedicated to serving the community through faith, fellowship, and outreach, fostering spiritual growth and meaningful connections</p>
+       <h1 class="ministry_taital ">Our <span>Ministries</span></h1>
+       <p class="ministry_text ">Our ministries are dedicated to serving the community through faith, fellowship, and outreach, fostering spiritual growth and meaningful connections</p>
 
        <div class="ministry_section_2">
          <div class="row">
@@ -38,10 +38,10 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <img src="{{ $post->ministry_profile ? asset('upload/ministry/' . $post->ministry_profile) : asset('images/default-ministry.png') }}" class="ministry_img" alt="{{ $post->ministry_name }}">
-                        <div class="btn_main">
-                            <p class="ministry_name">{{ $post->ministry_name }}</p>
+                        <div class="btn_main block">
+                            <p class="ministry_name block">{{ $post->ministry_name }}</p>
                         </div>
-                        <p class="ministry_p">{{ $post->ministry_description }}</p>
+                        <p class="ministry_p block">{{ $post->ministry_description }}</p>
                     </div>
                 </div>
             @endif
