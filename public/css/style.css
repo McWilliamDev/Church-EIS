@@ -495,7 +495,7 @@ button {
     margin: 0 20 10 20px;
     height: 120px;
     padding-bottom: 10px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .ministry_text {
@@ -554,7 +554,7 @@ img {
 }
 
 .btn_main p {
-    font-size: 16px;
+    font-size: 18px;
     color: #056627;
     text-align: center;
     padding: 10px 0px;
@@ -602,8 +602,9 @@ img {
 }
 
 .service_taital1 {
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 5px;
     text-align: left;
     font-size: 45px;
     color: #056627; 
@@ -612,8 +613,8 @@ img {
 }
 
 .service_text {
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: 60px;
+    margin-right: 60px;
     float: left;
     font-size: 16px;
     color: #1f1f1f;
@@ -626,8 +627,8 @@ img {
     float: left;
     font-size: 16px;
     color: grey;
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: 60px;
+    margin-right: 60px;
     padding-top: 10px;
     padding-bottom: 30px;
 
@@ -1115,7 +1116,7 @@ h3 {
     border-radius: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .resources_text {
@@ -1161,13 +1162,13 @@ h3 {
 }
 
 .card-title {
-    color: rgb(5, 99, 36);
-    font-size: large;
+    color: #056627;
+    font-size: 18px;
     font-family: georgia;
 }
 
 .card-body p {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .close-btn {
@@ -1201,7 +1202,7 @@ h3 {
 }
 
 .card-body-announcements {
-        flex-grow: 1; /* Expands to fill space */
+        flex-grow: 1;
 }
 
 .announcements-text {
@@ -1315,7 +1316,16 @@ span {
 .block {
     animation: appear linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 25%;
+    animation-range: entry 0% cover 5%;
+}
+
+.text-muted {
+    font-size: 14px;
+}
+
+.modal-content {
+    width: 70%;
+    margin: auto;
 }
 
 

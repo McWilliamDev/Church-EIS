@@ -33,7 +33,7 @@
                                         <div class="row g-0 align-items-center w-100">
                                             <div class="col-md-12 d-flex">
                                                 <div class="card-body-announcements flex-grow-1">
-                                                    <h3 class="card-title">{{ $post->title }}</h3>
+                                                    <h3 class="card-title" style="color: black; margin-bottom: 0px;">{{ $post->title }}</h3>
                                                     <p class="card-text"><small class="text-muted">{{ $post->notice_date }}</small></p>
                                                     <br>
                                                     <p class="announcements-text">{{ $post->description }}</p>

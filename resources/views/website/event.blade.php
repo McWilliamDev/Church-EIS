@@ -34,26 +34,59 @@
 
       <h1 class="event_taital ">Our <span>Events</span></h1>
       <p class="event_text ">Our events bring our community together through faith, fellowship, and meaningful activities that inspire spiritual growth and connection</p>
-       @foreach($events as $post)
-       <div class="card mb-3" style="border-radius: 10px;">
-        <div class="row g-0" style="padding-bottom: 0px">
-          <div class="col-md-4">
-            <img src="{{ asset('upload/featured/' . $post->featured_image) }}" class="img-fluid rounded-start" alt="Image">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h3 class="card-title block">{{ $post->title }}</h3>
-              <p class="card-text block">{{ $post->description }}</p>
-              <br><p class="card-text block"><small class="text-muted">{{ $post->date }}</small></p>
-              <p class="card-text block"><small class="text-muted">{{ $post->location }}</small></p>
+      
+
+      <div class="container">
+        <div class="row">
+            @foreach($events as $post)
+            <div class="col-md-6 col-12">
+                <div class="card mb-3" style="border-radius: 10px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 d-flex align-items-center justify-content-center">
+                            <div class="image-container">
+                                <img src="{{ asset('upload/featured/' . $post->featured_image) }}" class="card-img" alt="..." />
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body" style="margin-bottom: 10px;">
+                                <h3 class="card-title">{{ $post->title }}</h3>
+                                <p class="card-text">{{ $post->description }}</p>
+                                <br>
+                                <p class="card-text"><small class="text-muted">{{ $post->date }}</small></p>
+                                <p class="card-text"><small class="text-muted">{{ $post->location }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            @endforeach
         </div>
-      </div>
-      @endforeach
+    </div>
+  
+
+
+    </div>
     </div>
  </div>
 
           <!-- footer section start -->
           @include('website.footer')
           <!-- footer section end -->
+
+    <style>
+        .image-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            min-height: 100%;
+            object-fit: cover;
+        }
+    </style>
