@@ -39,10 +39,10 @@
             <div class="col-md-6 col-12">
                 <div class="card mb-3" style="border-radius: 10px;">
                     <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img" class="resources-img" alt="..." style="width: 200px; height: 200px">
+                        <div class="col-md-6">
+                            <img src="{{ asset('upload/resources/' . $post->file_image) }}" class="card-img resources-img" alt="..." style="height: 200px; width: 100%; object-fit: cover; align-items: center; margin: auto;">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card-body block" style="margin-bottom: 10px;">
                                 <h3 class="card-title block">{{ $post->file_name }}</h3>
                                 <p class="card-text block">{{ $post->description }}</p>
@@ -55,12 +55,32 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
+
+
     </div>
  </div>
 
            <!-- footer section start -->
            @include('website.footer')
            <!-- footer section end -->
+
+           <style>
+            .image-container {
+                width: 100%;
+                height: 200px;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .image-container img {
+                width: 100%;
+                height: auto;
+                min-height: 100%;
+                object-fit: cover;
+            }
+        </style>
