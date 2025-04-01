@@ -68,6 +68,7 @@
 
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-start py-2 small-box bg-danger-subtle">
+                            <a href="{{ url('admin/events/list') }}">
                             <div class="card-body">
                                 <div class="row g-0 align-items-center">
                                     <div class="col">
@@ -81,6 +82,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,7 @@ class EventsModel extends Model
     public static function getUpcomingEvents()
     {
         $today = now();
-        $nextWeek = now()->addDays(7);
+        $nextWeek = now()->addDays(30);
 
         return self::whereBetween('date', [$today, $nextWeek])
             ->select('events.*', 'users.name as created_by')

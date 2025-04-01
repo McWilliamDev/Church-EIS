@@ -13,7 +13,7 @@ class WebsiteController extends Controller
         $ministryCount = DB::table('ministry')->where('is_delete', 0)->count();
         $eventCount = DB::table('events')
             ->where('date', '>', Carbon::now())
-            ->where('date', '<=', Carbon::now()->addDays(15))
+            ->where('date', '<=', Carbon::now()->addDays(30))
             ->count();
         $resourceCount = DB::table('church_resources')->where('is_delete', 0)->count();
         $announcements = DB::table('announcements')
@@ -34,7 +34,7 @@ class WebsiteController extends Controller
     public function event()
     {
         $today = Carbon::today();
-        $nextTwoWeeks = $today->copy()->addDays(15);
+        $nextTwoWeeks = $today->copy()->addDays(31);
 
         $events = DB::table('events')
             ->whereBetween('date', [$today, $nextTwoWeeks])

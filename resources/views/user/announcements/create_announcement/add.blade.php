@@ -17,15 +17,10 @@
                 <label class="form-label">Notice Date</label>
                 <input type="date" class="form-control" name="notice_date" min="{{ date('Y-m-d') }}" required>
             </div>
-            
-            <div class="col-12">
-                <label class="form-label">Publish Date</label>
-                <input type="date" class="form-control" name="publish_date" min="{{ date('Y-m-d') }}" required>
-            </div>
 
             <div class="col-12">
                 <label class="form-label">Description</label>
-                <textarea id="summernote" class="form-control" name="description" style="height: 300px"></textarea>
+                <textarea  class="form-control" name="description" maxlength="250" rows="4" placeholder="Maximum 250 Characters"></textarea>
             </div>
 
             <div class="d-flex justify-content-evenly">
