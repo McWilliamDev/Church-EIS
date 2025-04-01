@@ -19,7 +19,7 @@ a:hover{
     vertical-align: text-top;
 }
 .bg-cover {
-    background-image: url('/images/auth_logo.png');
+    background-image: url('/images/auth_logo.jpg');
     background-size: cover; 
     background-position: center; 
     color: white;

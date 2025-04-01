@@ -31,7 +31,7 @@
 
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
-            <input type="text" class="form-control" id="type" name="type" placeholder="Ex: Expenses, Donation etc."required>
+            <input type="text" class="form-control" id="type" name="type" placeholder="Ex: Donation, Tithes etc."required>
         </div>
 
         <div class="mb-3">
