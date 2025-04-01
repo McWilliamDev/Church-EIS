@@ -84,44 +84,47 @@ class MembersController extends Controller
     public function edit($id)
     {
         $data['getRecord'] = MembersModel::getSingle($id);
-        if (!empty($data['getRecord'])) {
-            // Check if the record is locked
-            if ($data['getRecord']->locked_by && $data['getRecord']->locked_by !== Auth::id()) {
-                // Check if the lock has expired (e.g., 15 minutes)
-                if ($data['getRecord']->locked_at && now()->diffInMinutes($data['getRecord']->locked_at) > 15) {
-                    // Unlock the record
-                    $data['getRecord']->update([
-                        'locked_by' => null,
-                        'locked_at' => null,
-                    ]);
-                } else {
-                    return redirect('admin/member/list')->with('error', 'This member is currently being modified by another admin.');
-                }
-            }
 
-            // Lock the record
-            $data['getRecord']->update([
-                'locked_by' => Auth::id(),
-                'locked_at' => now(),
-            ]);
-
-            $data['getMinistry'] = MinistryModel::getRecord();
-            $data['header_title'] = "Edit Member";
-
-            if (Auth::check()) {
-                if (Auth::user()->user_type == 'admin') {
-                    return view('admin.member.edit', $data);
-                } elseif (Auth::user()->user_type == 'user') {
-                    return view('user.member.edit', $data);
-                } else {
-                    return redirect('admin/member/list')->with('error', 'No Record Found');
-                }
-            } else {
-                return redirect('login')->with('error', 'Please log in to edit the members');
-            }
-        } else {
+        if (empty($data['getRecord'])) {
             return redirect('admin/member/list')->with('error', 'Member Not Found');
         }
+
+        // Check if the record is locked
+        if ($data['getRecord']->locked_by && $data['getRecord']->locked_by !== Auth::id()) {
+            // Check if the lock has expired (e.g., 15 minutes)
+            if ($data['getRecord']->locked_at && now()->diffInMinutes($data['getRecord']->locked_at) > 15) {
+                // Unlock the record
+                $data['getRecord']->update([
+                    'locked_by' => null,
+                    'locked_at' => null,
+                ]);
+            } else {
+                // If the lock has not expired, redirect with an error message
+                return redirect(Auth::user()->user_type == 'admin' ? 'admin/member/list' : 'user/member/list')
+                    ->with('error', 'This member is currently being modified by another admin.');
+            }
+        }
+
+        // Lock the record for the current user
+        $data['getRecord']->update([
+            'locked_by' => Auth::id(),
+            'locked_at' => now(),
+        ]);
+
+        // Load additional data for the view
+        $data['getMinistry'] = MinistryModel::getRecord();
+        $data['header_title'] = "Edit Member";
+
+        // Return the appropriate view based on user type
+        if (Auth::check()) {
+            if (Auth::user()->user_type == 'admin') {
+                return view('admin.member.edit', $data);
+            } elseif (Auth::user()->user_type == 'user') {
+                return view('user.member.edit', $data);
+            }
+        }
+
+        return redirect('login')->with('error', 'Please log in to edit the members');
     }
     public function update(Request $request, $id)
     {
