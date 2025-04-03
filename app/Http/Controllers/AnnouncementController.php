@@ -175,7 +175,7 @@ class AnnouncementController extends Controller
 
         $data['getRecord'] = AnnouncementModel::whereDate('notice_date', '>=', $today)
             ->whereDate('notice_date', '<=', $futureDate)
-            ->orderBy('notice_date', 'asc')
+            ->orderBy('notice_date', 'desc')
             ->get();
 
         return view('user.announcements.create_announcement.list', $data);

@@ -15,7 +15,7 @@ class EventsModel extends Model
     {
         $return = EventsModel::select('events.*', 'users.name as created_by')
             ->join('users', 'users.id', 'events.created_by')
-            ->orderBy('events.id', 'asc')
+            ->orderBy('events.id', 'desc')
             ->paginate(999999);
 
         return $return;
@@ -37,7 +37,7 @@ class EventsModel extends Model
         return self::whereBetween('date', [$today, $nextWeek])
             ->select('events.*', 'users.name as created_by')
             ->join('users', 'users.id', 'events.created_by')
-            ->orderBy('events.date', 'asc')
+            ->orderBy('events.date', 'desc')
             ->get();
     }
 }

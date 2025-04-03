@@ -25,6 +25,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-body">
+                        <h3>Announcement</h3>
                         <div id="announcementCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
                             <div class="carousel-inner">
                                 @foreach ($announcements as $index => $post)
