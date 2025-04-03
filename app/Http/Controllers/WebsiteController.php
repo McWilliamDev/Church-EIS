@@ -38,7 +38,7 @@ class WebsiteController extends Controller
 
         $events = DB::table('events')
             ->whereBetween('date', [$today, $nextTwoWeeks])
-            ->orderBy('date', 'asc')
+            ->orderBy('date', 'desc')
             ->get();
 
         return view('website.event', compact('events'));

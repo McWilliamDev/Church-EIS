@@ -26,8 +26,6 @@
                 <label class="form-label">Position</label>
                 <select class="form-select" required name="position">
                     <option value="">Select Position</option>
-                    <option {{ old('position') == 'Senior Pastor' ? 'selected' : '' }} value="Senior Pastor">Senior Pastor</option>
-                    <option {{ old('position') == 'Lead Pastor' ? 'selected' : '' }} value="Lead Pastor">Lead Pastor</option>
                     <option {{ old('position') == 'Assigned Administrator' ? 'selected' : '' }} value="Assigned Administrator">Assigned Administrator</option>
                     <option {{ old('position') == 'Board Member' ? 'selected' : '' }} value="Board Member">Board Member</option>
                 </select>
@@ -49,14 +47,15 @@
             </div>
 
             <div class="col-6">
-                <label class="form-label">Password<span style="color: red;">*</span></label>
-                <input type="password" class="form-control" name="password" required placeholder="Password">
-            </div>
-
-            <div class="col-6">
                 <label class="form-label">Profile Picture</label>
                 <input type="file" class="form-control" name="profile_pic">
                 <div style="color: red">{{ $errors->first('profile_pic') }}</div>
+            </div>
+
+            <div class="col-6">
+                <label class="form-label">Password<span style="color: red;">*</span></label>
+                <input type="password" class="form-control" name="password" required placeholder="Password">
+                <div style="color: red">Password must be at least 8 characters long, include at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
             </div>
 
             <div class="d-flex justify-content-evenly">

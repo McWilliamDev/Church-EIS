@@ -14,6 +14,52 @@
             <a href="{{ url('admin/member/add') }}" class="btn my-2">Add Church Member</a>
         </div>
         
+        <div class="card p-2 g-col-6 mb-4">
+            <div class="card-header">
+                <h5 class="fw-bold fs-5">Search Member</h5>
+            </div>
+
+            <form method="get" action="">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-2">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"
+                                placeholder="Name">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" value="{{ Request::get('email') }}"
+                                name="email" placeholder="Email">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="date">Phone No.</label>
+                            <input type="text" class="form-control" value="{{ Request::get('phonenumber') }}"
+                                name="phonenumber" placeholder="Phone Number">
+                        </div>
+
+                        <div class="form-group col-md-2">
+                            <label for="date">Member Status</label>
+                            <select class="form-select" name="member_status">
+                                <option value="">Select Status</option>
+                                <option {{ Request::get('member_status') == 100 ? 'selected' : '' }} value="100">
+                                    Active</option>
+                                <option {{ Request::get('member_status') == 1 ? 'selected' : '' }} value="1">
+                                    Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3 d-flex align-items-end">
+                            <button class="btn btn-primary me-2" type="submit">Search</button>
+                            <a href="{{ url('admin/member/list') }}" class="btn btn-danger">Reset</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <div class="card shadow-lg mb-4">
             <div class="py-2">
                 <h6 class="my-0 fs-5 fw-bold">List of Church Members</h6>
