@@ -40,6 +40,57 @@
             <!--Footer end HERE-->
         </div>
     </div>
+    <script>
+        let inactivityTime = function () {
+            let timeout;
+            let countdownTimer;
+    
+            const resetTimer = () => {
+                clearTimeout(timeout);
+                clearInterval(countdownTimer);
+                timeout = setTimeout(() => {
+                    let countdown = 60; // 60 seconds countdown
+                    Swal.fire({
+                        title: 'Inactivity Alert',
+                        text: "You have been inactive. You will be logged out in " + countdown + " seconds.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Stay Logged In',
+                        cancelButtonText: 'Log Me Out',
+                        timer: 60000, // 30 seconds
+                        timerProgressBar: true,
+                        onBeforeOpen: () => {
+                            Swal.showLoading();
+                            countdownTimer = setInterval(() => {
+                                countdown--;
+                                Swal.getContent().querySelector('strong').textContent = countdown;
+                                if (countdown <= 0) {
+                                    clearInterval(countdownTimer);
+                                    window.location.href = '/logout'; 
+                                }
+                            }, 1000);
+                        }
+                    }).then((result) => {
+                        clearInterval(countdownTimer);
+                        if (result.isConfirmed) {
+                            // User is still there, reset the timer
+                            resetTimer();
+                        } else {
+                            // User chose to log out
+                            window.location.href = '/logout'; 
+                        }
+                    });
+                }, 300000); // 5 minutes
+            };
+    
+            // Events to reset the timer
+            window.onload = resetTimer;
+            document.onmousemove = resetTimer;
+            document.onkeypress = resetTimer;
+        };
+    
+        inactivityTime();
+    </script>
     <!-- jQuery (must be loaded first) -->
     <script src="{{ url('plugins/jquery-3.7.1.min.js') }}"></script>
 
@@ -53,9 +104,55 @@
     <script src="{{ url('summernote-0.9.0-dist/summernote-bs5.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#financeTable').DataTable();
-});
+    let inactivityTime = function () {
+        let timeout;
+        let countdownTimer;
+
+        const resetTimer = () => {
+            clearTimeout(timeout);
+            clearInterval(countdownTimer);
+            timeout = setTimeout(() => {
+                let countdown = 60; // 60 seconds countdown
+                Swal.fire({
+                    title: 'Inactivity Alert',
+                    text: "You have been inactive. You will be logged out in " + countdown + " seconds.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Stay Logged In',
+                    cancelButtonText: 'Log Me Out',
+                    timer: 60000, // 30 seconds
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                        countdownTimer = setInterval(() => {
+                            countdown--;
+                            Swal.getContent().querySelector('strong').textContent = countdown;
+                            if (countdown <= 0) {
+                                clearInterval(countdownTimer);
+                                window.location.href = '/logout'; 
+                            }
+                        }, 1000);
+                    }
+                }).then((result) => {
+                    clearInterval(countdownTimer);
+                    if (result.isConfirmed) {
+                        // User is still there, reset the timer
+                        resetTimer();
+                    } else {
+                        // User chose to log out
+                        window.location.href = '/logout'; 
+                    }
+                });
+            }, 300000); // 5 minutes
+        };
+
+        // Events to reset the timer
+        window.onload = resetTimer;
+        document.onmousemove = resetTimer;
+        document.onkeypress = resetTimer;
+    };
+
+    inactivityTime();
 </script>
 @yield('script')
     <!-- Chart.js -->

@@ -95,4 +95,10 @@ class MembersModel extends Model
             ->get();
         return $return;
     }
+    public static function getInactiveMembers()
+    {
+        return self::where('member_status', 1) //  1 means inactive
+            ->where('updated_at', '<=', now()->subMonths(3))
+            ->get();
+    }
 }

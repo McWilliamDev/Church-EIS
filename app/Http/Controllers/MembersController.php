@@ -229,4 +229,20 @@ class MembersController extends Controller
         }
         return redirect('admin/archived/members')->with('error', 'Member not found.');
     }
+    public function archiveInactiveMembers()
+    {
+        // Get the current date
+        $currentDate = now();
+
+        // Find members who have been inactive for more than 3 months
+        $inactiveMembers = MembersModel::where('member_status', 1) // Assuming 1 means inactive
+            ->where('updated_at', '<=', $currentDate->subMonths(3))
+            ->get();
+
+        foreach ($inactiveMembers as $member) {
+            // Move to archived
+            $member->is_delete = 1; // Mark as archived
+            $member->save();
+        }
+    }
 }
