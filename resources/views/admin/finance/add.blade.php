@@ -31,17 +31,29 @@
 
         <div class="mb-3">
             <label for="type" class="form-label">Type</label>
-            <input type="text" class="form-control" id="type" name="type" placeholder="Ex: Donation, Tithes etc."required>
+            <select class="form-select" required name="type">
+                <option value="">Select Type</option>
+                <option {{ old('type') == 'Donation' ? 'selected' : '' }} value="Donation">Donation</option>
+                <option {{ old('type') == 'First Fruits' ? 'selected' : '' }} value="First Fruits">First Fruits</option>
+                <option {{ old('type') == 'Love Gifts' ? 'selected' : '' }} value="Love Gifts">Love Gifts</option>
+                <option {{ old('type') == 'Offering' ? 'selected' : '' }} value="Offering">Offerings</option>
+                <option {{ old('type') == 'Pledge' ? 'selected' : '' }} value="Pledge">Pledge</option>
+                <option {{ old('type') == 'Sacrifice' ? 'selected' : '' }} value="Sacrifice">Sacrifice</option>
+                <option {{ old('type') == 'Sacrificial Giving' ? 'selected' : '' }} value="Sacrificial Giving">Sacrificial Giving</option>
+                <option {{ old('type') == 'Seed' ? 'selected' : '' }} value="Seed">Seed</option>
+                <option {{ old('type') == 'Tithes' ? 'selected' : '' }} value="Tithes">Tithes</option>
+            </select>
+            <div style="color: red">{{ $errors->first('position') }}</div>
         </div>
 
         <div class="mb-3">
-            <label for="amount" class="form-label">Price</label>
-            <input type="number" class="form-control" id="amount" name="amount" min="1" value="1" required>
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter Amount" required>
         </div>
 
         <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="date" name="date" required>
+            <input type="date" class="form-control" id="date" name="date" max="{{ date('Y-m-d') }}" required>
         </div>
 
         <div class="mb-3">
@@ -49,10 +61,10 @@
             <textarea class="form-control" id="purpose" name="purpose" maxlength="150" rows="3" placeholder="Maximum 150 Characters"></textarea>
         </div>
         <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-secondary"  onclick="redirectToReports()">Cancel</button>
+            <button type="button" class="btn btn-secondary" onclick="redirectToReports()">Cancel</button>
             <button type="submit" class="btn btn-primary ms-3">Save</button>
         </div>
-        
+    
     </form>
 </div>
 

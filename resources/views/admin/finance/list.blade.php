@@ -7,8 +7,6 @@
     if (!$activeTab) {
         $activeTab = session('success') ? 'reports' : 'analytics';
     }
-
-    // Ensure 'reports' is selected if there are no reports
     if ($activeTab === 'analytics' && $reports->isEmpty()) {
         $activeTab = 'reports';
     }
@@ -23,6 +21,9 @@
             </li>
             <li class="nav-item">
                 <p class="nav-link c-pointer {{ $activeTab == 'reports' ? 'active' : '' }}" id="reports-tab" onclick="openTab('reports')">Finance Reports</p>
+            </li>
+            <li class="nav-item">
+                <p class="nav-link c-pointer {{ $activeTab == 'member-report' ? 'active' : '' }}" id="member-report-tab" onclick="openTab('member-report')">Member Report</p>
             </li>
         </ul>
     </div>
@@ -45,17 +46,10 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-xxl-6">
+            <div class="col-12">
                 <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center" style="height: 560px; width: 100%;">  
+                    <div class="d-flex justify-content-center" style="height: 560px;">  
                         <canvas id="barChart" style="height: 100%; width: 100%"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-xxl-6">
-                <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-center" style="max-height: 500px; width: 100%;">  
-                        <canvas id="pieChart" class="mt-4" style="height: 100%; width: 100%"></canvas>
                     </div>
                 </div>
             </div>
@@ -63,14 +57,14 @@
         @endif
     </div>
 
-
     <div id="reports-content" class="tab-content {{ $activeTab == 'reports' ? '' : 'd-none' }}">
         <div class="row mt-4">
             <div class="col-6">
                 <h3 class="fw-bold fs-4 my-3">Finance Reports</h3>
             </div>
-            <div class="col-6 d-flex align-items-center justify-content-end">
-                <a href="{{ route('finance.add') }}" class="btn btn-primary">Add Finance</a>
+
+            <div class="col-sm-6 button-list" style="text-align: right">
+                <a href="{{ route('finance.add') }}" class="btn my-2">Add Finance</a>
             </div>
         </div>
 
@@ -86,7 +80,6 @@
                     <th scope="col">Type</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Purpose</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
@@ -97,10 +90,9 @@
                     <td>{{ $report->type }}</td>
                     <td>{{ $report->amount }}</td>
                     <td>{{ date('d/m/Y', strtotime($report->date)) }}</td>
-                    <td class="break-word">{{ $report->purpose }}</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="{{ url('admin/finance/edit', $report->id) }}">Edit</a>
-                        <a class="btn btn-danger btn-sm" href="javascript:void(0);" onclick="deleteReport({{ $report->id }})">Delete</a>
+                        <a class="btn btn-success btn-sm" href="{{ route('finance.receipt.view', $report->id) }}">Print Receipt</a>
                     </td>
                 </tr>
                 @endforeach
@@ -109,24 +101,73 @@
         @endif
         
     </div>
+
+    <div id="member-report-content" class="tab-content {{ $activeTab == 'member-report' ? '' : 'd-none' }}">
+        <div class="mt-4">
+            <h3 class="fw-bold fs-4 my-3">Generate Member Contribution Report</h3>
+    
+            <form method="GET" action="{{ route('finance.memberReport') }}" class="row g-3 mb-4">
+                <input type="hidden" name="tab" value="member-report">
+                <div class="col-md-4">
+                    <label for="member_id" class="form-label">Select Member</label>
+                    <select name="member_id" class="form-select select2" required>
+                        <option value="">Member Name</option>
+                        @foreach(App\Models\MembersModel::all() as $member)
+                            <option value="{{ $member->id }}">{{ $member->name }} {{ $member->last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+    
+                <div class="col-md-3">
+                    <label for="from" class="form-label">From (Date)</label>
+                    <input type="month" name="from" class="form-control" required>
+                </div>
+    
+                <div class="col-md-3">
+                    <label for="to" class="form-label">To (Date)</label>
+                    <input type="month" name="to" class="form-control" required>
+                </div>
+    
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Generate</button>
+                </div>
+            </form>
+    
+            @isset($memberReport)
+                <p><strong>Member Name:</strong> {{ $member->name }} {{ $member->last_name }}</p>
+                <div class="alert alert-info">Total Contributions: <strong>₱{{ number_format($memberReport['total'], 2) }}</strong></div>
+        
+                <ul class="list-group mt-3">
+                    @foreach ($memberReport['details'] as $item)
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{{ \Carbon\Carbon::parse($item->date)->format('F Y') }} - {{ $item->type }}</span>
+                            <span>₱{{ number_format($item->amount, 2) }}</span>
+                        </li>
+                    @endforeach
+                </ul>
+        
+            <div class="d-flex justify-content-center">
+                <a href="{{ route('finance.memberReport.pdf', ['member_id' => request('member_id'), 'from' => request('from'), 'to' => request('to')]) }}" class="btn btn-success mt-3">Download PDF</a>
+            </div>            
+            @endisset
+        </div>
+    </div>
 </div>
-@if (isset($report) && $report->id)
-    <form id="delete-form-{{ $report->id }}" action="{{ route('finance.delete', $report->id) }}" method="POST" style="display: none;">
-        @csrf
-        @method('DELETE')
-    </form>
-@endif
 
 @endsection
 
 @push('scripts')
 
 <script>
-            $(document).ready(function() {
-            $('#financeTable').DataTable();
-        });
 
-var barChart, pieChart;
+    $(document).ready(function() {
+    $('#financeTable').DataTable();
+    $('.select2').select2({
+        placeholder: "Select a member",           
+    });      
+});
+
+var barChart;
 var viewData = "";
 var reportsData = @json($reports);
 
@@ -182,7 +223,6 @@ yearlyData = yearsList.map(year => yearlyTotals[year]);
 
 
     var barCanvas = document.getElementById('barChart').getContext('2d');
-    var pieCanvas = document.getElementById('pieChart').getContext('2d');
 
     // Initialize Bar Chart
     barChart = new Chart(barCanvas, {
@@ -249,48 +289,6 @@ yearlyData = yearsList.map(year => yearlyTotals[year]);
             } 
         }
     });
-
-    // Initialize Pie Chart
-    pieChart = new Chart(pieCanvas, {
-        type: 'doughnut',
-        data: {
-            labels: monthlyLabels,
-            datasets: [{
-                label: 'Total Amount (Monthly)',
-                data: monthlyData,
-                backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',   // Red
-                'rgba(54, 162, 235, 0.2)',   // Blue
-                'rgba(255, 206, 86, 0.2)',   // Yellow
-                'rgba(75, 192, 192, 0.2)',   // Teal
-                'rgba(153, 102, 255, 0.2)',  // Purple
-                'rgba(255, 159, 64, 0.2)',   // Orange
-                'rgba(201, 203, 207, 0.2)',  // Gray
-                'rgba(0, 128, 0, 0.2)',      // Green
-                'rgba(128, 0, 128, 0.2)',    // Dark Purple
-                'rgba(255, 165, 0, 0.2)',    // Deep Orange
-                'rgba(0, 255, 255, 0.2)',    // Cyan
-                'rgba(255, 20, 147, 0.2)'    // Deep Pink
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(201, 203, 207, 1)',
-                'rgba(0, 128, 0, 1)',
-                'rgba(128, 0, 128, 1)',
-                'rgba(255, 165, 0, 1)',
-                'rgba(0, 255, 255, 1)',
-                'rgba(255, 20, 147, 1)'
-            ],
-                borderWidth: 1
-            }]
-        },
-        options: { responsive: true }
-    });
 });
 
 // Sort by Monthly or Yearly
@@ -302,47 +300,26 @@ function sortBy(event) {
         barChart.data.datasets[0].data = yearlyData;
         barChart.data.datasets[0].label = 'Total Amount (Yearly)';
 
-        pieChart.data.labels = yearlyLabels;
-        pieChart.data.datasets[0].data = yearlyData;
-        pieChart.data.datasets[0].label = 'Total Amount (Yearly)';
     } else {
         barChart.data.labels = monthlyLabels;
         barChart.data.datasets[0].data = monthlyData;
         barChart.data.datasets[0].label = 'Total Amount (Monthly)';
-
-        pieChart.data.labels = monthlyLabels;
-        pieChart.data.datasets[0].data = monthlyData;
-        pieChart.data.datasets[0].label = 'Total Amount (Monthly)';
     }
 
     barChart.update();
-    pieChart.update();
 }
 
-    function openTab(tabName) {
-        document.querySelectorAll('.nav-link').forEach(tab => tab.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.add('d-none'));
+function openTab(tabName) {
+    // Remove active class and hide all tab contents
+    document.querySelectorAll('.nav-link').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.add('d-none'));
 
-        document.getElementById(tabName + '-tab').classList.add('active');
-        document.getElementById(tabName + '-content').classList.remove('d-none');
-    }
+    // Set the active tab in the UI
+    document.getElementById(tabName + '-tab').classList.add('active');
+    document.getElementById(tabName + '-content').classList.remove('d-none');
 
-    function deleteReport(id) {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!",
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('delete-form-' + id).submit();
-            }
-        });
-    }
+    history.pushState(null, '', '?tab=' + tabName);
+}
 </script>
 @include('sweetalert::alert')
 @endpush

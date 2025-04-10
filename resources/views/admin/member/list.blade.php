@@ -110,7 +110,7 @@
                                             
                                         <a href="{{ url('admin/member/delete', $value->id) }}"
                                             class="btn btn-danger btn-sm"
-                                            onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Delete</a>
+                                            onclick="confirmDelete(event, {{ $value->id }}, '{{ $value->name }}')">Archive</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -134,12 +134,12 @@
     // SweetAlert confirmation dialog
     Swal.fire({
         title: 'Are you sure?',
-        text: `You are about to delete this Church Member: ${name}. This action cannot be undone!`,
+        text: `You are about to move this Church Member: ${name} to archive.`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, Move to Archive'
     }).then((result) => {
         if (result.isConfirmed) {
                 window.location.href = `/admin/member/delete/${id}`;
