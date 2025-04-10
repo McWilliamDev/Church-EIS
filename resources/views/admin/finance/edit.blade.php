@@ -37,7 +37,7 @@
         <div class="mb-3">
             <label for="type" class="form-label">Date</label>
             <input type="date" class="form-control" id="date" name="date" 
-                value="{{ $report->date }}" required>
+                value="{{ $report->date }}" required max="{{ date('Y-m-d') }}">
         </div>
     
         <div class="mb-3">
@@ -53,12 +53,6 @@
     </form>
     
 </div>
-
-
-
-
-
-
 
 @endsection
 

@@ -127,7 +127,10 @@ Route::group(['middleware' => ['admin', 'twofactor']], function () {
     Route::get('admin/finance/add', [FinanceController::class, 'add'])->name('finance.add');
     Route::get('/admin/finance/edit/{id}', [FinanceController::class, 'edit'])->name('finance.edit');
     Route::put('/admin/finance/update/{id}', [FinanceController::class, 'update'])->name('finance.update');
-    Route::delete('admin/finance/delete/{id}', [FinanceController::class, 'delete'])->name('finance.delete');
+    Route::get('/admin/finance/receipt/view/{id}', [FinanceController::class, 'viewReceipt'])->name('finance.receipt.view');
+    Route::get('/admin/finance/receipt/download/{id}', [FinanceController::class, 'downloadReceipt'])->name('finance.receipt.download');
+    Route::get('/admin/finance/member-report', [FinanceController::class, 'memberReport'])->name('finance.memberReport');
+    Route::get('/admin/finance/member-report/pdf', [FinanceController::class, 'exportMemberReportPDF'])->name('finance.memberReport.pdf');
 
 
     //Church Resources Route

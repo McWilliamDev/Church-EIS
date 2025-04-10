@@ -194,7 +194,7 @@ class MembersController extends Controller
             $getRecord->is_delete = 1; // Mark the member as deleted
             $getRecord->save();
 
-            return redirect()->back()->with('success', 'Member successfully deleted.');
+            return redirect()->back()->with('success', 'Member successfully move to archive.');
         }
 
         return redirect()->back()->with('error', 'Member not found.');
@@ -213,7 +213,7 @@ class MembersController extends Controller
         if ($member) {
             $member->is_delete = 0;
             $member->save();
-            return redirect('admin/archived/members')->with('success', 'Member has been restored.');
+            return redirect('admin/archived/members')->with('success', 'Member has been restored to members list.');
         }
         return redirect('admin/archived/members')->with('error', 'User  not found.');
     }
