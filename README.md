@@ -39,7 +39,6 @@ Ensure that the following are installed on your system:
 
 1. **Clone the Repository**
     ```bash
-    git clone https://github.com/your-repo/new-ground-generation-church-eis.git
     cd new-ground-generation-church-eis
     ```
 2. **Install Dependencies**
